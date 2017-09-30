@@ -1,3 +1,302 @@
-{% extends "templates/sskl_header.html" %}
-<% block my %>
-<% endblock %>
+{% extends "templates/sskl_base.html" %}
+
+{% block myCss %}
+    <style>
+         body{
+                background-color: green;
+            }
+            .sec_main{
+                margin-bottom: 50px;
+            }
+            .xdsoft_datetimepicker{
+                top:252px;!important;
+            }
+    </style>
+{% endblock %}
+{% block content %}
+
+ <div class="main_title">
+            <span>
+                网络监测
+            </span>
+            <div class="main_search pull-right mar_rt_40" id="div">
+                <input type="text" placeholder="请输入基站名称">
+                <i class="glyphicon glyphicon-search"></i>
+            </div>
+        </div>
+        <div class="main_pages" >
+
+           <div cLass="pull-left mar_lf_40 page-num">
+               <label>每页显示</label>
+               <span class="">
+                   <input type="text" value="25" class="nihao">
+                   <u class="glyphicon glyphicon-menu-down"></u>
+                   <ul class="page-num_pages">
+                       <li>10</li>
+                       <li>25</li>
+                       <li>50</li>
+                       <li>100</li>
+                   </ul>
+               </span>
+           </div>
+            <p>
+                <button class="button pull-right mar_rt_40">导出 <u>Excel</u>  </button>
+            </p>
+        </div>
+        <div class="searchs container-fluid">
+            <span>
+                <input type="text" value="省/直辖市">
+                 <u class="glyphicon glyphicon-menu-down"></u>
+                 <div>
+                    <p>
+                        选择省
+                    </p>
+                    <ul class="ul shi_ul">
+                        <li>北京市</li>
+                        <li>天津市</li>
+                        <li>河北省</li>
+                        <li>山西省</li>
+                        <li>内蒙古自治区</li>
+                        <li>辽宁省</li>
+                        <li>吉林省</li>
+                        <li>黑龙江省</li>
+                        <li>上海市</li>
+                        <li>江苏省</li>
+                        <li>浙江省</li>
+                        <li>安徽省</li>
+                        <li>福建省</li>
+                        <li>江西省</li>
+                        <li>山东省</li>
+                        <li>河南省</li>
+                        <li>湖北省</li>
+                        <li>湖南省</li>
+                        <li>广东省</li>
+                        <li>广西壮族自治区</li>
+                        <li>海南省</li>
+                        <li>重庆市</li>
+                        <li>四川省</li>
+                        <li>贵州省</li>
+                        <li>云南省</li>
+                        <li>西藏自治区</li>
+                        <li>陕西省</li>
+                        <li>甘肃省</li>
+                        <li>青海省</li>
+                        <li>宁夏回族自治区</li>
+                        <li>新疆维吾尔自治区</li>
+                        <li>台湾省</li>
+                        <li>香港特别行政区</li>
+                        <li>澳门特别行政区</li>
+                    </ul>
+                 </div>
+            </span>
+            <span>
+                 <input type="text" value="市">
+                 <u class="glyphicon glyphicon-menu-down"></u>
+                 <div>
+                    <p>
+                        选择城市
+                    </p>
+                    <ul class="ul city_ul">
+                        <li>石家庄市</li>
+                        <li>唐山市</li>
+                        <li>秦皇岛市</li>
+                        <li>邯郸市</li>
+                        <li>邢台市</li>
+                        <li>保定市</li>
+                        <li>张家口市</li>
+                        <li>承德市</li>
+                        <li>沧州市</li>
+                        <li>廊坊市</li>
+                        <li>衡水市</li>
+                    </ul>
+                 </div>
+            </span>
+            <span>
+                <input type="text" value="县">
+                 <u class="glyphicon glyphicon-menu-down"></u>
+                <div>
+                    <p>
+                       选择地区
+                    </p>
+                    <ul class="ul conty_ul">
+                      <li>桥东区</li>
+                      <li>桥西区</li>
+                      <li>宣化区</li>
+                      <li>下花园区</li>
+                      <li>宣化区</li>
+                      <li>张北县</li>
+                      <li>张北县</li>
+                      <li>康保县</li>
+                      <li>沽源县</li>
+                      <li>尚义县</li>
+                      <li>蔚县</li>
+                      <li>阳原县</li>
+                      <li>怀安县</li>
+                      <li>怀来县</li>
+                      <li>涿鹿县</li>
+                      <li>赤城县</li>
+                      <li>崇礼县</li>
+                      <li>其他</li>
+                    </ul>
+                 </div>
+            </span>
+            <span>
+                <input type="text" value="状态">
+                 <u class="glyphicon glyphicon-menu-down"></u>
+                 <div>
+                    <ul class="ul sta_stat">
+                        <li>状态</li>
+                        <li>故障</li>
+                        <li>运行在</li>
+                        <li>正在建设中</li>
+                    </ul>
+                 </div>
+            </span>
+            <span>
+                <input type="text" placeholder="数据采集器">
+            </span>
+            <span>
+                 <input type="text" placeholder="基站编码">
+            </span>
+
+            <span>
+                <button type="button" class="beg_secrch pull-right mar_rt_40">搜索</button>
+            </span>
+
+        </div>
+        <div class="table_list container-fluid">
+            <table  id="table"  class="tabstation">
+                <thead>
+                    <tr>
+                        <td>设备编码</td>
+                        <td>基站名称</td>
+                        <td>使用名称</td>
+                        <td class="stat_address">基站地址</td>
+                        <td>网关地址</td>
+                        <td>经度</td>
+                        <td>维度</td>
+                        <td>网管状态</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>BJ_HD_Coo1</td>
+                        <td>西郊田村</td>
+                        <td>备电</td>
+                        <td>北京市 北京市海淀区田村北京市</td>
+                        <td>180.153.49.173</td>
+                        <td>119.633</td>
+                        <td>39.63</td>
+                        <td><span class="state_err">故障</span></td>
+                    </tr>
+                    <tr>
+                        <td>BJ_HD_Coo1</td>
+                        <td>西郊田村</td>
+                        <td>削峰填谷</td>
+                        <td>北京市 北京市海淀区田村</td>
+                        <td>180.153.49.173</td>
+                        <td>119.633</td>
+                        <td>39.63</td>
+                        <td><span class="state_err">故障</span></td>
+                    </tr>
+                    <tr>
+                        <td>BJ_HD_Coo1</td>
+                        <td>西郊田村</td>
+                        <td>备电</td>
+                        <td>北京市 北京市海淀区田村</td>
+                        <td>180.153.49.173</td>
+                        <td>119.633</td>
+                        <td>39.63</td>
+                        <td><span class="state_err">故障</span></td>
+                    </tr>
+                    <tr>
+                        <td>BJ_HD_Coo1</td>
+                        <td>西郊田村</td>
+                        <td>备电</td>
+                        <td>北京市 北京市海淀区田村</td>
+                        <td>180.153.49.173</td>
+                        <td>119.633</td>
+                        <td>39.63</td>
+                        <td><span>正常</span></td>
+                    </tr>
+                    <tr>
+                        <td>BJ_HD_Coo1</td>
+                        <td>西郊田村</td>
+                        <td>备电</td>
+                        <td>北京市 北京市海淀区田村</td>
+                        <td>180.153.49.173</td>
+                        <td>119.633</td>
+                        <td>39.63</td>
+                        <td><span class="state_err">故障</span></td>
+                    </tr>
+                    <tr>
+                        <td>BJ_HD_Coo1</td>
+                        <td>西郊田村</td>
+                        <td>备电</td>
+                        <td>北京市 北京市海淀区田村</td>
+                        <td>180.153.49.173</td>
+                        <td>119.633</td>
+                        <td>39.63</td>
+                        <td><span>正常</span></td>
+                    </tr>
+                    <tr>
+                        <td>BJ_HD_Coo1</td>
+                        <td>西郊田村</td>
+                        <td>备电</td>
+                        <td>北京市 北京市海淀区田村</td>
+                        <td>180.153.49.173</td>
+                        <td>119.633</td>
+                        <td>39.63</td>
+                        <td><span class="state_err">故障</span></td>
+                    </tr>
+                    <tr>
+                        <td>BJ_HD_Coo1</td>
+                        <td>西郊田村</td>
+                        <td>备电</td>
+                        <td>北京市 北京市海淀区田村</td>
+                        <td>180.153.49.173</td>
+                        <td>119.633</td>
+                        <td>39.63</td>
+                        <td><span>正常</span></td>
+                    </tr>
+                    <tr>
+                        <td>BJ_HD_Coo1</td>
+                        <td>西郊田村</td>
+                        <td>备电</td>
+                        <td>北京市 北京市海淀区田村</td>
+                        <td>180.153.49.173</td>
+                        <td>119.633</td>
+                        <td>39.63</td>
+                        <td><span class="state_err">故障</span></td>
+                    </tr>
+                    <tr>
+                        <td>BJ_HD_Coo1</td>
+                        <td>西郊田村</td>
+                        <td>备电</td>
+                        <td>北京市 北京市海淀区田村</td>
+                        <td>180.153.49.173</td>
+                        <td>119.633</td>
+                        <td>39.63</td>
+                        <td><span>正常</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="container-fluid">
+              <!--<div class="pull-right fen_page">-->
+                  <!--<span class="">共有<i>2</i>页，每页显示:<u>25</u>条</span>-->
+                  <!--<ul class="">-->
+                      <!--<li></li>-->
+                      <!--<li>&lt;</li>-->
+                      <!--<li>1</li>-->
+                      <!--<li>2</li>-->
+                      <!--<li>3</li>-->
+                      <!--<li></li>-->
+                  <!--</ul>-->
+              <!--</div>-->
+                <div id="page" class="page_div"></div>
+            </div>
+        </div>
+ <script>
+        {% include "templates/pages/sskl_netMonitor.js" %}
+  </script>
+{% endblock%}

@@ -1,0 +1,221 @@
+{% extends "templates/sskl_base.html" %}
+{% block content %}
+ <div class="main_title main_titWirte">
+            <span>
+               西郊田村
+            </span>
+        </div>
+        <div class="container-fluid Detail">
+               <div class="mes_detail container-fluid">
+                  <h3>基站信息</h3>
+                   <p>包含基站的基础信息介绍及网关信息</p>
+               </div>
+              <div class="detail_StaTable">
+                 <ul class="stat_info">
+                     <li>
+                         <p class="mar_lf_40 base_mes"> <span class="jizhan"></span>基础信息</p>
+                         <ul class="mar_lf_40 container-fluid">
+                             <li>
+                                 <p>基站编码</p>
+                                 <span>BJ_00f</span>
+                             </li>
+                             <li>
+                                 <p>基站描述</p>
+                                 <span>室外宏站</span>
+                             </li>
+                             <li class="address_add">
+                                 <p>基站地址</p>
+                                 <span>山东莱芜市莱芜雪野镇</span>
+                             </li>
+                             <li>
+                                 <p>基站类型</p>
+                                 <span>备电</span>
+                             </li>
+                             <li>
+                                 <p>安装类型</p>
+                                 <span>室内站</span>
+                             </li>
+                             <li>
+                                 <p>安装时间</p>
+                                 <span>2017-09-01</span>
+                             </li>
+                             <li>
+                                 <p>电池安装类型</p>
+                                 <span>梯次电池一体柜机</span>
+                             </li>
+                         </ul>
+                     </li>
+                     <li>
+                         <p class="mar_lf_40 base_mes"><span></span>网关信息</p>
+                         <ul class="mar_lf_40 container-fluid">
+                             <li>
+                                 <p>状态</p>
+                                 <span>0</span>
+                             </li>
+                             <li>
+                                 <p>设备序列号</p>
+                                 <span>null</span>
+                             </li>
+                             <li>
+                                 <p>SD卡剩余容量</p>
+                                 <span>null</span>
+                             </li>
+                         </ul>
+                     </li>
+                 </ul>
+              </div>
+        </div>
+        <div class="container-fluid Detail">
+            <div class="mes_detail container-fluid">
+                <h3>数据分析</h3>
+                <p>可通过各个数据分析当前基站趋势</p>
+            </div>
+            <div class="vol container-fluid">
+                <div class="vol_record pull-left">
+                    <p class="bet_comor_title">
+                        <span>电池组总电压</span><a href="#">历史查询</a>
+                    </p>
+                </div>
+                <div class="battery_group pull-right fix_bet_group container-fluid">
+                  <p class="bet_comor_title ">
+                      <span>单体电池组</span>
+                  </p>
+                    <div class="container-fluid zu_group">
+                        <table class="groups">
+                            <thead>
+                                <tr>
+                                    <th>组体</th>
+                                    <th>电压(V)</th>
+                                    <th>电流(E)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>01</td>
+                                    <td>50</td>
+                                    <td>4.02</td>
+                                </tr>
+                                <tr>
+                                    <td>02</td>
+                                    <td>50</td>
+                                    <td>4.02</td>
+                                </tr>
+                                <tr>
+                                    <td>03</td>
+                                    <td>50</td>
+                                    <td>4.02</td>
+                                </tr>
+                                <tr>
+                                    <td>04</td>
+                                    <td>50</td>
+                                    <td>4.02</td>
+                                </tr>
+                                <tr>
+                                    <td>05</td>
+                                    <td>50</td>
+                                    <td>4.02</td>
+                                </tr>
+                                <tr>
+                                    <td>06</td>
+                                    <td>50</td>
+                                    <td>4.02</td>
+                                </tr>
+                                <tr>
+                                    <td>07</td>
+                                    <td>50</td>
+                                    <td>4.02</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="single_bat_vol container-fluid pull-left">
+                <p class="bet_comor_title">
+                    <span>电池组单体电池电压</span>
+                </p>
+                <div id="dianyaVol">
+
+                </div>
+            </div>
+            <div class="soc_now container-fluid pull-left">
+                <p class="bet_comor_title">
+                    <span>SOC</span> <a href="#">历史查询</a>
+                </p>
+                <div id="soc">
+
+                </div>
+            </div>
+            <div class="tem_now container-fluid pull-left">
+                <p class="bet_comor_title">
+                    <span>单体温度</span> <a href="#">历史查询</a>
+                </p>
+                <div id="temperature">
+
+                </div>
+            </div>
+            <div class="electric_now container-fluid pull-left">
+                <p class="bet_comor_title">
+                    <span>单体放电电流</span> <a href="#">历史查询</a>
+                </p>
+                <div id="electrical">
+
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid Detail">
+            <div class="mes_detail container-fluid">
+                <h3>报警信息</h3>
+                <p>可直观快捷的了解基站出现的问题</p>
+            </div>
+            <div class="baojing">
+                <table class="mar_rt_40 " id="baojing">
+                    <thead>
+                    <tr>
+                        <th >报警类型</th>
+                        <th>报警时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>BMS通信</td>
+                        <td>2017-09-27 18:00:05</td>
+                    </tr>
+                    <tr>
+                        <td>BMS通信</td>
+                        <td>2017-09-27 18:00:05</td>
+                    </tr>
+                    <tr>
+                        <td>BMS通信</td>
+                        <td>2017-09-27 18:00:05</td>
+                    </tr>
+                    <tr>
+                        <td>BMS通信</td>
+                        <td>2017-09-27 18:00:05</td>
+                    </tr><tr>
+                        <td>BMS通信</td>
+                        <td>2017-09-27 18:00:05</td>
+                    </tr><tr>
+                        <td>BMS通信</td>
+                        <td>2017-09-27 18:00:05</td>
+                    </tr><tr>
+                        <td>BMS通信</td>
+                        <td>2017-09-27 18:00:05</td>
+                    </tr>
+                    <tr>
+                        <td>BMS通信</td>
+                        <td>2017-09-27 18:00:05</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+<script>
+    {% include "templates/pages/sskl_netWork.js" %}
+</script>
+<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+<script src="https://img.hcharts.cn/highcharts/highcharts-more.js"></script>
+<script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+{% endblock %}
