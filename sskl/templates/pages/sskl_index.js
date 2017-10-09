@@ -2,7 +2,6 @@ navList("资源管理");
 	var map = new BMap.Map("map",{enableMapClick: false});
 	map.centerAndZoom("北京市", 10);
 	map.enableScrollWheelZoom();
-
 	var opts = {
 		width : 250,     // 信息窗口宽度
 		height: 145,     // 信息窗口高度

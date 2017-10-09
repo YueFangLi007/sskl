@@ -169,7 +169,9 @@
     width:7px;
     height:7px;
     border:1px solid #000000;
-    background: url("../imgs/spilit1.png") 0px 0px no-repeat;
+    background: url("/assets/sskl/images/spilit1.png") 0px 0px no-repeat;
+    /*找不到路径 问董工*/
+
 }
 .section .sec_nav>.nav_list>li>a.aList{
     background-color: #1f9488;
@@ -216,6 +218,7 @@
 .sec_main{
     width:100%;
     height:100%;
+    overflow: hidden;
     padding-left:200px;
 }
 .sec_main > .main_title{
@@ -308,8 +311,9 @@
     font-size:12px;
     font-family: "方正兰亭黑_GBK";
 }
-.page-num >span>ul.page-num_pages>li:hover{
+.page_hover{
    background-color: #d2d4d2;
+    color:#fff;
 }
 .searchs{
     padding:20px 40px;
