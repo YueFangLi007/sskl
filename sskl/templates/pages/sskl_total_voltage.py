@@ -11,5 +11,5 @@ from frappe import _
 # from Jinja2 import Template ;
 def get_context(context):
 	context.title=_("杉杉凯励—总电压历史记录");
-	context.doc = frappe.get_doc("Cell Station", name);
+
 

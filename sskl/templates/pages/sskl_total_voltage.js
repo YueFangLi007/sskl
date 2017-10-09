@@ -1,4 +1,5 @@
 navList("网络监测");
+//datepikr插件
 var logic = function( currentDateTime ){
     if( currentDateTime.getDay()==6 ){
         this.setOptions({

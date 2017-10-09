@@ -646,8 +646,6 @@
 }
 .vol>.battery_group  .groups{
     width:100%;
-
-
     font-size: 12px;
 }
 .battery_group .zu_group{
@@ -679,6 +677,11 @@
     width:49.5%;
     height:350px;
     border-radius: 3px;
+}
+.bet_zong{
+    width:100%;
+    height:312px !important;
+    overflow: hidden;
 }
 .single_bat_vol{
     margin-right:1%;
@@ -799,7 +802,7 @@
  .total_box_rec{
      width:100%;
      height:450px;
-     background-color: #1b6d85;
+     background-color: #eee;
  }
  #map{
      width:10000px;
