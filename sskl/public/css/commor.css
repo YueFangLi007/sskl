@@ -14,11 +14,11 @@ u{
 }
 @font-face {
     font-family: myFirstfont;
-    src:url("../fonts/方正兰亭黑_GBK.TTF");
+    src:url("/assets/sskl/fonts/方正兰亭黑_GBK.TTF");
 }
 @font-face {
     font-family: myFirstfont1;
-    src:url("../fonts/方正兰亭粗黑简体.TTF");
+    src:url("/assets/sskl/fonts/方正兰亭粗黑简体.TTF");
 }
 body{
     width:100%;

@@ -1,0 +1,34 @@
+{% extends "templates/sskl_base.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="">
+        <div class="main_title main_titWirte">
+            <span>
+               西郊田村
+            </span>
+        </div>
+        <div class="container-fluid Detail">
+            <div class="mes_detail container-fluid">
+                <h3>电池组01单体电池电压历史数据</h3>
+                <p>可通过各个数据分析当前基站趋势走向</p>
+            </div>
+            <div class="totalVol container-fluid" id="total_voltage">
+                <div class="search_time clearfix">
+                   <p class="pull-right">
+                       <input type="text" value="开始时间" class="startTime"/> - <input type="text" class="endTime"  value="结束时间">
+                       <button href="" class="btn_search">搜索</button>
+                   </p>
+                </div>
+                <div class="total_box_rec">
+
+                </div>
+            </div>
+        </div>
+
+<script src="/assets/sskl/js/jquery.datetimepicker.js"></script>
+<script src="/assets/sskl/js/jquery-ui-timepicker-zh-CN.js"></script>
+<script>
+     {% include "templates/pages/sskl_total_voltage.js" %}
+</script>
+
+{% endblock %}

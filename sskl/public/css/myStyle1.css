@@ -797,7 +797,8 @@
      height:450px;
      background-color: #1b6d85;
  }
- .map{
-     width:300px;
-     height:500px;
+ #map{
+     width:10000px;
+     height:5000px;
+     background-color: #1bbead;
  }

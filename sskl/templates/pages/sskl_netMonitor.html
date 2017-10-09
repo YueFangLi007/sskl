@@ -1,6 +1,7 @@
 {% extends "templates/sskl_base.html" %}
 
 {% block myCss %}
+ <link rel="stylesheet" href="/assets/sskl/css/jquery.datetimepicker.css">
     <style>
          body{
                 background-color: green;
@@ -29,7 +30,7 @@
            <div cLass="pull-left mar_lf_40 page-num">
                <label>每页显示</label>
                <span class="">
-                   <input type="text" value="25" class="nihao">
+                   <input type="text" value="25" class="pageinput">
                    <u class="glyphicon glyphicon-menu-down"></u>
                    <ul class="page-num_pages">
                        <li>10</li>
@@ -140,8 +141,8 @@
                     </ul>
                  </div>
             </span>
-            <span>
-                <input type="text" value="状态">
+            <span  class="statinput">
+                 <input type="text" value="状态" class="">
                  <u class="glyphicon glyphicon-menu-down"></u>
                  <div>
                     <ul class="ul sta_stat">
