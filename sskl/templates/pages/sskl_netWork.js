@@ -18,7 +18,6 @@ function vol(){
                 point: {
                     events: {
                         click: function () {
-                            console.log(this.options.key);
                             location.href = "https://www.baidu.com/";
 
                         }
@@ -61,15 +60,14 @@ function temperature(){
    title :{
                 text:null
             },
-    subtitle: {
-        text: '0-24小时实时监测',
-
-    },
      credits: {
             enabled: false
             //去除版权信息。
      },
     xAxis: {
+      title:{
+       text:'0-24小时实时监测'
+   },
         categories: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11','12','13','14','15','16','17','18','19','20','21','22','23','24']
     },
     yAxis: {
@@ -92,7 +90,6 @@ function temperature(){
         borderWidth: 0
     },
     series: [{
-
         data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,1,3,5,7,8,5,6,7,8,4,2,4,6]
     }, {
 

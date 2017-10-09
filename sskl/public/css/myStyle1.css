@@ -104,7 +104,7 @@
     width:21px;
     vertical-align: middle;
     height:21px;
-    background:url("../imgs/spilit1.png")-52px -2px no-repeat;
+    background:url("../images/spilit1.png") -52px -2px no-repeat;
 }
 .header_user .has_user{
     margin-top:4px;
@@ -170,8 +170,6 @@
     height:7px;
     border:1px solid #000000;
     background: url("/assets/sskl/images/spilit1.png") 0px 0px no-repeat;
-    /*找不到路径 问董工*/
-
 }
 .section .sec_nav>.nav_list>li>a.aList{
     background-color: #1f9488;
@@ -184,7 +182,7 @@
     top:15px;
     width:21px;
     height:21px;
-    background: url("../imgs/spilit1.png") -2px -28px  no-repeat;
+    background: url("/assets/sskl/images/spilit1.png") -2px -28px  no-repeat;
 }
 .net_icon{
     background-position: -3px -53px;
@@ -465,23 +463,9 @@
     height:64px;
     background-color:#f5f5f5;
 }
-.fen_page{
-    height:63px;
-    line-height:63px;
-}
-.fen_page>ul{
-    display: inline-block;
-}
-.fen_page>ul>li{
-    float: left;
-    width:14px;
-    height:14px;
-    font-size:8px;
-    border:1px solid #4d4e4d;
-    margin:0px 5px;
-    text-align: center;
-    line-height:14px;
-}
+
+
+
 .footer>p{
     font-size:14px;
     margin-top:25px;
@@ -508,46 +492,43 @@
 
 
 /*分页*/
-#page{
-    float:right;
-}
-.page_div a {
-    min-width: 30px;
-    height: 28px;
-    border: 1px solid #dce0e0!important;
-    text-align: center;
-    margin: 0 4px;
-    cursor: pointer;
-    line-height: 28px;
-    color: #666666;
-    font-size: 13px;
+
+.fen_page>ul{
     display: inline-block;
 }
-#firstPage,
-#lastPage {
-    width: 50px;
-    color: #0073A9;
-    border: 1px solid #0073A9!important;
+.fen_page{
+    height:62px;
 }
-#prePage,
-#nextPage {
-    width: 70px;
-    color: #0073A9;
-    border: 1px solid #0073A9!important;
+.fen_page>span{
+  font-size:12px;
 }
-.page_div .current {
+.fen_page>ul>li{
+    width:14px;
+      float: left;
+    height:14px;
+    border:1px solid #000000;
+    text-align: center;
+   line-height:14px;
+    font-size: 8px!important;
+    margin:0px 5px;
+}
+.fen_page>ul>li.fen_top{
+    margin-right:11px;
+    background: url("/assets/sskl/images/spilit1.png") -123px -3px;
+    background-color: #1b6d85;
+}
+.fen_page>ul>li.fen_next{
+    margin-left:11px;
+}
+.fen_page>ul>li:hover{
+    width:18px;
+    height:18px;
+    line-height:18px;
+    border:0px;
     background-color: #12c08f;
-    border-color: #0073A9;
-    color: #FFFFFF;
+    color:#fff;
 }
-.totalPages {
-    margin: 0 10px;
-}
-.totalPages span,
-.totalSize span {
-    color: #0073A9;
-    margin: 0px 5px;
-}
+
 /*基站信息*/
 .Detail{
     padding-left:40px;
@@ -586,12 +567,13 @@
     height:23px;
     margin-bottom: -6px;
     margin-right:11px;
-    background:url("../imgs/spilit1.png") -83px -2px no-repeat;
+    background:url("../images/spilit1.png") -83px -2px no-repeat;
     background-color: #fff;
 }
 .detail_StaTable .base_mes>span.jizhan{
     height:24px;
-    background:url("../imgs/img_mass.png")no-repeat;
+    background:url("../images/img_mass.png") no-repeat;
+
 }
 .detail_StaTable>.stat_info>li{
     width:100%;
