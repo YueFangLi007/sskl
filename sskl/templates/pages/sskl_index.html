@@ -1,10 +1,29 @@
 {% extends "templates/sskl_base.html" %}
 
 {% block content %}
-
-
-
-
+<style>
+     #map{
+             width:10000px;
+             background-color: #1bbead;
+        }
+      .widget-box{
+          position:relative;
+      }
+    .widget-box>h4{
+            font-size:16px;
+            color:#fb8f6f;
+            margin-bottom: 13px;
+    }
+     .widget-box>p{
+            margin-bottom: 6px;
+    }
+      .widget-box>a{
+           position: absolute;
+           right:27px;
+           top:0px;
+           color:#38adff;
+    }
+</style>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=U5bEqrINmdgbeXXgfaNNk1rHGGtRCU2Z"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
@@ -13,4 +32,6 @@
         <script>
               {% include "templates/pages/sskl_index.js" %}
         </script>
+
 {% endblock %}
+
