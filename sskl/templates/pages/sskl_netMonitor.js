@@ -23,7 +23,7 @@ $(function(){
           $(".table_list>table>tbody").append(html);
       },
         error:function(){
-          $(".table_list>table>tbody").html("无数据");
+          $(".table_list>table>tbody").html("没有查到数据");
         }
     });
 
