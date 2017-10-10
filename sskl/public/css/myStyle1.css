@@ -230,7 +230,7 @@
     font-size:16px;
     margin-left:40px;
     color:#000;
-    font-family: "方正兰亭粗黑简体";
+    font-family: myFirstfont;
 }
 .main_search{
     position: relative;
@@ -270,7 +270,7 @@
     font-size:12px;
     margin-top:12.5px;
     color:#848685;
-    font-family: "方正兰亭黑_GBK";
+    font-family: myFirstfont;
 }
 .page-num>span{
     position: relative;
@@ -307,7 +307,7 @@
 }
 .page-num>label{
     font-size:12px;
-    font-family: "方正兰亭黑_GBK";
+    font-family: myFirstfont1;
 }
 .page_hover{
    background-color: #d2d4d2;
@@ -541,7 +541,7 @@
 }
 .mes_detail>h3{
    font-size:15px;
-    font-family: "方正兰亭粗黑简体";
+    font-family: myFirstfont1;
     font-weight: bold;
     height:25px;
     margin:0px;
@@ -684,7 +684,6 @@
     display: inline-block;
     margin-left:40px;
     margin-right:40px;
-   font-family: 方正兰亭粗黑简体;
 }
 .bet_comor_title>a{
    float:right;
