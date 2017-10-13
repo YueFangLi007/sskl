@@ -4,8 +4,11 @@
 
  <link rel="stylesheet" href="/assets/sskl/css/jquery.datetimepicker.css">
 
+
 {% endblock %}
 {% block content %}
+
+
 <script type="text/javascript" src="/assets/sskl/js/paging.js"></script>
 <style>
             .sec_main{
@@ -69,6 +72,7 @@
 				margin: 0 5px;
 			}
 
+
     </style>
  <div class="main_title">
             <span>
@@ -99,48 +103,15 @@
             </p>
         </div>
         <div class="searchs container-fluid">
-            <span>
+            <span id="sheng_choose">
                 <input type="text" value="省/直辖市">
                  <u class="glyphicon glyphicon-menu-down"></u>
-                 <div class="sheng_divUl">
+                 <div id="sheng_divUl">
                     <p>
                         选择省
                     </p>
                     <ul class="ul shi_ul" id="sheng_ul">
-                        <li>北京市</li>
-                        <li>天津市</li>
-                        <li>河北省</li>
-                        <li>山西省</li>
-                        <li>内蒙古自治区</li>
-                        <li>辽宁省</li>
-                        <li>吉林省</li>
-                        <li>黑龙江省</li>
-                        <li>上海市</li>
-                        <li>江苏省</li>
-                        <li>浙江省</li>
-                        <li>安徽省</li>
-                        <li>福建省</li>
-                        <li>江西省</li>
-                        <li>山东省</li>
-                        <li>河南省</li>
-                        <li>湖北省</li>
-                        <li>湖南省</li>
-                        <li>广东省</li>
-                        <li>广西壮族自治区</li>
-                        <li>海南省</li>
-                        <li>重庆市</li>
-                        <li>四川省</li>
-                        <li>贵州省</li>
-                        <li>云南省</li>
-                        <li>西藏自治区</li>
-                        <li>陕西省</li>
-                        <li>甘肃省</li>
-                        <li>青海省</li>
-                        <li>宁夏回族自治区</li>
-                        <li>新疆维吾尔自治区</li>
-                        <li>台湾省</li>
-                        <li>香港特别行政区</li>
-                        <li>澳门特别行政区</li>
+
                     </ul>
                  </div>
             </span>
@@ -151,18 +122,7 @@
                     <p>
                         选择城市
                     </p>
-                    <ul class="ul city_ul">
-                        <li>石家庄市</li>
-                        <li>唐山市</li>
-                        <li>秦皇岛市</li>
-                        <li>邯郸市</li>
-                        <li>邢台市</li>
-                        <li>保定市</li>
-                        <li>张家口市</li>
-                        <li>承德市</li>
-                        <li>沧州市</li>
-                        <li>廊坊市</li>
-                        <li>衡水市</li>
+                    <ul class="ul city_ul" id="city_ul">
                     </ul>
                  </div>
             </span>
@@ -184,13 +144,7 @@
                       <li>康保县</li>
                       <li>沽源县</li>
                       <li>尚义县</li>
-                      <li>蔚县</li>
-                      <li>阳原县</li>
-                      <li>怀安县</li>
-                      <li>怀来县</li>
-                      <li>涿鹿县</li>
-                      <li>赤城县</li>
-                      <li>崇礼县</li>
+
                       <li>其他</li>
                     </ul>
                  </div>
@@ -202,7 +156,7 @@
                     <ul class="ul sta_stat">
                         <li>状态</li>
                         <li>故障</li>
-                        <li>运行在</li>
+                        <li>正常</li>
                         <li>正在建设中</li>
                     </ul>
                  </div>
@@ -220,6 +174,8 @@
 
         </div>
         <div class="table_list container-fluid">
+ <table id="list2"></table>
+    <div id="pager2"></div>
             <table  id="table"  class="tabstation">
                 <thead>
                     <tr>
@@ -234,16 +190,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                     <!--<tr>-->
-                        <!--<td></td>-->
-                        <!--<td>西郊田村</td>-->
-                        <!--<td>备电</td>-->
-                        <!--<td>北京市 北京市海淀区田村</td>-->
-                        <!--<td>180.153.49.173</td>-->
-                        <!--<td>119.633</td>-->
-                        <!--<td>39.63</td>-->
-                        <!--<td><span>正常</span></td>-->
-                    <!--</tr>-->
                     <!--<tr>-->
                         <!--<td>BJ_HD_Coo1</td>-->
                         <!--<td>西郊田村</td>-->
@@ -254,17 +200,6 @@
                         <!--<td>39.63</td>-->
                         <!--<td><span class="state_err">故障</span></td>-->
                     <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td>BJ_HD_Coo1</td>-->
-                        <!--<td>西郊田村</td>-->
-                        <!--<td>备电</td>-->
-                        <!--<td>北京市 北京市海淀区田村</td>-->
-                        <!--<td>180.153.49.173</td>-->
-                        <!--<td>119.633</td>-->
-                        <!--<td>39.63</td>-->
-                        <!--<td><span>正常</span></td>-->
-                    <!--</tr>-->
-
                 </tbody>
             </table>
             <div class="container-fluid">
@@ -282,7 +217,7 @@
               <!--</div>-->
                <div id="page" class="page_div pull-right"></div>
             </div>
-        </div>
+    </div>
  <script>
         {% include "templates/pages/sskl_netMonitor.js" %}
   </script>

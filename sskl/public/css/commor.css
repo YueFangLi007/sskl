@@ -6,6 +6,9 @@
 .container-fluid{
     padding:0px;
 }
+label{
+    font-family: myFirstfont;
+}
 i{
     font-style: normal;
 }
@@ -14,12 +17,13 @@ u{
 }
 @font-face {
     font-family: myFirstfont;
-    src:url("/assets/assets/fonts/方正兰亭黑_GBK.TTF");
+    src:url("/assets/sskl/fonts/方正兰亭黑_GBK.TTF");
+
 }
-/*@font-face {*/
-    /*font-family: myFirstfont1;*/
-    /*src:url("/assets/fonts/方正兰亭粗黑简体.TTF");*/
-/*}*/
+@font-face {
+    font-family: myFirstfont1;
+    src:url("/assets/fonts/方正兰亭粗黑简体.TTF");
+}
 body{
     width:100%;
     height:100%;
@@ -29,37 +33,36 @@ body{
     background-color: #fff;
 }
 h1,h2,h3,h4,h5,h6{
-    font-family: myFirstfont1,"楷体";
+    font-family: myFirstfont1,"微软雅黑";
     font-weight: bold;
 }
 input{
     border-radius: 36px;
 }
-/**::-webkit-scrollbar*/
-    /*{*/
-        /*width: 8px;*/
-        /*height: 54px;*/
-        /*!*margin-top:4px;*!*/
-        /*!*margin-right:4px;*!*/
-        /*padding:4px;*/
-        /*background-color: #eeeeee;*/
-    /*}*/
-/*!*定义滚动条轨道 内阴影+圆角*!*/
-/*::-webkit-scrollbar-track*/
-    /*{*/
-        /*!*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*!*/
-        /*border-radius: 10px;*/
-        /*background-color: #fff;*/
-    /*}*/
+::-webkit-scrollbar {
+  width: 16px;
+  height: 5px;
+}
 
-/*!*定义滑块 内阴影+圆角*!*/
-/**::-webkit-scrollbar-thumb*/
-    /*{*/
-        /*border-radius: 10px;*/
-        /*!*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);*!*/
-        /*background-color: #d2d4d2;*/
-    /*}*/
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  border: 5px solid transparent;
+}
 
+::-webkit-scrollbar-track {
+  box-shadow: 1px 1px 5px rgba(0,0,0,0) inset;
+}
+
+::-webkit-scrollbar-thumb {
+  min-height: 20px;
+  background-clip: content-box;
+  box-shadow: 0 0 0 5px rgba(0,0,0,.2) inset;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
 u{
     text-decoration: none;
 }

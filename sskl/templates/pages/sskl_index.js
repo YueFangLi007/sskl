@@ -10,7 +10,6 @@ navList("资源管理");
 		enableMessage:true//设置允许信息窗发送短息
 	};
 
-
 	function addClickHandler(content,marker){
 		marker.addEventListener("click",function(e){
 			openInfo(content,e)}
@@ -26,14 +25,10 @@ navList("资源管理");
 
 
 $(function(){
-	console.log(parseInt($(window).height()));
-	console.log($(document.body).height());
-	console.log(parseInt($('div.main-container').offsetHeight));
 	$('#map').height(parseInt($(window).height()));
 	$(window).resize(function() {
 	  $('#map').height(parseInt($(window).height()));
 	});
-    // $(".footer").remove();
     var dataurl = "http://192.168.174.140:8000/api/method/tieta.tieta.doctype.cell_station.cell_station.search_station?page_length=9999";
     $.ajax({url:dataurl,async:true,success:function(r){
         //################################################
@@ -48,11 +43,12 @@ $(function(){
                 // var gourl = "/iot_devinfo/" + stations[cs].device_sn;
 
                 var content =
-                    "<div class='widget-box'>" +
-                        "<h4 class='widget-title'>"+ stations[cs].station_name +"</h4>" +
-                        "<p> 地&nbsp;&nbsp;&nbsp;址:"+ stations[cs].address_text +"</p>"+
-                         "<p> 联系人:后台需添加</p>"+"<a href='sskl_netWork.html'>详情</a>"
-                    "</div>";
+				'<div class="widget-box">'+
+					'<h4 class="widget-title">'+ stations[cs].station_name +'</h4>' +
+					'<p> 地&nbsp;&nbsp;&nbsp;址:'+ stations[cs].address_text +'</p>'+
+					 '<p> 联系人:XXX</p>'+'<a href="sskl_netWork.html?code=\''+stations[cs].code+'\'">详情</a>'+
+				'</div>';
+
 
                  addClickHandler(content, marker)
                    markers.push(marker);

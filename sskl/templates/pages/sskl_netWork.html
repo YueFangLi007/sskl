@@ -7,7 +7,7 @@
 
  <div class="main_title main_titWirte">
             <span>
-               西郊田村
+               {{doc.station_name}}
             </span>
         </div>
         <div class="container-fluid Detail">
@@ -22,11 +22,11 @@
                          <ul class="mar_lf_40 container-fluid">
                              <li>
                                  <p>基站编码</p>
-                                 <span>BJ_00f</span>
+                                 <span>{{doc.code}}</span>
                              </li>
                              <li>
                                  <p>基站描述</p>
-                                 <span>室外宏站</span>
+                                 <span>{{doc.description}}</span>
                              </li>
                              <li class="address_add">
                                  <p>基站地址</p>
@@ -34,19 +34,19 @@
                              </li>
                              <li>
                                  <p>基站类型</p>
-                                 <span>备电</span>
+                                 <span>{{doc.station_type}}</span>
                              </li>
                              <li>
                                  <p>安装类型</p>
-                                 <span>室内站</span>
+                                 <span>{{doc.setup_type}}</span>
                              </li>
                              <li>
                                  <p>安装时间</p>
-                                 <span>2017-09-01</span>
+                                 <span>{{doc.creation}}</span>
                              </li>
                              <li>
                                  <p>电池安装类型</p>
-                                 <span>梯次电池一体柜机</span>
+                                 <span>{{doc.battery_setup_type}}</span>
                              </li>
                          </ul>
                      </li>
@@ -55,11 +55,12 @@
                          <ul class="mar_lf_40 container-fluid">
                              <li>
                                  <p>状态</p>
-                                 <span>0</span>
+                                 <span>{{doc.status}}</span>
                              </li>
                              <li>
                                  <p>设备序列号</p>
-                                 <span>null</span>
+                                 <!--就是网关串口号-->
+                                 <span>{{doc.symlink_sn}}</span>
                              </li>
                              <li>
                                  <p>SD卡剩余容量</p>
