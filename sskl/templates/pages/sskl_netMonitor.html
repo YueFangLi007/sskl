@@ -3,13 +3,13 @@
 {% block myCss %}
 
  <link rel="stylesheet" href="/assets/sskl/css/jquery.datetimepicker.css">
-
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
 {% endblock %}
 {% block content %}
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
-
-<script type="text/javascript" src="/assets/sskl/js/paging.js"></script>
+<!--<script type="text/javascript" src="/assets/sskl/js/paging.js"></script>-->
 <style>
             .sec_main{
                 margin-bottom: 50px;
@@ -104,7 +104,7 @@
         </div>
         <div class="searchs container-fluid">
             <span id="sheng_choose">
-                <input type="text" value="省/直辖市">
+                <input type="text" value="省/直辖市" id="sheng_input">
                  <u class="glyphicon glyphicon-menu-down"></u>
                  <div id="sheng_divUl">
                     <p>
@@ -116,7 +116,7 @@
                  </div>
             </span>
             <span>
-                 <input type="text" value="市">
+                 <input type="text" value="市" id="shi_input">
                  <u class="glyphicon glyphicon-menu-down"></u>
                  <div>
                     <p>
@@ -127,7 +127,7 @@
                  </div>
             </span>
             <span>
-                <input type="text" value="县">
+                <input type="text" value="县" id="xian_input">
                  <u class="glyphicon glyphicon-menu-down"></u>
                 <div>
                     <p>
@@ -162,22 +162,22 @@
                  </div>
             </span>
             <span>
-                <input type="text" placeholder="数据采集器">
+                <input type="text" placeholder="数据采集器" id="sn_caiji">
             </span>
             <span>
-                 <input type="text" placeholder="基站编码">
+                 <input type="text" placeholder="基站编码" id="stat_code">
             </span>
 
             <span>
-                <button type="button" class="beg_secrch pull-right mar_rt_40">搜索</button>
+                <button type="button" class="beg_secrch pull-right mar_rt_40" id="beg_search">搜索</button>
             </span>
 
         </div>
         <div class="table_list container-fluid">
- <table id="list2"></table>
-    <div id="pager2"></div>
-            <table  id="table"  class="tabstation">
-                <thead>
+<!-- <table id="list2"></table>
+    <div id="pager2"></div>-->
+            <table  id="table"  class="display tabstation responsive nowrap"  cellspacing="0" width="100%">
+                <!--<thead>
                     <tr>
                         <td>设备编码</td>
                         <td>基站名称</td>
@@ -188,8 +188,8 @@
                         <td>维度</td>
                         <td>监控状态</td>
                     </tr>
-                </thead>
-                <tbody>
+                </thead>-->
+                <!--<tbody>-->
                     <!--<tr>-->
                         <!--<td>BJ_HD_Coo1</td>-->
                         <!--<td>西郊田村</td>-->
@@ -200,7 +200,7 @@
                         <!--<td>39.63</td>-->
                         <!--<td><span class="state_err">故障</span></td>-->
                     <!--</tr>-->
-                </tbody>
+                <!--</tbody>-->
             </table>
             <div class="container-fluid">
               <!--<div class="pull-right fen_page">-->

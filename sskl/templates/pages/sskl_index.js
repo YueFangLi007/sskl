@@ -42,13 +42,12 @@ $(function(){
                 var marker = new BMap.Marker(pt,{icon:myIcon});
                 // var gourl = "/iot_devinfo/" + stations[cs].device_sn;
 
-                var content =
-				'<div class="widget-box">'+
-					'<h4 class="widget-title">'+ stations[cs].station_name +'</h4>' +
-					'<p> 地&nbsp;&nbsp;&nbsp;址:'+ stations[cs].address_text +'</p>'+
-					 '<p> 联系人:XXX</p>'+'<a href="sskl_netWork.html?code=\''+stations[cs].code+'\'">详情</a>'+
-				'</div>';
-
+              var content =
+					'<div class="widget-box">'+
+						'<h4 class="widget-title">'+ stations[cs].station_name +'</h4>' +
+						'<p> 地&nbsp;&nbsp;&nbsp;址:'+ stations[cs].address_text +'</p>'+
+						 '<p> 联系人:XXX</p>'+'<a href="sskl_netWork.html?code='+stations[cs].name+'">详情</a>'+
+					'</div>';
 
                  addClickHandler(content, marker)
                    markers.push(marker);

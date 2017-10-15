@@ -1,39 +1,91 @@
-    $(function() {
-        navList("网络监测");
-        var url = "http://192.168.174.140:8000/api/method/tieta.tieta.doctype.cell_station.cell_station.search_station";
-        var html = "";
-        $.ajax({
-            type: 'get',
-            url: url,
-            success: function (data) {
-                var m = data.message;
-               $.each(m, function (index, v) {
-                html +=
-                    '<tr onclick="netWorkDrop(\''+v.name+'\')">' +
-                    '<td>' + v.code+ '</td>' +
-                    '<td>' + v.station_name + '</td>' +
-                    '<td>' + v.station_type + '</td>' +
-                    '<td>' + v.address_text + '</td>' +
-                    '<td>' + '' + '</td>' +
-                    '<td>' + v.longitude + '</td>' +
-                    '<td>' + v.latitude + '</td>' +
-                    '<td>' + '' + '</td>' +
-                    ' </tr>' ;
-            });
+$(function() {
+   // $('#table').dataTable();
+    navList("网络监测");
+    tableAA();
 
-                $(".table_list>table>tbody").append(html);
-            },
-            error: function () {
-                $(".table_list>table>tbody").html("没有查到数据");
-            }
-        });
 //省||市的选择
-        sheng_shoose();
-    });
+//         sheng_shoose();
+});
+
+//表格加载
+function tableAA(){
+     $.ajax({
+            url: "http://192.168.174.140:8000/api/method/tieta.tieta.doctype.cell_station.cell_station.search_station",
+            success: function (r) {
+                var data=r.message;
+
+                $('#table').DataTable( {
+                     data:data,
+                     scrollY: 400,
+                     columns: [
+                                { data: 'code' },
+                                { data: 'station_name' },
+                                { data: 'station_type' },
+                                { data: 'address_text' },
+                                { data: 'name' },
+                                { data: 'longitude' },
+                                { data: 'latitude' },
+                                { data: 'modified' }
+                     ],
+                    "aoColumns" : [ {
+                                "mDataProp" : "code",
+                                "sTitle" : "用户名",
+                                "sDefaultContent" : "",
+                                "sClass" : "center"
+                            }, {
+                                "mDataProp" : "station_name",
+                            "sTitle" : "电子邮箱",
+                            "sDefaultContent" : "",
+                            "sClass" : "center"
+                        }, {
+                            "mDataProp" : "station_type",
+                            "sTitle" : "手机",
+                            "sDefaultContent" : "",
+                            "sClass" : "center"
+                        }, {
+                            "mDataProp" : "address_text",
+                            "sTitle" : "座机",
+                            "sDefaultContent" : "",
+                            "sClass" : "center"
+                        }, {
+                            "mDataProp" : "name",
+                            "sTitle" : "姓名",
+                            "sDefaultContent" : "",
+                            "sClass" : "center"
+                        }, {
+                            "mDataProp" : "longitude",
+                            "sTitle" : "用户权限",
+                            "sDefaultContent" : "",
+                            "sClass" : "center"
+                        }, {
+                            "mDataProp" : "latitude",
+                            "sTitle" : "用户权限",
+                            "sDefaultContent" : "",
+                            "sClass" : "center"
+                        }, {
+                            "mDataProp" : "modified",
+                            "sTitle" : "用户权限",
+                            "sDefaultContent" : "",
+                            "sClass" : "center"
+                        }],
+                 });
+            }
+     });
+
+}
+
+
+
+
+
+
+
 //跳转函数
     function netWorkDrop(code){
         location.href="sskl_netWork.html?code="+code;
     }
+
+
 
     $(".searchs >span").click(function(e){
         $(this).children("div").show();
@@ -54,26 +106,7 @@
                 });
                 console.log("pagetotal   "+pagetotal);
                 $("#sheng_ul").html(html);
-            //    分页代码开始
-                var size=pagetotal;
-                 $("#page").paging({
-                    pageNo:1,
-                    maxentries :pagetotal,
-                    totalPage: 77,
-                     size:1,
-                     count:4,
-                     hasFirstPage: true,//whether has first button
-                     total:pagetotal,
-                     nowPage: 1, //当前页数
-                    // // allPages: Math.ceil(data.count / 6), // 所有页（由传入的数据决定）
-                     displayPage: 7,  // 分页列表显示的个数
-                      callback:function(page,size,count){
-                        //
-                        var count=pagetotal;
-                       alert('当前第 ' +page +'页,每页 '+size+'条,总页数：'+count+'页')
-                       }
-                     });
-            //    分页代码结束
+
             }
        });
     };
@@ -96,9 +129,37 @@
         });
     });
 
+   /* //点击搜索按钮进行搜索
+    $("#beg_search").click(){
+
+        var rgn=$("#sheng_input").val()|| $("#shi_input").val()||$("#xian_input").val();
+        if(){
+
+        }
+        var rgn_type=;
+        var code= $("#stat_code").val();
+        var station_name=;
+        var symlink_sn=$("#sn_caiji").val();
+
+        var status=$("#");
+        var page_length= ;
+
+        var url="http://192.168.174.140:8000/api/method/tieta.tieta.doctype.cell_station.cell_station.list_station_info?";
+        $.ajax({
+            url:url,
+            data:"rgn="+ +"&rgn_type="+ +"&code="+ +"&station_name="+ +"&symlink_sn="+ +"&status="+ +"&page_length="+   ;,
+            success:function(r){
+                var message=r.message;
 
 
 
+
+            }
+
+        });
+
+
+    }*/
 
 
 
@@ -124,9 +185,4 @@
     // });
     //page页数的显示的end
 
-
-
-
-    //
-    //
 
