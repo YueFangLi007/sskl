@@ -1,4 +1,5 @@
 navList("资源管理");
+	var httpUrl="http://192.168.174.140";
     var map = new BMap.Map("map",{enableMapClick: false});
 	map.centerAndZoom("北京市", 5);
 	map.enableScrollWheelZoom();
@@ -29,7 +30,7 @@ $(function(){
 	$(window).resize(function() {
 	  $('#map').height(parseInt($(window).height()));
 	});
-    var dataurl = "http://192.168.174.140:8000/api/method/tieta.tieta.doctype.cell_station.cell_station.search_station?page_length=9999";
+    var dataurl = httpUrl+"/api/method/tieta.tieta.doctype.cell_station.cell_station.search_station?page_length=9999";
     $.ajax({url:dataurl,async:true,success:function(r){
         //################################################
 

@@ -646,12 +646,18 @@
 .vol>.battery_group >.zu_group  .groups>tbody>tr{
     height:46px;
 }
-.vol>.battery_group >.zu_group  .groups>tbody>tr:hover{
-    background-color: #eaf9f7;
+.volGroup{
+     background-color: #eaf9f7;
     cursor: pointer;
     border-top:1px solid #54f0e0;
     border-bottom:1px solid #54f0e0;
 }
+/*.vol>.battery_group >.zu_group  .groups>tbody>tr:first-of-type{*/
+    /*background-color: #eaf9f7;*/
+    /*cursor: pointer;*/
+    /*border-top:1px solid #54f0e0;*/
+    /*border-bottom:1px solid #54f0e0;*/
+/*}*/
 
 /*各种图表样式*/
 .tem_now,.soc_now,.electric_now,.single_bat_vol{

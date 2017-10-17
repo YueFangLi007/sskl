@@ -9,15 +9,18 @@ $(function () {
     bet_zong();
     //SOC展示图表
     batteryCapacity();
+//    电流展示图
+    electrical();
 });
 
+var httpUrl="";
 //电池组展示
 function dianchi() {
     //得到页面上的网关号
     var sn = $("#wangGuan").html();
     var vsn = "9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2";
     $.ajax({
-        url: "http://192.168.174.140:8000/api/method/iot.hdb.iot_device_data?",
+        url: httpUrl+"/api/method/iot.hdb.iot_device_data?",
         data: "sn=" + sn + "&vsn=" + vsn,
         datatype: "json",
         success: function (data) {
@@ -42,7 +45,9 @@ function dianchi() {
 
 //初始化function
 function initFun() {
+    $(".groups>tbody>tr:first-of-type").addClass("volGroup");
     $(".betGroupTr").click(function () {
+       $(this).addClass("volGroup").siblings().removeClass("volGroup");
         var betGroupId = $(this).attr("betGroupId");
         var batteryData = JSON.parse(sessionStorage["batteryData"]);
         vol(batteryData, betGroupId);
@@ -66,8 +71,14 @@ function vol(obj, groupId) {
         title: {
             text: null
         },
+
         xAxis: {
             categories: ['1', '2', '3', '4']
+        },
+        yAxis:{
+             title: {
+                text: null
+             }
         },
         plotOptions: {
             series: {
@@ -105,7 +116,7 @@ function vol(obj, groupId) {
                 polar: false
             },
             subtitle: {
-                text: '普通的'
+                text: null
             }
         });
     });
@@ -114,7 +125,7 @@ function vol(obj, groupId) {
 //温度加载
 
 function temperature() {
-    var url = "http://192.168.174.140:8000/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.x01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
+    var url = httpUrl+"/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.x01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
     var temperatureArr = [];
     $.ajax({
         url: url,
@@ -123,7 +134,6 @@ function temperature() {
             var values = data.message[0].series[0].values;
             var valuesLength = values.length;
             var tempFre = Math.floor(valuesLength/24);
-
             $.each(values, function (i, v) {
                 if ((i + 1) % tempFre == 0) {
                     temperatureArr.push(v[4]);
@@ -147,14 +157,11 @@ function temperatureChart(obj) {
             //去除版权信息。
         },
         xAxis: {
-            title: {
-                text: '0-24小时实时监测'
-            },
             categories: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
         },
         yAxis: {
-            title: {
-                text: '温度 (°C)'
+             title: {
+                text: null
             },
             plotLines: [{
                 value: 0,
@@ -172,6 +179,7 @@ function temperatureChart(obj) {
             borderWidth: 0
         },
         series: [{
+            name:"温度1",
             data: obj
         }]
     });
@@ -180,7 +188,7 @@ function temperatureChart(obj) {
 
 
 function bet_zong() {
-    var url = "http://192.168.174.140:8000/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.v01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
+    var url = httpUrl+"/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.v01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
     var voltageArr = [];
     $.ajax({
         url: url,
@@ -194,7 +202,7 @@ function bet_zong() {
                     voltageArr.push(v[3]);
                 }
             })
-            console.log("VoltageArr====" +voltageArr);
+            //console.log("VoltageArr====" +voltageArr);
             voltageChart(voltageArr);
         }
     });
@@ -206,11 +214,7 @@ function voltageChart(data) {
                 zoomType: 'x'
             },
             title: {
-                text: '美元兑欧元汇率走势图'
-            },
-            subtitle: {
-                text: document.ontouchstart === undefined ?
-                    '鼠标拖动可以进行缩放' : '手势操作进行缩放'
+                text: null
             },
             xAxis: {
                 type: 'datetime',
@@ -239,7 +243,7 @@ function voltageChart(data) {
             },
             yAxis: {
                 title: {
-                    text: '汇率'
+                    text: null
                 }
             },
             legend: {
@@ -273,24 +277,15 @@ function voltageChart(data) {
             },
             series: [{
                 type: 'area',
-                name: '美元兑欧元',
+                name: '总电压',
                 data: data
             }]
         });
 }
-
-
-
-
-
-
 /*------------------------------------------------------------------------------------*/
-
-
-
 //soc 电池剩余容量
 function batteryCapacity() {
-    var url = "http://192.168.174.140:8000/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.z01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
+    var url = httpUrl+"/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.z01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
     var batteryCapacityArr = [];
     $.ajax({
         url: url,
@@ -304,15 +299,14 @@ function batteryCapacity() {
                     batteryCapacityArr.push(v[3]);
                 }
             })
-            console.log("batteryCapacityArr====" +batteryCapacityArr);
+           // console.log("batteryCapacityArr====" +batteryCapacityArr);
             batteryCapacityChart(batteryCapacityArr);
         }
     });
 
 }
-
-
 function batteryCapacityChart(data) {
+    console.log("======================="+data);
     $('#soc').highcharts({
             chart: {
                 zoomType: 'x'
@@ -337,6 +331,11 @@ function batteryCapacityChart(data) {
                     year: '%Y'
                 }
             },
+         yAxis: {
+            title: {
+                text: null
+            }
+        },
             tooltip: {
                 dateTimeLabelFormats: {
                     millisecond: '%H:%M:%S.%L',
@@ -381,15 +380,80 @@ function batteryCapacityChart(data) {
             },
             series: [{
                 type: 'area',
-
                 data: data
-            }]
+            }],
+             plotOptions: {
+                area: {
+                    color:'#fddad0',
+
+                }
+            }
+
         });
 }
+
+
 //单体充放电电流展示图
-electrical()
+function electrical(){
+var url = httpUrl+"/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.i%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
+    var electricalArr = [];
+    $.ajax({
+        url: url,
+        datatype: "json",
+        success: function (data) {
+            var values = data.message[0].series[0].values;
+            var valuesLength = values.length;
+            var eleFre = Math.floor(valuesLength/24);
+            $.each(values, function (i, v) {
+                if ((i + 1) % eleFre == 0) {
+                    electricalArr.push(v[3]);
+                }
+            })
+           // console.log("electricalArr====" +electricalArr);
+           currentChart(electricalArr);
+        }
+    });
 
-function electrical() {
 
+
+
+}
+
+function currentChart(obj) {
+    var chart = new Highcharts.Chart('electrical', {
+        title: {
+            text: null
+        },
+        credits: {
+            enabled: false
+            //去除版权信息。
+        },
+        xAxis: {
+            categories: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+        },
+        yAxis: {
+             title: {
+                text: null
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '°C'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name:"电流",
+            data: obj
+        }]
+    });
 }
 
