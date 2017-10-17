@@ -391,8 +391,8 @@
     background-color: #eee;
 }
 .searchs>span>div>.sta_stat{
-    height:116px;
     width:128px;
+    height:56px;
     border:1px solid #eef2f1;
     padding:0px 0px;
     overflow: hidden;

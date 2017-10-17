@@ -26,12 +26,16 @@ function tableAA() {
                     {data: 'latitude'},
                     {data: 'modified'}
                 ],
+                "bFilter": false,   //去掉搜索框方法二
+                "bSort": false,  //禁止排序
                 "oLanguage": {
-                    "sLengthMenu": "每页显示 _MENU_ 条记录",
+                    "sLengthMenu": "每页显示 _MENU_",
                     "sZeroRecords": "抱歉， 没有找到",
                     "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
                     "sInfoEmpty": "没有数据",
-                    "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+                    "sInfoFiltered": "数据表中共为 _MAX_ 条记录",
+                    "emptyTable": "无数据",
+                    "aLengthMenu": [10, 25, 50, -1],
                     "oPaginate": {
                         "sFirst": "首页",
                         "sPrevious": "上一页",
@@ -41,7 +45,6 @@ function tableAA() {
                     "sZeroRecords": "没有检索到数据",
                     "sProcessing": "<img src='./loading.gif' />"
                 }
-
             });
         }
     });
@@ -69,10 +72,8 @@ function sheng_shoose() {
             var html = "";
             var pagetotal = 0;
             $.each(m, function (index, val) {
-                pagetotal = m.length - 1;
-                html += "<li title=" + val[0] + " >" + val[1] + "</li>";
+                html += "<li rgn=" + val[0] + "   rgnType=Province>" + val[1] + "</li>";
             });
-            console.log("pagetotal   " + pagetotal);
             $("#sheng_ul").html(html);
 
         }
@@ -82,49 +83,75 @@ function sheng_shoose() {
 
 
 $("#sheng_ul").on("click", "li", function () {
-    var shi = $(this).attr("title");
+     $("#sheng_input").val($(this).html());
+    var rgn = $(this).attr("rgn");
+    var url = "/api/method/cloud.cloud.doctype.region.region.list_child_region?";
     $.ajax({
-        url: httpUrl + "/api/method/cloud.cloud.doctype.region.region.list_child_region?",
-        data: "rgn=" + shi + "&type=city",
+        url: httpUrl + url,
+        data: "rgn=" + rgn + "&type=city",
         success: function (data) {
-            var shi = data.message;
+            var m = data.message;
             var htmlStr = "";
-            $.each(shi, function (index, val) {
-                htmlStr += "<li title=" + val[0] + ">" + val[1] + "</li>"
+            $.each(m, function (index, val) {
+                htmlStr += "<li rgn=" + val[0] + "   rgnType=Province>" + val[1] + "</li>";
             });
             $("#city_ul").html(htmlStr);
+            $("#sheng_divUl").hide();
+
         }
+
     });
 });
 
 $("#city_ul").on("click", "li", function () {
-    var shi = $(this).attr("title");
+    var rgn = $(this).attr("rgn");
+     $("#shi_input").val($(this).html());
     $.ajax({
         url: httpUrl + "/api/method/cloud.cloud.doctype.region.region.list_child_region?",
-        data: "rgn=" + shi + "&type=county",
+        data: "rgn=" + rgn + "&type=county",
         success: function (data) {
-            var shi = data.message;
+            var m = data.message;
             var htmlStr = "";
-            $.each(shi, function (index, val) {
-                htmlStr += "<li title=" + val[0] + ">" + val[1] + "</li>"
+            $.each(m, function (index, val) {
+                htmlStr += "<li rgn=" + val[0] + "  rgnType=County>" + val[1] + "</li>"
             });
             $("#contyUl").html(htmlStr);
-            $("#contyUl").parent().hide();
+            $(this).parent().siblings("input").val($(this).html());
+            $("#shi_ul").hide();//    无法实现父元素隐藏
+
+
         }
     });
 });
+$("#contyUl").on("click", "li", function () {
+    $(this).parent().parent().hide();
+    $("#xian_input").val($(this).html());
+    $("#xian_input").attr("rgn",$(this).attr("rgn"));
+    $("#xian_input").attr("rgntype",$(this).attr("rgntype"));
+    console.log( $("#xian_input").val());
 
+
+
+});
+$(".sta_stat>li").click(function(){
+    $(".statInput").val($(this).html());
+    $(".statInput").attr("state",$(this).attr("state"));
+
+    $("#statDiv").hide(); //    无法实现父元素隐藏
+});
 //点击搜索按钮进行搜索
-// $("#beg_search").click(function () {
-//
-//     var rgn = $("#xian_input").attr("number3");
-//
-//     var rgn_type = "county";
-//     var code = $("#stat_code").val();
-//     var station_name = "";
-//     var symlink_sn = $("#sn_caiji").val();
-//
-//     var status = "";
+$("#beg_search").click(function () {
+     var rgn = $("#xian_input").attr("rgn");
+     var rgn_type =  $("#xian_input").attr("rgntype");
+     console.log("=====rgn"+rgn+"====rgn_type"+rgn_type);
+//     竟然是未定义
+    var code = $("#stat_code").val();
+    var station_name = $("#baseName").val();
+    var symlink_sn = $("#sn_caiji").val();
+    $(".statInput").attr("state");
+
+    console.log("rgn=="+rgn+"----rgn_type=="+rgn_type+"--code=="+code+"station_name=="+station_name+"--symlink_sn=="+symlink_sn);
+
 //     var page_length = "";
 //
 //     var url = httpUrl+/api/method/tieta.tieta.doctype.cell_station.cell_station.list_station_info?";
@@ -138,7 +165,7 @@ $("#city_ul").on("click", "li", function () {
 //         }
 //     })
 //
-// })
+ })
 
 //page页数的显示start
 // $(".pageinput").click(function(){

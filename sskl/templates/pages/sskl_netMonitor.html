@@ -27,51 +27,6 @@
 				padding-left: 20px;
 				box-sizing: border-box;
 			}
-			/*
-			 * 页数按钮样式
-			 */
-			.page_div a {
-				min-width: 18px;
-				height: 18px;
-				border: 1px solid #000!important;
-				text-align: center;
-				margin: 0 4px;
-				cursor: pointer;
-                line-height:14px;
-				color: #7a7a7a;
-				font-size: 10px!important;
-				display: inline-block;
-			}
-			#firstPage,
-			#lastPage {
-				width: 30px;
-                color:#7a7a7a;
-				border: 1px solid #000!important;
-			}
-			#prePage,
-			#nextPage {
-				width: 50px;
-				color: #7a7a7a;
-				border: 1px solid #000!important;
-			}
-			.page_div .current {
-				background-color: #12c08f;
-				border: 0!important;
-                width:22px;
-                height:22px;
-                line-height:22px;
-				color: #fff;
-
-			}
-			.totalPages {
-				margin: 0 10px;
-			}
-			.totalPages span,
-			.totalSize span {
-				color: #7a7a7a;
-				margin: 0 5px;
-			}
-
 
     </style>
  <div class="main_title">
@@ -79,7 +34,7 @@
                 网络监测
             </span>
             <div class="main_search pull-right mar_rt_40" id="div">
-                <input type="text" placeholder="请输入基站名称">
+                <input type="text" placeholder="请输入基站名称" id="baseName">
                 <i class="glyphicon glyphicon-search"></i>
             </div>
         </div>
@@ -118,7 +73,7 @@
             <span>
                  <input type="text" value="市" id="shi_input">
                  <u class="glyphicon glyphicon-menu-down"></u>
-                 <div>
+                 <div id="shi_ul">
                     <p>
                         选择城市
                     </p>
@@ -129,35 +84,25 @@
             <span>
                 <input type="text" value="县" id="xian_input">
                  <u class="glyphicon glyphicon-menu-down"></u>
-                <div>
+                <div id="aa">
                     <p>
                        选择地区
                     </p>
                     <ul class="ul conty_ul" id="contyUl">
-                      <li>桥东区</li>
-                      <li>桥西区</li>
-                      <li>宣化区</li>
-                      <li>下花园区</li>
-                      <li>宣化区</li>
-                      <li>张北县</li>
-                      <li>张北县</li>
-                      <li>康保县</li>
-                      <li>沽源县</li>
-                      <li>尚义县</li>
 
-                      <li>其他</li>
                     </ul>
                  </div>
             </span>
             <span  class="statinput">
-                 <input type="text" value="状态" class="">
+                 <input type="text" value="状态" class="statInput">
                  <u class="glyphicon glyphicon-menu-down"></u>
-                 <div>
+                 <div id="statDiv">
+                      <p>
+                      状态
+                    </p>
                     <ul class="ul sta_stat">
-                        <li>状态</li>
-                        <li>故障</li>
-                        <li>正常</li>
-                        <li>正在建设中</li>
+                        <li state="OFFLINE">故障</li>
+                        <li state="ONLINE">正常</li>
                     </ul>
                  </div>
             </span>
