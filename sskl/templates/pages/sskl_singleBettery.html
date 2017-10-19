@@ -1,0 +1,37 @@
+{% extends "templates/sskl_base.html" %}
+{% block content %}
+<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+<script src="https://img.hcharts.cn/highcharts/highcharts-more.js"></script>
+<script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+
+<link rel="stylesheet" href="">
+        <div class="main_title main_titWirte">
+            <span>
+               西郊田村
+            </span>
+        </div>
+        <div class="container-fluid Detail">
+            <div class="mes_detail container-fluid">
+                <h3>电池组 <b>01</b> 单体电池电压历史数据</h3>
+                <p>可通过各个数据分析当前基站趋势走向</p>
+            </div>
+            <div class="totalVol container-fluid" id="total_voltage">
+                <div class="search_time clearfix">
+                   <p class="pull-right">
+                       <input type="text" value="开始时间" class="startTime"/> - <input type="text" class="endTime"  value="结束时间">
+                       <button href="" class="btn_search" id="singleSeacrch">搜索</button>
+                   </p>
+                </div>
+                <div class="total_box_rec">
+                </div>
+            </div>
+        </div>
+
+<script src="/assets/sskl/js/jquery.datetimepicker.js"></script>
+<script src="/assets/sskl/js/jquery-ui-timepicker-zh-CN.js"></script>
+
+<script>
+    {% include "templates/pages/sskl_singleBettery.js" %}
+</script>
+
+{% endblock %}

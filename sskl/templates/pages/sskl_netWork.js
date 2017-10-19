@@ -51,16 +51,19 @@ function initFun() {
         $(this).addClass("volGroup").siblings().removeClass("volGroup");
         var betGroupId = $(this).attr("betGroupId");
         var batteryData = JSON.parse(sessionStorage["batteryData"]);
-
         vol(batteryData, betGroupId);
-
-
     });
 
     //电压显示图标
     var batteryData = JSON.parse(sessionStorage["batteryData"]);
     vol(batteryData, "1");
 }
+
+//时间转换
+
+var startTime = "2017-10-12T00:00:00.000Z";
+var endTime = new Date().Format("yyyy-MM-ddThh:mm:ss.SZ");
+
 
 function vol(obj, groupId) {
     // var groupId = "1";
@@ -72,15 +75,21 @@ function vol(obj, groupId) {
         }
     }
     var chart = Highcharts.chart('dianyaVol', {
+        chart: {
+            type: 'column'
+        },
         title: {
             text: null
         },
         xAxis: {
+            title: {
+                text: "单位(V)"
+            },
             categories: ['1', '2', '3', '4']
         },
         yAxis: {
             title: {
-                text: null
+                text: "单位(组)"
             }
         },
         plotOptions: {
@@ -89,7 +98,7 @@ function vol(obj, groupId) {
                 point: {
                     events: {
                         click: function () {
-                            location.href = "https://www.baidu.com/";
+                            location.href = httpUrl+"sskl_singleBettery.html";
                         }
                     }
                 }
@@ -97,48 +106,28 @@ function vol(obj, groupId) {
         },
         series: [{
             name: "电压",
-            type: 'column',
-            colorByPoint: true,
             data: dyValue,
-            showInLegend: false,
+
         }],
-        //颜色设置；
         credits: {
             enabled: false
             //去除版权信息。
         }
     });
-    $('#plain').click(function () {
-        chart.update({
-            chart: {
-                inverted: false,
-                polar: false
-            },
-            subtitle: {
-                text: null
-            }
-        });
-    });
 }
 
 //温度加载
-
 function temperature() {
     var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?";
     //var dataTem="sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.x01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000;";
-    var condition="g1.x01";
-    var startTime="2017-10-12T00:00:00.000Z";
-    //获得现在的时间
-    var nowTime=new Date();
+    var condition = "g1.x01";
 
-    console.log(nowTime);
-    var endTime="2017-10-12T10:00:00.000Z";
 
-    var dataTem="sn="+sn+"&vsn="+vsn+"&condition=aa=%27"+condition+"%27+AND+time+%3E=+%27"+startTime+"%27+AND+time+%3C=+%27"+ endTime+"%27+limit+10000;";
+    var dataTem = "sn=" + sn + "&vsn=" + vsn + "&condition=aa=%27" + condition + "%27+AND+time+%3E=+%27" + startTime + "%27+AND+time+%3C=+%27" + endTime + "%27+limit+10000;";
     var temperatureArr = [];
     $.ajax({
         url: url,
-        data:dataTem,
+        data: dataTem,
         datatype: "json",
         success: function (data) {
             var values = data.message[0].series[0].values;
