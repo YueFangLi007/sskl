@@ -2,168 +2,141 @@
 
 {% block myCss %}
 
- <link rel="stylesheet" href="/assets/sskl/css/jquery.datetimepicker.css">
- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
 {% endblock %}
 {% block content %}
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-
-<!--<script type="text/javascript" src="/assets/sskl/js/paging.js"></script>-->
+<script src="/assets/sskl/js/bootstrap.min.js"></script>
+<script src="/assets/sskl/js/jquery.dataTables.min.js"></script>
+<script src="/assets/sskl/js/jquery.dataTables.bootstrap.min.js"></script>
 <style>
-            .sec_main{
-                margin-bottom: 50px;
-            }
-            .xdsoft_datetimepicker{
-                top:252px;!important;
-            }
-        .page_div {
-				margin-top: 20px;
-				margin-bottom: 20px;
-				font-size: 7px;
-				font-family: "microsoft yahei";
-				color: #000;
-				margin-right: 10px;
-				padding-left: 20px;
-				box-sizing: border-box;
-			}
+    .stationTable {
+        background-color: #fff;
+    }
 
-    </style>
- <div class="main_title">
+    .stationTable tr {
+        height: 48px;
+        border:0px;
+        line-height: 48px;
+    }
+    .stationTable tbody  tr:first-child {
+        border-top: 1px solid #e3e7e3;
+    }
+ .stationTable tbody  tr:last-of-type {
+        border-bottom: 1px solid transparent;
+    }
+    .stationTable tbody  tr:hover {
+        background-color: #eaf9f7;
+        border-top: 1px solid #54f0e0 !important;
+        border-bottom: 1px solid #54f0e0;
+    }
+    /**/
+
+    .dataTables_length >label >select{
+        margin-left:10px;
+    }
+    .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+    .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+        background-color: #12c08f;
+        border:0px;
+        width:34px;
+        height:34px;
+    }
+</style>
+<div class="main_title">
             <span>
                 网络监测
             </span>
-            <div class="main_search pull-right mar_rt_40" id="div">
-                <input type="text" placeholder="请输入基站名称" id="baseName">
-                <i class="glyphicon glyphicon-search"></i>
-            </div>
-        </div>
-        <div class="main_pages" >
-
-           <div cLass="pull-left mar_lf_40 page-num">
-               <label>每页显示</label>
-               <span class="">
-                   <input type="text" value="25" class="pageinput">
-                   <u class="glyphicon glyphicon-menu-down"></u>
-                   <ul class="page-num_pages">
-                       <li>10</li>
-                       <li>25</li>
-                       <li>50</li>
-                       <li>100</li>
-                   </ul>
-               </span>
-           </div>
-            <p>
-                <button class="button pull-right mar_rt_40">导出 <u>Excel</u>  </button>
-            </p>
-        </div>
-        <div class="searchs container-fluid">
-            <span id="sheng_choose">
-                <input type="text" value="省/直辖市" id="sheng_input">
-                 <u class="glyphicon glyphicon-menu-down"></u>
-                 <div id="sheng_divUl">
-                    <p>
-                        选择省
-                    </p>
-                    <ul class="ul shi_ul" id="sheng_ul">
-
-                    </ul>
-                 </div>
-            </span>
+    <div class="main_search pull-right mar_rt_40" id="div">
+        <input type="text" placeholder="请输入基站名称" id="baseName">
+        <i class="glyphicon glyphicon-search  stateSearch"></i>
+    </div>
+</div>
+<div class="main_pages">
+    <p>
+        <button class="button pull-right mar_rt_40">导出 <u>Excel</u></button>
+    </p>
+</div>
+<div class="searchs container-fluid">
             <span>
-                 <input type="text" value="市" id="shi_input">
+                <input type="text" value="省/直辖市" rgn="0" id="provinceInput">
                  <u class="glyphicon glyphicon-menu-down"></u>
-                 <div id="shi_ul">
-                    <p>
-                        选择城市
-                    </p>
-                    <ul class="ul city_ul" id="city_ul">
+                 <div id="provinceDiv">
+                    <ul class="ul shi_ul" id="provinceUl">
+                        <li rgn='0' rgnType=Province>省/直辖市</li>
                     </ul>
                  </div>
             </span>
-            <span>
-                <input type="text" value="县" id="xian_input">
+    <span>
+                 <input type="text" value="市" rgn="0" id="cityInput">
                  <u class="glyphicon glyphicon-menu-down"></u>
-                <div id="aa">
-                    <p>
-                       选择地区
-                    </p>
-                    <ul class="ul conty_ul" id="contyUl">
-
+                 <div id="cityDiv">
+                    <ul class="ul city_ul" id="cityUl">
+                        <li rgn='0' rgnType='City'>城市</li>
                     </ul>
                  </div>
             </span>
-            <span  class="statinput">
-                 <input type="text" value="状态" class="statInput">
+    <span>
+                <input type="text" value="县" rgn="0" id="countyInput">
+                 <u class="glyphicon glyphicon-menu-down"></u>
+                <div id="countyDiv">
+                    <ul class="ul conty_ul" id="countyUl">
+                        <li rgn='0' rgnType='County'>县</li>
+                    </ul>
+                 </div>
+            </span>
+    <span class="statinput">
+                 <input type="text" value="状态" state="0" class="statInput">
                  <u class="glyphicon glyphicon-menu-down"></u>
                  <div id="statDiv">
-                      <p>
-                      状态
-                    </p>
                     <ul class="ul sta_stat">
+                        <li state="0">状态</li>
                         <li state="OFFLINE">故障</li>
                         <li state="ONLINE">正常</li>
                     </ul>
                  </div>
             </span>
-            <span>
+    <span>
                 <input type="text" placeholder="数据采集器" id="sn_caiji">
             </span>
-            <span>
+    <span>
                  <input type="text" placeholder="基站编码" id="stat_code">
             </span>
 
-            <span>
+    <span>
                 <button type="button" class="beg_secrch pull-right mar_rt_40" id="beg_search">搜索</button>
             </span>
 
-        </div>
-        <div class="table_list container-fluid">
-<!-- <table id="list2"></table>
-    <div id="pager2"></div>-->
-            <table  id="table"  class="display tabstation responsive nowrap"  cellspacing="0" width="100%">
-                <thead>
-                    <tr>
-                        <td>设备编码</td>
-                        <td>基站名称</td>
-                        <td>使用名称</td>
-                        <td class="stat_address">基站地址</td>
-                        <td>网关地址</td>
-                        <td>经度</td>
-                        <td>维度</td>
-                        <td>监控状态</td>
-                    </tr>
-                </thead>
-                <!--<tbody>-->
-                    <!--<tr>-->
-                        <!--<td>BJ_HD_Coo1</td>-->
-                        <!--<td>西郊田村</td>-->
-                        <!--<td>备电</td>-->
-                        <!--<td>北京市 北京市海淀区田村</td>-->
-                        <!--<td>180.153.49.173</td>-->
-                        <!--<td>119.633</td>-->
-                        <!--<td>39.63</td>-->
-                        <!--<td><span class="state_err">故障</span></td>-->
-                    <!--</tr>-->
-                <!--</tbody>-->
-            </table>
-            <div class="container-fluid">
-              <!--<div class="pull-right fen_page">-->
-                  <!--<span class="">共有<i>2</i>页，共<u>50</u>条记录</span>-->
-                  <!--<ul class="">-->
-                      <!--<li class="fen_start"></li>-->
-                      <!--<li class="fen_top"></li>-->
-                      <!--<li>1</li>-->
-                      <!--<li>2</li>-->
-                      <!--<li>3</li>-->
-                      <!--<li class="fen_next">&gt;</li>-->
-                      <!--<li class="fen_end">&gt;&gt;</li>-->
-                  <!--</ul>-->
-              <!--</div>-->
-               <div id="page" class="page_div pull-right"></div>
-            </div>
-    </div>
- <script>
-        {% include "templates/pages/sskl_netMonitor.js" %}
-  </script>
+</div>
+<div class="table_list container-fluid">
+    <table id="stationTable" class="table stationTable table-striped" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <td>设备编码</td>
+            <td>基站名称</td>
+            <td>使用名称</td>
+            <td class="stat_address">基站地址</td>
+            <td>网关地址</td>
+            <td>经度</td>
+            <td>维度</td>
+            <td>监控状态</td>
+        </tr>
+        </thead>
+        <!--<tbody>-->
+        <!--<tr>-->
+        <!--<td>BJ_HD_Coo1</td>-->
+        <!--<td>西郊田村</td>-->
+        <!--<td>备电</td>-->
+        <!--<td>北京市 北京市海淀区田村</td>-->
+        <!--<td>180.153.49.173</td>-->
+        <!--<td>119.633</td>-->
+        <!--<td>39.63</td>-->
+        <!--<td><span class="state_err">故障</span></td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+    </table>
+
+</div>
+<script>
+    {% include "templates/pages/sskl_netMonitor.js" %}
+</script>
 {% endblock%}

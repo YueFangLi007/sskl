@@ -1,8 +1,7 @@
 $(function () {
     navList("网络监测");
-
     //电池组展示
-    dianchi();
+    batteryPack();
     //温度显示
     temperature();
     //总电压 的图表展示图
@@ -13,14 +12,16 @@ $(function () {
     electrical();
 });
 
-var httpUrl="";
+var httpUrl = "";
+var sn = $("#gateWay").html(); //得到页面上的网关号码
+
+var vsn = "9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2";
+
 //电池组展示
-function dianchi() {
+function batteryPack() {
     //得到页面上的网关号
-    var sn = $("#wangGuan").html();
-    var vsn = "9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2";
     $.ajax({
-        url: httpUrl+"/api/method/iot.hdb.iot_device_data?",
+        url: httpUrl + "/api/method/iot.hdb.iot_device_data?",
         data: "sn=" + sn + "&vsn=" + vsn,
         datatype: "json",
         success: function (data) {
@@ -32,7 +33,7 @@ function dianchi() {
             var totalZu = parseInt(m.P04.PV);
             var html = "";
             for (var i = 1; i < totalZu + 1; i++) {
-                html += "<tr class='betGroupTr'  betGroupId='" + i + "'><td>" + "G" + i + "</td><td>" + Number(m["G" + i + ".V"]['PV']).toFixed(2) + "</td><td>" + m["G" + i + ".I"]['PV'] + "</td></tr>";
+                html += "<tr class='betGroupTr'  betGroupId='" + i + "'><td>" + "0" + i + "</td><td>" + Number(m["G" + i + ".V"]['PV']).toFixed(2) + "</td><td>" + m["G" + i + ".I"]['PV'] + "</td></tr>";
             }
             $(".groups").append(html);
 
@@ -47,10 +48,13 @@ function dianchi() {
 function initFun() {
     $(".groups>tbody>tr:first-of-type").addClass("volGroup");
     $(".betGroupTr").click(function () {
-       $(this).addClass("volGroup").siblings().removeClass("volGroup");
+        $(this).addClass("volGroup").siblings().removeClass("volGroup");
         var betGroupId = $(this).attr("betGroupId");
         var batteryData = JSON.parse(sessionStorage["batteryData"]);
+
         vol(batteryData, betGroupId);
+
+
     });
 
     //电压显示图标
@@ -71,14 +75,13 @@ function vol(obj, groupId) {
         title: {
             text: null
         },
-
         xAxis: {
             categories: ['1', '2', '3', '4']
         },
-        yAxis:{
-             title: {
+        yAxis: {
+            title: {
                 text: null
-             }
+            }
         },
         plotOptions: {
             series: {
@@ -87,7 +90,6 @@ function vol(obj, groupId) {
                     events: {
                         click: function () {
                             location.href = "https://www.baidu.com/";
-
                         }
                     }
                 }
@@ -99,10 +101,7 @@ function vol(obj, groupId) {
             colorByPoint: true,
             data: dyValue,
             showInLegend: false,
-
         }],
-        /*colors: ['#492970', '#0d233a', '#8bbc21', '#910000', '#1aadce',
-            '#492970', '#f28f43', '#77a1e5', '#c42525', '#492970','#492970', '#0d233a', '#8bbc21', '#910000', '#1aadce','#492970'],*/
         //颜色设置；
         credits: {
             enabled: false
@@ -125,15 +124,26 @@ function vol(obj, groupId) {
 //温度加载
 
 function temperature() {
-    var url = httpUrl+"/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.x01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
+    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?";
+    //var dataTem="sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.x01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000;";
+    var condition="g1.x01";
+    var startTime="2017-10-12T00:00:00.000Z";
+    //获得现在的时间
+    var nowTime=new Date();
+
+    console.log(nowTime);
+    var endTime="2017-10-12T10:00:00.000Z";
+
+    var dataTem="sn="+sn+"&vsn="+vsn+"&condition=aa=%27"+condition+"%27+AND+time+%3E=+%27"+startTime+"%27+AND+time+%3C=+%27"+ endTime+"%27+limit+10000;";
     var temperatureArr = [];
     $.ajax({
         url: url,
+        data:dataTem,
         datatype: "json",
         success: function (data) {
             var values = data.message[0].series[0].values;
             var valuesLength = values.length;
-            var tempFre = Math.floor(valuesLength/24);
+            var tempFre = Math.floor(valuesLength / 24);
             $.each(values, function (i, v) {
                 if ((i + 1) % tempFre == 0) {
                     temperatureArr.push(v[4]);
@@ -160,7 +170,7 @@ function temperatureChart(obj) {
             categories: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
         },
         yAxis: {
-             title: {
+            title: {
                 text: null
             },
             plotLines: [{
@@ -179,16 +189,15 @@ function temperatureChart(obj) {
             borderWidth: 0
         },
         series: [{
-            name:"温度1",
+            name: "温度1",
             data: obj
         }]
     });
 }
 
 
-
 function bet_zong() {
-    var url = httpUrl+"/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.v01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
+    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.v01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
     var voltageArr = [];
     $.ajax({
         url: url,
@@ -196,7 +205,7 @@ function bet_zong() {
         success: function (data) {
             var values = data.message[0].series[0].values;
             var valuesLength = values.length;
-            var tempFre = Math.floor(valuesLength/24);
+            var tempFre = Math.floor(valuesLength / 24);
             $.each(values, function (i, v) {
                 if ((i + 1) % tempFre == 0) {
                     voltageArr.push(v[3]);
@@ -207,85 +216,88 @@ function bet_zong() {
         }
     });
 }
+
 //总电压图表展示
 function voltageChart(data) {
     $('#bet_zong').highcharts({
-            chart: {
-                zoomType: 'x'
-            },
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: null
+        },
+        xAxis: {
+            type: 'datetime',
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        tooltip: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        yAxis: {
             title: {
                 text: null
-            },
-            xAxis: {
-                type: 'datetime',
-                dateTimeLabelFormats: {
-                    millisecond: '%H:%M:%S.%L',
-                    second: '%H:%M:%S',
-                    minute: '%H:%M',
-                    hour: '%H:%M',
-                    day: '%m-%d',
-                    week: '%m-%d',
-                    month: '%Y-%m',
-                    year: '%Y'
-                }
-            },
-            tooltip: {
-                dateTimeLabelFormats: {
-                    millisecond: '%H:%M:%S.%L',
-                    second: '%H:%M:%S',
-                    minute: '%H:%M',
-                    hour: '%H:%M',
-                    day: '%Y-%m-%d',
-                    week: '%m-%d',
-                    month: '%Y-%m',
-                    year: '%Y'
-                }
-            },
-            yAxis: {
-                title: {
-                    text: null
-                }
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                area: {
-                    fillColor: {
-                        linearGradient: {
-                            x1: 0,
-                            y1: 0,
-                            x2: 0,
-                            y2: 1
-                        },
-                        stops: [
-                            [0, Highcharts.getOptions().colors[0]],
-                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                        ]
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
                     },
-                    marker: {
-                        radius: 2
-                    },
-                    lineWidth: 1,
-                    states: {
-                        hover: {
-                            lineWidth: 1
-                        }
-                    },
-                    threshold: null
-                }
-            },
-            series: [{
-                type: 'area',
-                name: '总电压',
-                data: data
-            }]
-        });
+                    stops: [
+                        [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
+        },
+        series: [{
+            type: 'area',
+            name: '总电压',
+            data: data
+        }]
+    });
 }
+
 /*------------------------------------------------------------------------------------*/
+
 //soc 电池剩余容量
 function batteryCapacity() {
-    var url = httpUrl+"/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.z01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
+    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.z01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
     var batteryCapacityArr = [];
     $.ajax({
         url: url,
@@ -293,109 +305,110 @@ function batteryCapacity() {
         success: function (data) {
             var values = data.message[0].series[0].values;
             var valuesLength = values.length;
-            var tempFre = Math.floor(valuesLength/24);
+            var tempFre = Math.floor(valuesLength / 24);
             $.each(values, function (i, v) {
                 if ((i + 1) % tempFre == 0) {
                     batteryCapacityArr.push(v[3]);
                 }
             })
-           // console.log("batteryCapacityArr====" +batteryCapacityArr);
+            // console.log("batteryCapacityArr====" +batteryCapacityArr);
             batteryCapacityChart(batteryCapacityArr);
         }
     });
 
 }
+
 function batteryCapacityChart(data) {
-    console.log("======================="+data);
+    console.log("=======================" + data);
     $('#soc').highcharts({
-            chart: {
-                zoomType: 'x'
-            },
-            title: {
-                text: null
-            },
-            credits: {
-                enabled: false
-                //去除版权信息。
-            },
-            xAxis: {
-                type: 'datetime',
-                dateTimeLabelFormats: {
-                    millisecond: '%H:%M:%S.%L',
-                    second: '%H:%M:%S',
-                    minute: '%H:%M',
-                    hour: '%H:%M',
-                    day: '%m-%d',
-                    week: '%m-%d',
-                    month: '%Y-%m',
-                    year: '%Y'
-                }
-            },
-         yAxis: {
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: null
+        },
+        credits: {
+            enabled: false
+            //去除版权信息。
+        },
+        xAxis: {
+            type: 'datetime',
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        yAxis: {
             title: {
                 text: null
             }
         },
-            tooltip: {
-                dateTimeLabelFormats: {
-                    millisecond: '%H:%M:%S.%L',
-                    second: '%H:%M:%S',
-                    minute: '%H:%M',
-                    hour: '%H:%M',
-                    day: '%Y-%m-%d',
-                    week: '%m-%d',
-                    month: '%Y-%m',
-                    year: '%Y'
-                }
-            },
-
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                area: {
-                    fillColor: {
-                        linearGradient: {
-                            x1: 0,
-                            y1: 0,
-                            x2: 0,
-                            y2: 1
-                        },
-                        stops: [
-                            [0, Highcharts.getOptions().colors[0]],
-                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                        ]
-                    },
-                    marker: {
-                        radius: 2
-                    },
-                    lineWidth: 1,
-                    states: {
-                        hover: {
-                            lineWidth: 1
-                        }
-                    },
-                    threshold: null
-                }
-            },
-            series: [{
-                type: 'area',
-                data: data
-            }],
-             plotOptions: {
-                area: {
-                    color:'#fddad0',
-
-                }
+        tooltip: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
             }
+        },
 
-        });
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
+        },
+        series: [{
+            type: 'area',
+            data: data
+        }],
+        plotOptions: {
+            area: {
+                color: '#fddad0',
+
+            }
+        }
+
+    });
 }
 
 
 //单体充放电电流展示图
-function electrical(){
-var url = httpUrl+"/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.i%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
+function electrical() {
+    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.i%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
     var electricalArr = [];
     $.ajax({
         url: url,
@@ -403,18 +416,16 @@ var url = httpUrl+"/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-
         success: function (data) {
             var values = data.message[0].series[0].values;
             var valuesLength = values.length;
-            var eleFre = Math.floor(valuesLength/24);
+            var eleFre = Math.floor(valuesLength / 24);
             $.each(values, function (i, v) {
                 if ((i + 1) % eleFre == 0) {
                     electricalArr.push(v[3]);
                 }
             })
-           // console.log("electricalArr====" +electricalArr);
-           currentChart(electricalArr);
+            // console.log("electricalArr====" +electricalArr);
+            currentChart(electricalArr);
         }
     });
-
-
 
 
 }
@@ -432,7 +443,7 @@ function currentChart(obj) {
             categories: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
         },
         yAxis: {
-             title: {
+            title: {
                 text: null
             },
             plotLines: [{
@@ -451,7 +462,7 @@ function currentChart(obj) {
             borderWidth: 0
         },
         series: [{
-            name:"电流",
+            name: "电流",
             data: obj
         }]
     });

@@ -6,7 +6,7 @@ navList("资源管理");
 
 	var opts = {
 		width : 260,     // 信息窗口宽度
-		height: 88,     // 信息窗口高度
+		height: 60,     // 信息窗口高度
 		//title : "设备信息" , // 信息窗口标题
 		enableMessage:true//设置允许信息窗发送短息
 	};
@@ -42,12 +42,12 @@ $(function(){
                 var myIcon = new BMap.Icon("/assets/sskl/images/jizhan.png", new BMap.Size(32,38));
                 var marker = new BMap.Marker(pt,{icon:myIcon});
                 // var gourl = "/iot_devinfo/" + stations[cs].device_sn;
-
+		     stations[cs].address_text=stations[cs].address_text.replace(/\s+/g,"");//去除所有空格
               var content =
 					'<div class="widget-box">'+
 						'<h4 class="widget-title">'+ stations[cs].station_name +'</h4>' +
 						'<p> 地&nbsp;&nbsp;&nbsp;址:'+ stations[cs].address_text +'</p>'+
-						 '<p> 联系人:XXX</p>'+'<a href="sskl_netWork.html?code='+stations[cs].name+'">详情</a>'+
+						'<a href="sskl_netWork.html?code='+stations[cs].name+'">详情</a>'+
 					'</div>';
 
                  addClickHandler(content, marker)

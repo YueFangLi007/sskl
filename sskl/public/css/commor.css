@@ -36,7 +36,8 @@ h1,h2,h3,h4,h5,h6{
     font-family: myFirstfont1,"微软雅黑";
     font-weight: bold;
 }
-input{
+input,select{
+    outline: none;
     border-radius: 36px;
 }
 ::-webkit-scrollbar {
@@ -57,7 +58,7 @@ input{
 ::-webkit-scrollbar-thumb {
   min-height: 20px;
   background-clip: content-box;
-  box-shadow: 0 0 0 5px rgba(0,0,0,.2) inset;
+  box-shadow: 0 0 0 3px rgba(0,0,0,.2) inset;
 }
 
 ::-webkit-scrollbar-corner {
