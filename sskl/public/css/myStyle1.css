@@ -409,32 +409,28 @@
 .searchs > span > div {
     position: absolute;
     left: 0px;
-    top: -24px;
+    top: 23px;
     width: 100%;
     display: none;
     z-index: 33;
     border-radius: 3px;
     background-color: #fff;
 }
-
 .searchs > span > div > .ul {
     height: auto;
     max-height: 234px;
     overflow-y: scroll;
     margin: 0px;
 }
-
 .searchs > span > div > ul > li {
     height: 26px;
     line-height: 26px;
     width: 100%;
     padding-left: 12px;
 }
-
 .searchs > span > div > ul > li:hover {
     background-color: #eee;
 }
-
 .searchs > span > div > .sta_stat {
     width: 128px;
     height: 78px;
@@ -463,10 +459,8 @@
 .stationTable tbody tr {
     cursor: pointer !important;
 }
-
 .stationTable tbody tr td {
     border: 0px solid transparent;
-
     white-space: nowrap;
 }
 

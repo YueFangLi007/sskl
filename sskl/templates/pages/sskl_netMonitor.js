@@ -8,10 +8,10 @@ $(function () {
 });
 var httpUrl = "http://192.168.174.140"
 //点击基站去查询基站列表
-$(".stateSearch").click(function(){
+$(".stateSearch").click(function () {
     conditionalQuery();
-});
 
+});
 
 //表格加载
 function tableList() {
@@ -64,7 +64,8 @@ function tableList() {
             var faultState = $("#stationTable>tbody td:last-child");
             if (faultState.html() == "故障") {
                 faultState.addClass("state_err");
-            };
+            }
+            ;
 
             $("#stationTable>tbody").on("click", "tr", function () {
                 var code = $(this).children("td:nth-child(5)").html();
@@ -78,9 +79,32 @@ function tableList() {
 function netWorkDrop(code) {
     location.href = "sskl_netWork.html?code=" + code;
 }
-$(".searchs >span >input").click(function () {
+
+
+//var test = document.getElementsByClassName("provinceInput");
+// var test=document.getElementsByClassName("clickToggle");
+// var div=document.getElementsByClassName("divShow");
+//    //var div = document.getElementById("provinceDiv");
+//    test.onclick = function(e){
+//        e = e || event;
+//        e.cancelBubble = true;
+//        div.style.display = "block";
+//    }
+//    document.onclick = function(){
+//        div.style.display = "none";
+//    }
+
+$(".searchs >span >input").click(function (e) {
+
     $(this).siblings("div").show();
 });
+
+// $(document).click( function () {
+//     console.log(33);
+//     $(".searchs >span >input").siblings("div").hide();
+// });
+console.log($('.searchs >span >div'));
+
 
 //获取省列表
 function provinceChoose() {
@@ -174,7 +198,7 @@ $("#beg_search").click(function () {
 })
 
 //条件查询
-function conditionalQuery(){
+function conditionalQuery() {
     var provinceInput = $("#provinceInput").attr("rgn");
     var cityInput = $("#cityInput").attr("rgn");
     var countyInput = $("#countyInput").attr("rgn");
@@ -277,9 +301,6 @@ function conditionalQuery(){
         }
     })
 }
-
-
-
 
 
 //=====================================================================================================

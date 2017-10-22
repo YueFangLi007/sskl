@@ -22,7 +22,6 @@ $('.endTime').datetimepicker({
     onShow:logic
 });
 
-
 var httpUrl = "http://192.168.174.140/api/method/iot.hdb.iot_device_his_data?";
 var sn = 1;
 var vsn = 3;

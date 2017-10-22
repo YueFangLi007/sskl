@@ -3,13 +3,13 @@ $(function () {
     //电池组展示
     batteryPack();
     //温度显示
-    temperature();
+    temperature("1");
     //总电压 的图表展示图
-    bet_zong();
+    bet_zong("1");
     //SOC展示图表
-    batteryCapacity();
-//    电流展示图
-    electrical();
+    batteryCapacity("1");
+    //    电流展示图
+    electrical("1");
 });
 
 var httpUrl = "";
@@ -36,12 +36,10 @@ function batteryPack() {
                 html += "<tr class='betGroupTr'  betGroupId='" + i + "'><td>" + "0" + i + "</td><td>" + Number(m["G" + i + ".V"]['PV']).toFixed(2) + "</td><td>" + m["G" + i + ".I"]['PV'] + "</td></tr>";
             }
             $(".groups").append(html);
-
-            //初始化function
+             //初始化function
             initFun();
         }
     });
-
 }
 
 //初始化function
@@ -52,11 +50,22 @@ function initFun() {
         var betGroupId = $(this).attr("betGroupId");
         var batteryData = JSON.parse(sessionStorage["batteryData"]);
         vol(batteryData, betGroupId);
+        showCharts(betGroupId);
     });
-
     //电压显示图标
     var batteryData = JSON.parse(sessionStorage["batteryData"]);
     vol(batteryData, "1");
+}
+
+function showCharts(obj) {
+    //温度显示
+    temperature(obj);
+    //总电压
+    bet_zong(obj);
+    //SOC展示图表
+    batteryCapacity(obj);
+    //    电流展示图
+    electrical(obj);
 }
 
 //时间转换
@@ -98,7 +107,8 @@ function vol(obj, groupId) {
                 point: {
                     events: {
                         click: function () {
-                            location.href = httpUrl+"sskl_singleBettery.html";
+                            console.log("============"+this.category);
+                            location.href = httpUrl+"sskl_singleBettery.html?groupId="+this.category;
                         }
                     }
                 }
@@ -117,12 +127,10 @@ function vol(obj, groupId) {
 }
 
 //温度加载
-function temperature() {
+function temperature(obj) {
     var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?";
     //var dataTem="sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.x01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000;";
-    var condition = "g1.x01";
-
-
+    var  condition= "g"+obj+".x01";
     var dataTem = "sn=" + sn + "&vsn=" + vsn + "&condition=aa=%27" + condition + "%27+AND+time+%3E=+%27" + startTime + "%27+AND+time+%3C=+%27" + endTime + "%27+limit+10000;";
     var temperatureArr = [];
     $.ajax({
@@ -130,6 +138,7 @@ function temperature() {
         data: dataTem,
         datatype: "json",
         success: function (data) {
+
             var values = data.message[0].series[0].values;
             var valuesLength = values.length;
             var tempFre = Math.floor(valuesLength / 24);
@@ -185,8 +194,8 @@ function temperatureChart(obj) {
 }
 
 
-function bet_zong() {
-    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.v01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
+function bet_zong(obj) {
+    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g"+obj+".v%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
     var voltageArr = [];
     $.ajax({
         url: url,
@@ -217,16 +226,7 @@ function voltageChart(data) {
         },
         xAxis: {
             type: 'datetime',
-            dateTimeLabelFormats: {
-                millisecond: '%H:%M:%S.%L',
-                second: '%H:%M:%S',
-                minute: '%H:%M',
-                hour: '%H:%M',
-                day: '%m-%d',
-                week: '%m-%d',
-                month: '%Y-%m',
-                year: '%Y'
-            }
+            tickPositions: [0, 1, 2, 3, 4,5, 6, 7, 8, 9,10, 11, 12,13, 14,15, 16, 17, 18, 19,20, 21, 22, 23]
         },
         tooltip: {
             dateTimeLabelFormats: {
@@ -285,8 +285,8 @@ function voltageChart(data) {
 /*------------------------------------------------------------------------------------*/
 
 //soc 电池剩余容量
-function batteryCapacity() {
-    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.z01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
+function batteryCapacity(obj) {
+    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g"+obj+".z01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
     var batteryCapacityArr = [];
     $.ajax({
         url: url,
@@ -396,8 +396,8 @@ function batteryCapacityChart(data) {
 
 
 //单体充放电电流展示图
-function electrical() {
-    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.i%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
+function electrical(obj) {
+    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g"+obj+".i%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
     var electricalArr = [];
     $.ajax({
         url: url,
