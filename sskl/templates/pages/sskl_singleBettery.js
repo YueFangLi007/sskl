@@ -1,61 +1,69 @@
-$(function(){
+$(function () {
     navList("网络监测");
-    singleBettery();
+    totalBettery();
+    var groupId = GetQueryString("groupId");
+    console.log(groupId);
+
+});
+    var sn=sessionStorage.getItem("sn");
+    var vsn=sessionStorage.getItem("vsn");
+    var objId=sessionStorage.getItem("objId");
+    var condition = "g"+objId+".v01";
+$(".btn_search").click(function () {
+    totalBettery();
 });
 
-var logic = function( currentDateTime ){
-    if( currentDateTime.getDay()==6 ){
+//datepikr插件
+var logic = function (currentDateTime) {
+    if (currentDateTime.getDay() == 6) {
         this.setOptions({
-            minTime:'11:00'
+            minTime: '11:00'
         });
-    }else
+    } else
         this.setOptions({
-            minTime:'8:00'
+            minTime: '8:00'
         });
 };
 $('.startTime').datetimepicker({
-    onChangeDateTime:logic,
-    onShow:logic
+    onChangeDateTime: logic,
+    onShow: logic
 });
 $('.endTime').datetimepicker({
-    onChangeDateTime:logic,
-    onShow:logic
+    onChangeDateTime: logic,
+    onShow: logic
 });
 
-var httpUrl = "http://192.168.174.140/api/method/iot.hdb.iot_device_his_data?";
-var sn = 1;
-var vsn = 3;
-var condition = "3";
-$("#singleSeacrch").click(function () {
-    // var startTime = $(".startTime").val();
-    // var endTime = $(".endTime").val();
-    // console.log("startTime====" + startTime);
-    // console.log("endTime" + endTime);
-    singleBettery();
-
-});
-function singleBettery(){
+function totalBettery() {
+    var httpUrl = "http://192.168.174.140/api/method/iot.hdb.iot_device_his_data?";
+    var startTime = $("#startTime").val();
+    var endTime = $("#endTime").val();
+    startTime = new Date(Date.parse(startTime)).Format("yyyy-MM-ddThh:mm:ss.SZ");
+    endTime = new Date(Date.parse(endTime)).Format("yyyy-MM-ddThh:mm:ss.SZ");
+    console.log(startTime);
+    console.log(endTime);
     var voltageArr = [];
     $.ajax({
         url: httpUrl,
-        data: "sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.x01%27+AND+time+%3E=+%272017-10-13T09:00:00.000Z%27+AND+time+%3C=+%272017-10-13T10:00:00.000Z%27+limit+10000",
-        success:function(data){
+        data: "sn=" + sn + "&vsn=" + vsn + "&condition=aa=%27" + condition + "%27+AND+time+%3E=+%27" + startTime + "%27+AND+time+%3C=+%27" + endTime + "%27+limit+10000",
+        // data: "sn="+sn+"&vsn="+vsn+"&condition=aa=%27g1.x01%27+AND+time+%3E=+%272017-10-13T09:00:00.000Z%27+AND+time+%3C=+%272017-10-13T10:00:00.000Z%27+limit+10000",
+        success: function (data) {
+            // console.log(data);
             var values = data.message[0].series[0].values;
             var valuesLength = values.length;
             var tempFre = Math.floor(valuesLength / 24);
             $.each(values, function (i, v) {
                 if ((i + 1) % tempFre == 0) {
-                    voltageArr.push(v[4]);
+                    voltageArr.push(v[3]);
                 }
             })
-            //console.log("VoltageArr====" +voltageArr);
-            singleBetteryChart(voltageArr);
+            console.log("VoltageArr====" + voltageArr);
+            totalBetteryChart(voltageArr);
         }
     });
 }
-//d单体电压展示图
-function singleBetteryChart(data){
 
+//d单体电压展示图
+function totalBetteryChart(data) {
     $('.total_box_rec').highcharts({
         chart: {
             zoomType: 'x'
@@ -129,3 +137,4 @@ function singleBetteryChart(data){
         }]
     });
 }
+

@@ -14,7 +14,6 @@ $(function () {
 
 var httpUrl = "";
 var sn = $("#gateWay").html(); //得到页面上的网关号码
-
 var vsn = "9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2";
 
 //电池组展示
@@ -36,7 +35,7 @@ function batteryPack() {
                 html += "<tr class='betGroupTr'  betGroupId='" + i + "'><td>" + "0" + i + "</td><td>" + Number(m["G" + i + ".V"]['PV']).toFixed(2) + "</td><td>" + m["G" + i + ".I"]['PV'] + "</td></tr>";
             }
             $(".groups").append(html);
-             //初始化function
+            //初始化function
             initFun();
         }
     });
@@ -54,6 +53,7 @@ function initFun() {
     });
     //电压显示图标
     var batteryData = JSON.parse(sessionStorage["batteryData"]);
+    var id=
     vol(batteryData, "1");
 }
 
@@ -107,8 +107,10 @@ function vol(obj, groupId) {
                 point: {
                     events: {
                         click: function () {
-                            console.log("============"+this.category);
-                            location.href = httpUrl+"sskl_singleBettery.html?groupId="+this.category;
+                            console.log("============" + this.category);
+                            location.href = httpUrl + "sskl_singleBettery.html?groupId=" + this.category;
+
+
                         }
                     }
                 }
@@ -130,7 +132,7 @@ function vol(obj, groupId) {
 function temperature(obj) {
     var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?";
     //var dataTem="sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g1.x01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000;";
-    var  condition= "g"+obj+".x01";
+    var condition = "g" + obj + ".x01";
     var dataTem = "sn=" + sn + "&vsn=" + vsn + "&condition=aa=%27" + condition + "%27+AND+time+%3E=+%27" + startTime + "%27+AND+time+%3C=+%27" + endTime + "%27+limit+10000;";
     var temperatureArr = [];
     $.ajax({
@@ -138,7 +140,6 @@ function temperature(obj) {
         data: dataTem,
         datatype: "json",
         success: function (data) {
-
             var values = data.message[0].series[0].values;
             var valuesLength = values.length;
             var tempFre = Math.floor(valuesLength / 24);
@@ -195,7 +196,11 @@ function temperatureChart(obj) {
 
 
 function bet_zong(obj) {
-    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g"+obj+".v%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
+    var condition="g" + obj + ".v";
+    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn="+sn+"&vsn="+vsn+"&condition=aa=%27"+condition+"%27+AND+time+%3E=+%27"+startTime+"%27+AND+time+%3C=+%27"+endTime+"%27+limit+10000";
+    console.log(url);
+    var objId=sessionStorage["objId"]=obj;
+    console.log("存入的值"+objId);
     var voltageArr = [];
     $.ajax({
         url: url,
@@ -209,11 +214,12 @@ function bet_zong(obj) {
                     voltageArr.push(v[3]);
                 }
             })
-            //console.log("VoltageArr====" +voltageArr);
+
             voltageChart(voltageArr);
         }
     });
 }
+
 
 //总电压图表展示
 function voltageChart(data) {
@@ -226,7 +232,7 @@ function voltageChart(data) {
         },
         xAxis: {
             type: 'datetime',
-            tickPositions: [0, 1, 2, 3, 4,5, 6, 7, 8, 9,10, 11, 12,13, 14,15, 16, 17, 18, 19,20, 21, 22, 23]
+            tickPositions: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
         },
         tooltip: {
             dateTimeLabelFormats: {
@@ -286,7 +292,7 @@ function voltageChart(data) {
 
 //soc 电池剩余容量
 function batteryCapacity(obj) {
-    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g"+obj+".z01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
+    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g" + obj + ".z01%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
     var batteryCapacityArr = [];
     $.ajax({
         url: url,
@@ -397,7 +403,7 @@ function batteryCapacityChart(data) {
 
 //单体充放电电流展示图
 function electrical(obj) {
-    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g"+obj+".i%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
+    var url = httpUrl + "/api/method/iot.hdb.iot_device_his_data?sn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6&vsn=9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2&condition=aa=%27g" + obj + ".i%27+AND+time+%3E=+%272017-10-12T00:00:00.000Z%27+AND+time+%3C=+%272017-10-12T10:00:00.000Z%27+limit+10000";
     var electricalArr = [];
     $.ajax({
         url: url,
@@ -457,3 +463,10 @@ function currentChart(obj) {
     });
 }
 
+//总电压历史查询跳转
+$("#totalHisBtn").click(function () {
+        var objId=sessionStorage.getItem("objId");
+        sessionStorage["sn"]=sn;
+        sessionStorage["vsn"]=vsn;
+        $(this).attr("href", "sskl_total_voltage.html?id="+objId+"&sn=" + sn);
+});

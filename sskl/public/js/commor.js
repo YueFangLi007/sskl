@@ -32,3 +32,25 @@ function GetQueryString(name) {
      var r = window.location.search.substr(1).match(reg);
      if(r!=null)return  unescape(r[2]); return null;
 }
+
+
+
+//datepikr插件
+var logic = function( currentDateTime ){
+    if( currentDateTime.getDay()==6 ){
+        this.setOptions({
+            minTime:'11:00'
+        });
+    }else
+        this.setOptions({
+            minTime:'8:00'
+        });
+};
+$('.startTime').datetimepicker({
+    onChangeDateTime:logic,
+    onShow:logic
+});
+$('.endTime').datetimepicker({
+    onChangeDateTime:logic,
+    onShow:logic
+});
