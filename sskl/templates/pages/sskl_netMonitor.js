@@ -70,8 +70,6 @@ function provinceCityContyShow() {
 }
 
 
-//
-
 var httpUrl = "http://192.168.174.140"
 //点击基站去查询基站列表
 $(".stateSearch").click(function () {
@@ -146,33 +144,6 @@ function netWorkDrop(code) {
     location.href = "sskl_netWork.html?code=" + code;
 }
 
-//
-//  $('##provinceInput').click(function (event) {
-//      //取消事件冒泡
-//      event.stopPropagation();
-//      //按钮的toggle,如果div是可见的,点击按钮切换为隐藏的;如果是隐藏的,切换为可见的。
-//      $('#provinceDiv').toggle('slow');
-//  return false;
-//  });
-//  //点击空白处隐藏弹出层，下面为滑动消失效果和淡出消失效果。
-// $(document).click(function(event){
-//   var _con = $('#provinceDiv');   // 设置目标区域
-//   if(!_con.is(event.target) && _con.has(event.target).length === 0){ // Mark 1
-// 	//$('#divTop').slideUp('slow');   //滑动消失
-// 	$('#provinceDiv').hide(1000);          //淡出消失
-//   }
-// });
-
-
-// $("#provinceInput").click(function (event) {
-//     $(this).siblings("div").toggle();
-// });
-
-// $(document).click( function () {
-//     console.log(33);
-//     $(".searchs >span >input").siblings("div").hide();
-// });
-console.log($('.searchs >span >div'));
 
 
 //获取省列表
@@ -261,12 +232,12 @@ $(".sta_stat>li").click(function () {
 
     $("#statDiv").hide(); //    无法实现父元素隐藏
 });
-//点击搜索按钮进行搜索
+//点击搜索按钮进行搜索===
 $("#beg_search").click(function () {
     conditionalQuery();
 })
 
-//条件查询
+//条件查询============
 function conditionalQuery() {
     var provinceInput = $("#provinceInput").attr("rgn");
     var cityInput = $("#cityInput").attr("rgn");
@@ -372,9 +343,8 @@ function conditionalQuery() {
 }
 
 
-//导出基站列表excel 公共函数
+//导出基站列表excel 公共函数======================================
 var idTmr;
-
 function getExplorer() {
     var explorer = window.navigator.userAgent;
     //ie
@@ -398,7 +368,6 @@ function getExplorer() {
         return 'Safari';
     }
 }
-
 function method1(tableid) {//整个表格拷贝到EXCEL中
     if (getExplorer() == 'ie') {
         var curTbl = document.getElementById(tableid);
@@ -434,14 +403,12 @@ function method1(tableid) {//整个表格拷贝到EXCEL中
             //结束excel进程，退出完成
             //window.setInterval("Cleanup();",1);
             idTmr = window.setInterval("Cleanup();", 1);
-
         }
     }
     else {
         tableToExcel(tableid)
     }
 }
-
 function Cleanup() {
     window.clearInterval(idTmr);
     CollectGarbage();

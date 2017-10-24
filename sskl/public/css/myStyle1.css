@@ -210,6 +210,20 @@
     background: url("/assets/sskl/images/spilit1.png") -2px -28px no-repeat;
 }
 
+
+.commorToggle{
+    display:block;
+    padding:9px;
+   background: url("/assets/sskl/images/spilit1.png") -173px 1px no-repeat;
+
+}
+.commorSearch{
+     display:block;
+    width:16px;
+    height:15px;
+    background-color: #1bbead;
+   background: url("/assets/sskl/images/spilit1.png") -117px 5px no-repeat;
+}
 .net_icon {
     background-position: -3px -53px;
 }
