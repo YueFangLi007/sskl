@@ -314,7 +314,6 @@ function batteryCapacity(obj) {
 }
 
 function batteryCapacityChart(data) {
-    console.log("=======================" + data);
     $('#soc').highcharts({
         chart: {
             zoomType: 'x'
@@ -470,3 +469,10 @@ $("#totalHisBtn").click(function () {
         sessionStorage["vsn"]=vsn;
         $(this).attr("href", "sskl_total_voltage.html?id="+objId+"&sn=" + sn);
 });
+$("#temperatureHisBtn").click(function () {
+        var objId=sessionStorage.getItem("objId");
+        sessionStorage["sn"]=sn;
+        sessionStorage["vsn"]=vsn;
+        $(this).attr("href", "sskl_temperatureHistory.html?id="+objId+"&sn=" + sn);
+});
+

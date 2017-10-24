@@ -308,57 +308,26 @@
     background-color: #eafbf6;
     border: 1px solid #c9e4dc;
 }
+/**/
+/*滚动条样式*/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+}
+::-webkit-scrollbar-track
+{
+    border-radius: 36px;
+    height:8px;
+    width:8px;
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 36px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #f9f2f4;
+}
 
-/* 自写的样式进行删除，因为用datatable的原因*/
-/*.page-num{*/
-/*display: none;*/
-/*!*隐藏*!*/
-/*font-size:12px;*/
-/*margin-top:12.5px;*/
-/*color:#848685;*/
-/*font-family: myFirstfont;*/
-/*}*/
-/*.page-num>span{*/
-/*position: relative;*/
-/*margin-left:8px;*/
-/*}*/
-/*.page-num >span>input{*/
-/*height:30px;*/
-/*font-size:12px;*/
-/*width:82px;*/
-/*background-color: #eafbf6;*/
-/*border:1px solid #c9e4dc;*/
-/*padding-left:17px;*/
-/*}*/
-/*.page-num>span>u{*/
-/*position: absolute;*/
-/*right:8px;*/
-/*top:2px;*/
-/*}*/
-/*.page-num >span>ul.page-num_pages{*/
-/*position: absolute;*/
-/*right:0px;*/
-/*top:-20px;*/
-/*display: none;*/
-/*width:100%;*/
-/*background-color: #fff;*/
-/*border:1px solid #f9fafa;*/
-/*border-radius: 3px;*/
-/*z-index: 33;*/
-/*}*/
-/*.page-num >span>ul.page-num_pages>li{*/
-/*height:26px;*/
-/*padding-left:18px;*/
-/*line-height:26px;*/
-/*}*/
-/*.page-num>label{*/
-/*font-size:12px;*/
-/*font-family: myFirstfont1;*/
-/*}*/
-/*.page_hover{*/
-/*background-color: #d2d4d2;*/
-/*color:#fff;*/
-/*}*/
 .searchs {
     padding: 20px 40px;
     height: 70px;
@@ -387,15 +356,6 @@
     background-color: #f7fbfa;
 }
 
-.searchs > span > ul {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 400px;
-    overflow-y: scroll;
-    background-color: #fff;
-}
 
 .searchs > span > u {
     position: absolute;
@@ -412,16 +372,12 @@
     top: 23px;
     width: 100%;
     display: none;
-    z-index: 33;
+    z-index: 5;
     border-radius: 3px;
     background-color: #fff;
-}
-
-.searchs > span > div > .ul {
-    height: auto;
-    max-height: 234px;
-    overflow-y: scroll;
-    margin: 0px;
+     height:auto;
+    max-height:200px;
+    overflow: auto;
 }
 
 .searchs > span > div > ul > li {
@@ -430,11 +386,9 @@
     width: 100%;
     padding-left: 12px;
 }
-
 .searchs > span > div > ul > li:hover {
     background-color: #eee;
 }
-
 .searchs > span > div > .sta_stat {
     width: 128px;
     height: 78px;
@@ -444,13 +398,10 @@
     border-radius: 3px;
     top: -30px;
 }
+.searchs > span > div > .sta_stat>li {
+    width: 128px;
 
-.searchs > span > div > ul {
-    height: auto;
-    overflow: hidden;
-    overflow-y: scroll;
 }
-
 .table_list {
     background-color: #f5f5f5;
     padding: 10px 40px;
@@ -459,31 +410,25 @@
 .state_err {
     color: #e00729;
 }
-
 .stationTable tbody tr {
     cursor: pointer !important;
 }
-
 .stationTable tbody tr td {
     border: 0px solid transparent;
     white-space: nowrap;
 }
-
 .stationTable tbody tr td:nth-child(4) {
     /*对表格中的地址进行内容溢出进行隐藏*/
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 350px;
 }
-
 .stationTable thead > tr > td, .stationTable tbody > tr > td {
     vertical-align: middle;
 }
-
 .stateSearch {
     cursor: pointer;
 }
-
 .footer {
     padding: 0px;
     padding-left: 200px;
@@ -491,7 +436,6 @@
     height: 64px;
     background-color: #f5f5f5;
 }
-
 .footer > p {
     font-size: 14px;
     margin-top: 25px;
@@ -643,7 +587,7 @@
 }
 
 .battery_group .zu_group {
-    overflow: hidden;
+
     height: auto;
     max-height: 312px;
     overflow: auto;

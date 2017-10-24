@@ -1,16 +1,16 @@
 $(function () {
     navList("网络监测");
-    totalBettery();
+    // totalBettery();
     var groupId = GetQueryString("groupId");
     console.log(groupId);
 
 });
-    var sn=sessionStorage.getItem("sn");
-    var vsn=sessionStorage.getItem("vsn");
-    var objId=sessionStorage.getItem("objId");
-    var condition = "g"+objId+".v01";
+var sn = sessionStorage.getItem("sn");
+var vsn = sessionStorage.getItem("vsn");
+var objId = sessionStorage.getItem("objId");
+var condition = "g" + objId + ".v01";
 
-    console.log(sn+"===sn"+vsn+"vsn==="+objId+"objId=====condition"+condition);
+console.log(sn + "===sn" + vsn + "vsn===" + objId + "objId=====condition" + condition);
 $(".btn_search").click(function () {
     totalBettery();
 });
@@ -41,15 +41,16 @@ function totalBettery() {
     var endTime = $("#endTime").val();
     startTime = new Date(Date.parse(startTime)).Format("yyyy-MM-ddThh:mm:ss.SZ");
     endTime = new Date(Date.parse(endTime)).Format("yyyy-MM-ddThh:mm:ss.SZ");
-    console.log(startTime);
-    console.log(endTime);
+    // console.log(startTime);
+    // console.log(endTime);
     var voltageArr = [];
     $.ajax({
         url: httpUrl,
         data: "sn=" + sn + "&vsn=" + vsn + "&condition=aa=%27" + condition + "%27+AND+time+%3E=+%27" + startTime + "%27+AND+time+%3C=+%27" + endTime + "%27+limit+10000",
         // data: "sn="+sn+"&vsn="+vsn+"&condition=aa=%27g1.x01%27+AND+time+%3E=+%272017-10-13T09:00:00.000Z%27+AND+time+%3C=+%272017-10-13T10:00:00.000Z%27+limit+10000",
         success: function (data) {
-            // console.log(data);
+            // console.log("没有数据的时候"+(data.message[0].statement_id)); //0
+            //console.log("有数据的时候"+data.message[0].series[0].values);
             var values = data.message[0].series[0].values;
             var valuesLength = values.length;
             var tempFre = Math.floor(valuesLength / 24);
@@ -58,8 +59,8 @@ function totalBettery() {
                     voltageArr.push(v[3]);
                 }
             })
-            console.log("VoltageArr====" + voltageArr);
             totalBetteryChart(voltageArr);
+            console.log("VoltageArr====" + voltageArr);
         }
     });
 }
@@ -134,7 +135,7 @@ function totalBetteryChart(data) {
         },
         series: [{
             type: 'area',
-            name: '总电压',
+            name: '温度',
             data: data
         }]
     });

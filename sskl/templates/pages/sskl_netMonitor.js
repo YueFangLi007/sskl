@@ -4,8 +4,74 @@ $(function () {
     tableList();
     //省||市的选择
     provinceChoose();
+    //省市县显示及点击空白处隐藏
+    provinceCityContyShow();
 
 });
+
+//省市县列表条件查找js控制
+function provinceCityContyShow() {
+    $("#provinceInput").click(function (event) {
+        var e = window.event || event;
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true;
+        }
+        $("#provinceDiv").toggle();
+    });
+    $("#cityInput").click(function (event) {
+        var e = window.event || event;
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true;
+        }
+        $("#cityDiv").toggle();
+    });
+    $("#countyInput").click(function (event) {
+        var e = window.event || event;
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true;
+        }
+        $("#countyDiv").toggle();
+    });
+      $(".statInput").click(function (event) {
+        var e = window.event || event;
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true;
+        }
+        $("#statDiv").toggle();
+    });
+    $(".divShow").click(function (event) {
+        var e = window.event || event;
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true;
+        }
+    });
+     $("#statDiv").click(function (event) {
+        var e = window.event || event;
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true;
+        }
+    });
+    document.onclick = function () {
+        $(".divShow").hide();
+        $("#statDiv").hide();
+    };
+}
+
+
+//
+
 var httpUrl = "http://192.168.174.140"
 //点击基站去查询基站列表
 $(".stateSearch").click(function () {
@@ -80,24 +146,27 @@ function netWorkDrop(code) {
     location.href = "sskl_netWork.html?code=" + code;
 }
 
+//
+//  $('##provinceInput').click(function (event) {
+//      //取消事件冒泡
+//      event.stopPropagation();
+//      //按钮的toggle,如果div是可见的,点击按钮切换为隐藏的;如果是隐藏的,切换为可见的。
+//      $('#provinceDiv').toggle('slow');
+//  return false;
+//  });
+//  //点击空白处隐藏弹出层，下面为滑动消失效果和淡出消失效果。
+// $(document).click(function(event){
+//   var _con = $('#provinceDiv');   // 设置目标区域
+//   if(!_con.is(event.target) && _con.has(event.target).length === 0){ // Mark 1
+// 	//$('#divTop').slideUp('slow');   //滑动消失
+// 	$('#provinceDiv').hide(1000);          //淡出消失
+//   }
+// });
 
-//var test = document.getElementsByClassName("provinceInput");
-// var test=document.getElementsByClassName("clickToggle");
-// var div=document.getElementsByClassName("divShow");
-//    //var div = document.getElementById("provinceDiv");
-//    test.onclick = function(e){
-//        e = e || event;
-//        e.cancelBubble = true;
-//        div.style.display = "block";
-//    }
-//    document.onclick = function(){
-//        div.style.display = "none";
-//    }
 
-$(".searchs >span >input").click(function (e) {
-
-    $(this).siblings("div").show();
-});
+// $("#provinceInput").click(function (event) {
+//     $(this).siblings("div").toggle();
+// });
 
 // $(document).click( function () {
 //     console.log(33);
@@ -301,6 +370,101 @@ function conditionalQuery() {
         }
     })
 }
+
+
+//导出基站列表excel 公共函数
+var idTmr;
+
+function getExplorer() {
+    var explorer = window.navigator.userAgent;
+    //ie
+    if (explorer.indexOf("MSIE") >= 0) {
+        return 'ie';
+    }
+    //firefox
+    else if (explorer.indexOf("Firefox") >= 0) {
+        return 'Firefox';
+    }
+    //Chrome
+    else if (explorer.indexOf("Chrome") >= 0) {
+        return 'Chrome';
+    }
+    //Opera
+    else if (explorer.indexOf("Opera") >= 0) {
+        return 'Opera';
+    }
+    //Safari
+    else if (explorer.indexOf("Safari") >= 0) {
+        return 'Safari';
+    }
+}
+
+function method1(tableid) {//整个表格拷贝到EXCEL中
+    if (getExplorer() == 'ie') {
+        var curTbl = document.getElementById(tableid);
+        var oXL = new ActiveXObject("Excel.Application");
+        //创建AX对象excel
+        var oWB = oXL.Workbooks.Add();
+        //获取workbook对象
+        var xlsheet = oWB.Worksheets(1);
+        //激活当前sheet
+        var sel = document.body.createTextRange();
+        sel.moveToElementText(curTbl);
+        //把表格中的内容移到TextRange中
+        sel.select();
+        //全选TextRange中内容
+        sel.execCommand("Copy");
+        //复制TextRange中内容
+        xlsheet.Paste();
+        //粘贴到活动的EXCEL中
+        oXL.Visible = true;
+        //设置excel可见属性
+
+        try {
+            var fname = oXL.Application.GetSaveAsFilename("Excel.xls", "Excel Spreadsheets (*.xls), *.xls");
+        } catch (e) {
+            print("Nested catch caught " + e);
+        } finally {
+            oWB.SaveAs(fname);
+
+            oWB.Close(savechanges = false);
+            //xls.visible = false;
+            oXL.Quit();
+            oXL = null;
+            //结束excel进程，退出完成
+            //window.setInterval("Cleanup();",1);
+            idTmr = window.setInterval("Cleanup();", 1);
+
+        }
+    }
+    else {
+        tableToExcel(tableid)
+    }
+}
+
+function Cleanup() {
+    window.clearInterval(idTmr);
+    CollectGarbage();
+}
+
+var tableToExcel = (function () {
+    var uri = 'data:application/vnd.ms-excel;base64,',
+        template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><meta http-equiv="Content-Type" charset=utf-8"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+        base64 = function (s) {
+            return window.btoa(unescape(encodeURIComponent(s)))
+        },
+        format = function (s, c) {
+            return s.replace(/{(\w+)}/g,
+                function (m, p) {
+                    return c[p];
+                })
+        }
+    return function (table, name) {
+        if (!table.nodeType) table = document.getElementById(table)
+        var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+        window.location.href = uri + base64(format(template, ctx))
+    }
+})()
 
 
 //=====================================================================================================

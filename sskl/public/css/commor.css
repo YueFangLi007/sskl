@@ -41,31 +41,7 @@ input,select{
     outline: none;
     border-radius: 36px;
 }
-/*滚动条的设置*/
-/*::-webkit-scrollbar {*/
-  /*width: 16px;*/
-  /*height: 5px;*/
-/*}*/
 
-/*::-webkit-scrollbar-track,*/
-/*::-webkit-scrollbar-thumb {*/
-  /*border-radius: 999px;*/
-  /*border: 5px solid transparent;*/
-/*}*/
-
-/*::-webkit-scrollbar-track {*/
-  /*box-shadow: 1px 1px 5px rgba(0,0,0,0) inset;*/
-/*}*/
-
-/*::-webkit-scrollbar-thumb {*/
-  /*min-height: 20px;*/
-  /*background-clip: content-box;*/
-  /*box-shadow: 0 0 0 3px rgba(0,0,0,.2) inset;*/
-/*}*/
-
-/*::-webkit-scrollbar-corner {*/
-  /*background: transparent;*/
-/*}*/
 
 
 u{
