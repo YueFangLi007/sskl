@@ -5,10 +5,11 @@ $(function () {
     console.log(groupId);
 
 });
-    var sn=sessionStorage.getItem("sn");
-    var vsn=sessionStorage.getItem("vsn");
-    var objId=sessionStorage.getItem("objId");
-    var condition = "g"+objId+".v";
+var sn = sessionStorage.getItem("sn");
+var vsn = sessionStorage.getItem("vsn");
+var objId = sessionStorage.getItem("objId");
+var condition = "g" + objId + ".v";
+$("#betZongID").html(objId);
 $(".btn_search").click(function () {
     totalBettery();
 });
@@ -42,6 +43,7 @@ function totalBettery() {
     console.log(startTime);
     console.log(endTime);
     var voltageArr = [];
+    var timeArr=[];
     $.ajax({
         url: httpUrl,
         data: "sn=" + sn + "&vsn=" + vsn + "&condition=aa=%27" + condition + "%27+AND+time+%3E=+%27" + startTime + "%27+AND+time+%3C=+%27" + endTime + "%27+limit+10000",
@@ -50,21 +52,26 @@ function totalBettery() {
             // console.log(data);
             var values = data.message[0].series[0].values;
             var valuesLength = values.length;
-            var tempFre = Math.floor(valuesLength / 24);
+            var tempFre = Math.floor(valuesLength / 48);
             $.each(values, function (i, v) {
                 if ((i + 1) % tempFre == 0) {
                     voltageArr.push(v[3]);
+                    timeArr.push(v[0]);
                 }
             })
             console.log("VoltageArr====" + voltageArr);
-            totalBetteryChart(voltageArr);
+            console.log("dataArr"+timeArr);
+            totalBetteryChart(voltageArr,timeArr);
         }
     });
 }
 
 //d单体电压展示图
-function totalBetteryChart(data) {
+function totalBetteryChart(data,time) {
     $('.total_box_rec').highcharts({
+        global: {
+            useUTC: false
+        },
         chart: {
             zoomType: 'x'
         },
@@ -73,33 +80,35 @@ function totalBetteryChart(data) {
         },
         xAxis: {
             type: 'datetime',
-            dateTimeLabelFormats: {
-                millisecond: '%H:%M:%S.%L',
-                second: '%H:%M:%S',
-                minute: '%H:%M',
-                hour: '%H:%M',
-                day: '%m-%d',
-                week: '%m-%d',
-                month: '%Y-%m',
-                year: '%Y'
-            }
+            categories:time,
+            // dateTimeLabelFormats: {
+            //     millisecond: '%H:%M:%S.%L',
+            //     second: '%H:%M:%S',
+            //     minute: '%H:%M',
+            //     hour: '%H:%M',
+            //     day: '%m-%d',
+            //     week: '%m-%d',
+            //     month: '%Y-%m',
+            //     year: '%Y'
+            // }
         },
         tooltip: {
-            dateTimeLabelFormats: {
-                millisecond: '%H:%M:%S.%L',
-                second: '%H:%M:%S',
-                minute: '%H:%M',
-                hour: '%H:%M',
-                day: '%Y-%m-%d',
-                week: '%m-%d',
-                month: '%Y-%m',
-                year: '%Y'
-            }
+            // dateTimeLabelFormats: {
+            //     millisecond: '%H:%M:%S.%L',
+            //     second: '%H:%M:%S',
+            //     minute: '%H:%M',
+            //     hour: '%H:%M',
+            //     day: '%Y-%m-%d',
+            //     week: '%m-%d',
+            //     month: '%Y-%m',
+            //     year: '%Y'
+            // }
         },
         yAxis: {
             title: {
-                text: null
+                text: "单位(V)"
             }
+
         },
         legend: {
             enabled: false

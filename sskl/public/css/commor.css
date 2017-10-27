@@ -29,7 +29,8 @@ body{
     height:100%;
     min-width:1200px;
     font-size: 14px;
-
+    overflow: hidden;
+    color:#1a1a1a;
     font-family: myFirstfont,"微软雅黑";
     background-color: #fff;
 }
@@ -41,8 +42,6 @@ input,select{
     outline: none;
     border-radius: 36px;
 }
-
-
 
 u{
     text-decoration: none;
@@ -58,16 +57,15 @@ header,nav,main,section,footer{
     display: block;
 }
 input,button{
-    border-radius: 36px;
+    border-radius: 36px!important;
     border:none;
     outline:none;
 
 }
 input::-ms-clear{display:none;}
 /*兼容ie浏览器自带的删除功能*/
-
-
-
+input:-webkit-autofill { box-shadow: 0 0 0px 1000px white inset !important;}
+input,select,option,textarea{outline: none!important;}
 .mar_rt_40{
    margin-right:40px;
 }
@@ -76,3 +74,12 @@ input::-ms-clear{display:none;}
     margin-left:40px;
 }
 
+/*解决圆角按钮出现外面边框的问题*/
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: none;
+}

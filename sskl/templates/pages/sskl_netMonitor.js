@@ -104,7 +104,7 @@ function tableList() {
                     {data: 'name'},
                     {data: 'longitude'},
                     {data: 'latitude'},
-                    {data: 'modified'}
+                    {data: 'power_level'}
                 ],
                 "bFilter": false,   //去掉搜索框方法二
                 "bSort": false,  //禁止排序
@@ -128,8 +128,9 @@ function tableList() {
             var faultState = $("#stationTable>tbody td:last-child");
             if (faultState.html() == "故障") {
                 faultState.addClass("state_err");
-            }
-            ;
+            };
+
+             // console.log(adressState.html());
 
             $("#stationTable>tbody").on("click", "tr", function () {
                 var code = $(this).children("td:nth-child(5)").html();

@@ -12,34 +12,41 @@
     .stationTable {
         background-color: #fff;
     }
-
     .stationTable tr {
         height: 48px;
-        border:0px;
+        border: 0px;
         line-height: 48px;
     }
-    .stationTable tbody  tr:first-child {
+    .stationTable tbody tr:first-child {
         border-top: 1px solid #e3e7e3;
     }
- .stationTable tbody  tr:last-of-type {
+    .stationTable tbody tr:last-of-type {
         border-bottom: 1px solid transparent;
     }
-    .stationTable tbody  tr:hover {
+
+    .stationTable tbody tr:hover {
         background-color: #eaf9f7;
         border-top: 1px solid #54f0e0 !important;
         border-bottom: 1px solid #54f0e0;
     }
-    /**/
 
-    .dataTables_length >label >select{
-        margin-left:10px;
+    /**/
+    .dataTables_length > label {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        margin-top: 3px;
     }
-    .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
-    .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+
+    .dataTables_length > label > select {
+        margin-left: 10px;
+    }
+    .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover,
+    .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
         background-color: #12c08f;
-        border:0px;
-        width:34px;
-        height:34px;
+        border: 0px;
+        width: 34px;
+        height: 34px;
     }
 </style>
 <div class="main_title">
@@ -49,14 +56,10 @@
     <div class="main_search pull-right mar_rt_40" id="div">
         <input type="text" placeholder="请输入基站名称" id="baseName">
         <!--<i class="glyphicon glyphicon-search  stateSearch"></i>-->
-        <i class="commorSearch"></i>
+        <i class="stateSearch commorSearch"></i>
     </div>
 </div>
-<div class="main_pages">
-    <p>
-        <button class="button pull-right mar_rt_40" id="exportBtn"   onclick="javascript:method1('stationTable')">导出 <u>Excel</u></button>
-    </p>
-</div>
+
 <div class="searchs container-fluid">
     <span>
             <input type="text" value="省/直辖市" rgn="0" id="provinceInput" class="clickToggle">
@@ -68,7 +71,7 @@
              </div>
     </span>
     <span>
-             <input type="text" value="市" rgn="0" id="cityInput"  class="clickToggle">
+             <input type="text" value="市" rgn="0" id="cityInput" class="clickToggle">
             <u class="commorToggle"></u>
              <div id="cityDiv" class="divShow">
                 <ul class="ul city_ul" id="cityUl">
@@ -77,8 +80,8 @@
              </div>
     </span>
     <span>
-            <input type="text" value="县" rgn="0" id="countyInput"  class="clickToggle">
-             <!--<u class="glyphicon glyphicon-menu-down"></u>-->
+            <input type="text" value="县" rgn="0" id="countyInput" class="clickToggle">
+        <!--<u class="glyphicon glyphicon-menu-down"></u>-->
             <u class="commorToggle"></u>
             <div id="countyDiv" class="divShow">
                 <ul class="ul conty_ul" id="countyUl">
@@ -100,6 +103,12 @@
     <span><input type="text" placeholder="数据采集器" id="sn_caiji"></span>
     <span><input type="text" placeholder="基站编码" id="stat_code"></span>
     <span><button type="button" class="beg_secrch pull-right mar_rt_40" id="beg_search">搜索</button></span>
+</div>
+<div class="main_pages">
+    <p>
+        <button class="button pull-right mar_rt_40" id="exportBtn" onclick="javascript:method1('stationTable')">导出 <u>Excel</u>
+        </button>
+    </p>
 </div>
 <div class="table_list container-fluid">
     <table id="stationTable" class="table stationTable table-striped" cellspacing="0" width="100%">

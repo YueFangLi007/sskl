@@ -51,7 +51,6 @@ $(function () {
                     pt = new BMap.Point(stations[cs].longitude, stations[cs].latitude);
                     var myIcon = new BMap.Icon("/assets/sskl/images/jizhan.png", new BMap.Size(32, 38));
                     var marker = new BMap.Marker(pt, {icon: myIcon});
-                    // var gourl = "/iot_devinfo/" + stations[cs].device_sn;
                     stations[cs].address_text = stations[cs].address_text.replace(/\s+/g, "");//去除所有空格
                     var content =
                         '<div class="widget-box">' +
