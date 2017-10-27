@@ -294,10 +294,10 @@ function conditionalQuery() {
                     {data: 'station_name'},
                     {data: 'station_type'},
                     {data: 'address_text'},
-                    {data: 'name'},
+                     {data: 'name'},
                     {data: 'longitude'},
                     {data: 'latitude'},
-                    {data: 'modified'}
+                    {data: 'power_level'}
                 ],
                 "bFilter":
                     false,   //去掉搜索框方法二
