@@ -38,9 +38,12 @@ h1,h2,h3,h4,h5,h6{
     font-family: myFirstfont1,"微软雅黑";
     font-weight: bold;
 }
-input,select{
+input,select,button{
     outline: none;
     border-radius: 36px;
+}
+.borderRadia_36{
+     border-radius: 36px;
 }
 
 u{
@@ -57,7 +60,6 @@ header,nav,main,section,footer{
     display: block;
 }
 input,button{
-    border-radius: 36px!important;
     border:none;
     outline:none;
 

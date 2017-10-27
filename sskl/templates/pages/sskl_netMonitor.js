@@ -73,8 +73,11 @@ function provinceCityContyShow() {
 var httpUrl = "http://192.168.174.140"
 //点击基站去查询基站列表
 $(".stateSearch").click(function () {
-    conditionalQuery();
-
+    if($(this).siblings("input").val()==""){
+        return;
+    }else{
+          conditionalQuery();
+    }
 });
 
 //表格加载
@@ -87,15 +90,6 @@ function tableList() {
                 data: data,
                 paging: true,//分页
                 ordering: true,//是否启用排序
-                // searching: true,//搜索
-                // dom: 'Bfrtip',
-                // buttons: [{
-                //     extend: 'excelHtml5',
-                //     customize: function (xlsx) {
-                //         var sheet = xlsx.xl.worksheets['sheet1.xml'];
-                //         $('row c[r^="C"]', sheet).attr('s', '2');
-                //     }
-                // }],
                 columns: [
                     {data: 'code'},
                     {data: 'station_name'},
@@ -144,7 +138,6 @@ function tableList() {
 function netWorkDrop(code) {
     location.href = "sskl_netWork.html?code=" + code;
 }
-
 
 
 //获取省列表
@@ -316,7 +309,7 @@ function conditionalQuery() {
                     "sZeroRecords":
                         "抱歉， 没有找到",
                     "sInfo":
-                        "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+                        "共有_PAGES_ 页，共_MAX_ 条 ",
                     "sInfoEmpty":
                         "没有数据",
                     "sInfoFiltered":
@@ -335,8 +328,7 @@ function conditionalQuery() {
                         "sLast":
                             "尾页"
                     },
-                    "sZeroRecords": "<p class='dataNull'>没有检索到数据</p>",
-
+                    "sZeroRecords": "<p class='dataNull'>没有检索到数据</p>"
                 }
             });
         }
