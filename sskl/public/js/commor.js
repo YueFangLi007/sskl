@@ -1,3 +1,4 @@
+var httpUrl="http://192.168.174.140";
 //公共的 进入后菜单列表选中样式
 $("a").click(function(){
     $(this).css("text-decoreation","none");

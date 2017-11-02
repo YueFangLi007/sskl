@@ -2,24 +2,91 @@
 
 
 {% block content %}
+<script src="/assets/sskl/js/bootstrap.min.js"></script>
+<script src="/assets/sskl/js/jquery.dataTables.min.js"></script>
+<script src="/assets/sskl/js/jquery.dataTables.bootstrap.min.js"></script>
+<style>
+    .tabsSysMes {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
 
-    <div class="main_title main_titWirte">
-        <span>系统消息</span>
+    .tabsSysMes .sysMestabs {
+        display: block;
+        padding:0px 40px;
+        height:60px;
+
+    }
+
+    .tabsSysMes .sysMestabs > li {
+        float: left;
+        width: 95px;
+        height: 60px;
+        text-align: center;
+        line-height: 60px;
+
+    }
+
+    .tabsSysMes .sysMestabs > li > a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        color:#777d7b;
+    }
+
+    .tabsSysMes .sysMestabs > li > a:hover {
+        border-bottom: 3px solid #32c3b4;
+        color:#000;
+    }
+
+    .tabsSysMes .sysMesList {
+        height: auto;
+        position: absolute;
+        top: 60px;
+        right: 0px;
+        width:100%;
+        padding:0px 40px;
+        background-color: #fff;
+
+    }
+
+    .allMes {
+        z-index: 5;
+    }
+</style>
+
+<div class="main_title main_titWirte">
+    <span>系统消息</span>
+</div>
+<div class="tabsSysMes ">
+    <ul class="sysMestabs">
+        <li><a href="#tab1">全部消息</a></li>
+        <li><a href="#tab2">未读消息</a></li>
+        <li><a href="#tab3">已读消息</a></li>
+    </ul>
+    <div class="sysMesList allMes tab1">
+        <table class="table stationTable table-striped" id="sysTemTable" style="width:100%;background-color: #fff">
+            <thead>
+            <tr>
+                <td>标题内容</td>
+                <td>标题时间</td>
+            </tr>
+            </thead>
+        </table>
     </div>
-    <div class="tabsSysMes">
-        <ul>
-            <li><a href="#">全部消息</a></li>
-            <li><a href="#">未读消息</a></li>
-            <li><a href="#">已读消息</a></li>
-        </ul>
-        <div>
-            全部消息页面
-        </div>
-        <div>
-            未读消息页面
-        </div>
-        <div>
-            已读消息页面
-        </div>
+    <div class="sysMesList tab2">
+        未读消息页面
     </div>
+    <div class="sysMesList tab3">
+        已读消息页面
+    </div>
+</div>
+
+
+<script>
+    {% include "templates/pages/sskl_systemMessages.js" %}
+</script>
+
 {% endblock%}
+

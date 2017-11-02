@@ -56,7 +56,7 @@ function totalBettery() {
             $.each(values, function (i, v) {
                 if ((i + 1) % tempFre == 0) {
                     voltageArr.push(v[3]);
-                    timeArr.push(v[0]);
+                    timeArr.push(v[0].substring(5,10).replace("-","/"));
                 }
             })
             console.log("VoltageArr====" + voltageArr);
@@ -81,28 +81,28 @@ function totalBetteryChart(data,time) {
         xAxis: {
             type: 'datetime',
             categories:time,
-            // dateTimeLabelFormats: {
-            //     millisecond: '%H:%M:%S.%L',
-            //     second: '%H:%M:%S',
-            //     minute: '%H:%M',
-            //     hour: '%H:%M',
-            //     day: '%m-%d',
-            //     week: '%m-%d',
-            //     month: '%Y-%m',
-            //     year: '%Y'
-            // }
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
         },
         tooltip: {
-            // dateTimeLabelFormats: {
-            //     millisecond: '%H:%M:%S.%L',
-            //     second: '%H:%M:%S',
-            //     minute: '%H:%M',
-            //     hour: '%H:%M',
-            //     day: '%Y-%m-%d',
-            //     week: '%m-%d',
-            //     month: '%Y-%m',
-            //     year: '%Y'
-            // }
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
         },
         yAxis: {
             title: {
