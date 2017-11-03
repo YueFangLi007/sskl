@@ -1,9 +1,4 @@
 
-$("#sysMestabs li a").click(function(){
-    var a=$(this).href();
-    console.log(a);
-
-});
 //点击实现tab页面切换
 //表格加载
 sysTableList();
@@ -17,6 +12,7 @@ function sysTableList() {
                 paging: true,//分页
                 ordering: true,//是否启用排序
                 columns: [
+                    // {data: "<input type='checkbox'></td>"},
                     {data: 'code'},
                     {data: 'station_name'}
                 ],

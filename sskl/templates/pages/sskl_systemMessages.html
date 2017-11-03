@@ -12,11 +12,11 @@
         position: relative;
     }
 
-    .tabsSysMes .sysMestabs {
+    .tabsSysMes .sysMestabs{
         display: block;
         padding:0px 40px;
         height:60px;
-
+        width:100%;
     }
 
     .tabsSysMes .sysMestabs > li {
@@ -34,10 +34,9 @@
         height: 100%;
         color:#777d7b;
     }
-
-    .tabsSysMes .sysMestabs > li > a:hover {
-        border-bottom: 3px solid #32c3b4;
-        color:#000;
+    .sysTabMesToggle{
+          border-bottom: 3px solid #32c3b4;
+         color:#000;
     }
 
     .tabsSysMes .sysMesList {
@@ -47,12 +46,56 @@
         right: 0px;
         width:100%;
         padding:0px 40px;
+        min-height:500px;
         background-color: #fff;
-
     }
 
-    .allMes {
-        z-index: 5;
+    .tabsMes {
+        z-index:5;
+    }
+
+    .sysMesList .sysTemTable{
+        margin-top: 20px;
+        border-radius: 6px!important;
+        border:1px solid #dde0e0;
+    }
+    .sysMesList .sysTemTable tr{
+        cursor: pointer;
+    }
+    .sysMesList .sysTemTable thead tr {
+        background-color: #f8f8f8;
+    }
+    .sysMesList .sysTemTable  tr td{
+        border:0px !important;
+    }
+     .sysMesList .sysTemTable thead tr td:nth-child(1){
+       text-align: center;
+    }
+     .sysMesList .sysTemTable tbody tr:nth-child(even){
+        background-color: #f8f8f8;
+    }
+    .sysMesList .sysTemTable tbody tr td:nth-child(2){
+       position:relative;
+    }
+     .sysMesList .sysTemTable tbody tr td:nth-child(1){
+       width:40px;
+       text-align: center;
+    }
+    .sysMesList .sysTemTable tr td:nth-child(2){
+     padding-left:30px!important;
+    }
+    .sysMesList .sysTemTable tbody tr td:nth-child(2) i.gao_icon{
+        top:43%;
+        left:0px;
+        margin-right:9px;
+    }
+    .sysMesList .sysTemTable tr td{
+        height:48px;
+        line-height:48px;
+        font-size:12px!important;
+        color:#868687;
+         padding:0px 8px!important;
+         box-sizing: border-box;
     }
 </style>
 
@@ -60,33 +103,97 @@
     <span>系统消息</span>
 </div>
 <div class="tabsSysMes ">
-    <ul class="sysMestabs">
-        <li><a href="#tab1">全部消息</a></li>
-        <li><a href="#tab2">未读消息</a></li>
-        <li><a href="#tab3">已读消息</a></li>
+    <ul class="sysMestabs" id="sysMestabs">
+        <li class="sysTabMesToggle" drap="tab1"><a href="javascript:;">全部消息</a></li>
+        <li drap="tab2"><a href="javascript:;" >未读消息(<span>3</span>)</a></li>
+        <li drap="tab3"><a href="javascript:;" >已读消息</a></li>
     </ul>
-    <div class="sysMesList allMes tab1">
-        <table class="table stationTable table-striped" id="sysTemTable" style="width:100%;background-color: #fff">
+    <div class="sysMesList tabsMes" id="tab1">
+        <table class="table sysTemTable" id="allMesTable" style="width:100%;background-color: #fff">
             <thead>
             <tr>
+                <td><input type="checkbox"></td>
                 <td>标题内容</td>
                 <td>标题时间</td>
             </tr>
             </thead>
+            <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><i class="gao_icon"></i>待修复系统通知</td>
+                <td>2017-10-30 14:56:09</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>权限申请通知</td>
+                <td>2017-10-30 14:56:09</td>
+            </tr>
+            </tbody>
         </table>
     </div>
-    <div class="sysMesList tab2">
-        未读消息页面
+    <div class="sysMesList" id="tab2">
+        <table class="table sysTemTable" id="unReadMesTable" style="width:100%;background-color: #fff">
+            <thead>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>标题内容</td>
+                <td>标题时间</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><i class="gao_icon"></i>未读1</td>
+                <td>2017-11-03 14:56:09</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>未读2</td>
+                <td>2017-11-07 14:56:09</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="sysMesList tab3">
-        已读消息页面
+    <div class="sysMesList" id="tab3">
+        <table class="table sysTemTable" id="ReadedMesTable" style="width:100%;background-color: #fff">
+            <thead>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>标题内容</td>
+                <td>标题时间</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><i class="gao_icon"></i>已读1</td>
+                <td>2017-10-30 14:56:09</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>已读2</td>
+                <td>2017-10-30 14:56:09</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
 
+<!--<script>-->
+    <!--{% include "templates/pages/sskl_systemMessages.js" %}-->
+<!--</script>-->
 <script>
-    {% include "templates/pages/sskl_systemMessages.js" %}
-</script>
 
+
+$("#sysMestabs li").click(function(){
+
+    $(this).addClass("sysTabMesToggle").siblings("li.sysTabMesToggle").removeClass("sysTabMesToggle");
+    var tabs=$(this).attr("drap");
+    $("#"+tabs).addClass("tabsMes").siblings("div").removeClass("tabsMes");
+});
+
+
+</script>
 {% endblock%}
 
