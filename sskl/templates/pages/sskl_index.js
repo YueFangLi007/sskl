@@ -35,7 +35,7 @@ function openInfo(content, e) {
 
 
 $(function () {
-    $('#map').height(parseInt($(window).height()));
+    $('#map').height(parseInt($(document).height()));
     $(window).resize(function () {
         $('#map').height(parseInt($(window).height()));
     });
