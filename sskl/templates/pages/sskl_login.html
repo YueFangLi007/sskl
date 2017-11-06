@@ -6,7 +6,7 @@
     <title>{{title}}</title>
     {% block loginStyle %}
     <link rel="stylesheet" href="/assets/sskl/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/sskl/css/jquery-ui.css">
+    <!--<link rel="stylesheet" href="/assets/sskl/css/jquery-ui.css">-->
     <link rel="stylesheet" href="/assets/sskl/css/commor.css">
     <script src="/assets/sskl/js/jquery-1.11.3.js"></script>
     <script src="/assets/sskl/js/jquery-ui.js"></script>
@@ -38,15 +38,14 @@
             left: 50%;
             top: 50%;
             text-align: center;
+            /*background-color: #fff;*/
             margin: -210px 0 0 -189px;
 
         }
-
         .logoImg {
             margin: 0px auto;
             margin-bottom: 25px;
         }
-
         .login {
             width: 366px;
             height: auto;
@@ -55,26 +54,19 @@
         }
 
         .loginInUl {
-            padding: 0px !important;
-            border: 0px;
-            margin: 0px;
-            margin-bottom: 34px !important;
-            padding: 0px;
+            margin-bottom: 34px;
             height: 42px;
             width: 364px;
             line-height: 26px;
-            vertical-align: middle;
-
+            background-color: #dde0e0;
         }
-
         .loginInUl > li {
             width: 50%;
             margin: 0px !important;
             border: 0px !important;;
-        }
-
-        .loginInUl > li > a:active {
-            background-color: #ff8000;
+            float:left;
+            height:42px;
+            line-height:42px;
         }
 
         .loginInUl > li > a {
@@ -85,15 +77,6 @@
             text-align: center;
             outline: none;
 
-        }
-
-        /*重写boot样式*/
-        .ui-widget-header {
-            background-color: #fff;
-        }
-
-        .loginInUl > li > a:hover {
-            background-color: #fff;
         }
 
         .login span {
@@ -161,25 +144,16 @@
 
         .passWordAbout > input {
             display: inline-block;
-            height: 24px !important;
-            line-height: 24px;
             vertical-align: middle;
-
         }
 
-        input[type="checkbox"]:checked:before {
-            color: red;
-        }
 
-        .passWordAbout .forgetPass {
-            color: #4599ef;
-            font-size: 12px;
-            text-decoration: none;
-        }
 
-        .passWordAbout .forgetPass:hover {
-            text-decoration: none;
-        }
+        /*.passWordAbout .forgetPass {*/
+            /*color: #4599ef;*/
+            /*font-size: 12px;*/
+            /*text-decoration: none;*/
+        /*}*/
 
         .loginPrompt {
             width: 270px;
@@ -189,7 +163,9 @@
             display: none;
             font-size: 11px;
         }
-
+       .loginMain  .login{
+            background-color: #fff;
+        }
         .firstFormGroup {
             margin-bottom: 20px;
         }
@@ -221,7 +197,7 @@
     </div>
     <div id="tabs" class="login">
         <ul class="loginInUl">
-            <li><a href="#tabs-1">登录</a></li>
+            <li style="background-color: #fff"><a href="#tabs-1" >登录</a></li>
             <li><a href="#tabs-2">注册</a></li>
         </ul>
         <div id="tabs-1">
@@ -287,7 +263,10 @@
         //location.href="https://www.baidu.com/";
         location.href = "sskl_netWork.html";
     });
+$(".loginInUl>li").click(function(){
 
+    $(this).css("backgroundColor","#fff").siblings("li").css("backgroundColor","#dde0e0");
+});
     //  发送验证码
     $("#getCode").click(function () {
         var code = 60;
