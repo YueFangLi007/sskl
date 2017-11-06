@@ -1,6 +1,5 @@
 {% extends "templates/sskl_base.html" %}
 
-
 {% block content %}
 <script src="/assets/sskl/js/bootstrap.min.js"></script>
 <script src="/assets/sskl/js/jquery.dataTables.min.js"></script>
@@ -11,7 +10,9 @@
         height: auto;
         position: relative;
     }
-
+    body{
+         font-family:"方正黑体简","Microsoft Yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti;
+    }
     .tabsSysMes .sysMestabs{
         display: block;
         padding:0px 40px;
@@ -35,8 +36,8 @@
         color:#777d7b;
     }
     .sysTabMesToggle{
-          border-bottom: 3px solid #32c3b4;
-         color:#000;
+        border-bottom: 3px solid #32c3b4;
+        color:#000;
     }
 
     .tabsSysMes .sysMesList {
@@ -53,7 +54,6 @@
     .tabsMes {
         z-index:5;
     }
-
     .sysMesList .sysTemTable{
         margin-top: 20px;
         border-radius: 6px!important;
@@ -77,7 +77,7 @@
     .sysMesList .sysTemTable tbody tr td:nth-child(2){
        position:relative;
     }
-     .sysMesList .sysTemTable tbody tr td:nth-child(1){
+     .sysMesList .sysTemTable tbody tr td:nth-child(1), .sysMesList .sysTemTable tfoot tr td:nth-child(1){
        width:40px;
        text-align: center;
     }
@@ -96,6 +96,11 @@
         color:#868687;
          padding:0px 8px!important;
          box-sizing: border-box;
+    }
+    .sysMesList .mesCommorBtn{
+        width:76px;
+        height:30px;
+        font-size:12px;
     }
 </style>
 
@@ -120,7 +125,7 @@
             <tbody>
             <tr>
                 <td><input type="checkbox"></td>
-                <td><i class="gao_icon"></i>待修复系统通知</td>
+                <td>待修复系统通知</td>
                 <td>2017-10-30 14:56:09</td>
             </tr>
             <tr>
@@ -129,6 +134,16 @@
                 <td>2017-10-30 14:56:09</td>
             </tr>
             </tbody>
+            <tfoot>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td colspan="2">
+                    <button class="btn mesCommorBtn">删除</button>
+                    <button class="btn mesCommorBtn">标记已读</button>
+                    <button class="btn mesCommorBtn">全部已读</button>
+                </td>
+            </tr>
+            </tfoot>
         </table>
     </div>
     <div class="sysMesList" id="tab2">
@@ -152,6 +167,16 @@
                 <td>2017-11-07 14:56:09</td>
             </tr>
             </tbody>
+            <tfoot>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td colspan="2">
+                    <button class="btn mesCommorBtn">删除</button>
+                    <button class="btn mesCommorBtn">标记已读</button>
+                    <button class="btn mesCommorBtn">全部已读</button>
+                </td>
+            </tr>
+            </tfoot>
         </table>
     </div>
     <div class="sysMesList" id="tab3">
@@ -175,6 +200,16 @@
                 <td>2017-10-30 14:56:09</td>
             </tr>
             </tbody>
+            <tfoot>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td colspan="2">
+                    <button class="btn mesCommorBtn">删除</button>
+                    <button class="btn mesCommorBtn">标记已读</button>
+                    <button class="btn mesCommorBtn">全部已读</button>
+                </td>
+            </tr>
+            </tfoot>
         </table>
     </div>
 </div>
@@ -185,9 +220,8 @@
 <!--</script>-->
 <script>
 
-
+<!--tab切换-->
 $("#sysMestabs li").click(function(){
-
     $(this).addClass("sysTabMesToggle").siblings("li.sysTabMesToggle").removeClass("sysTabMesToggle");
     var tabs=$(this).attr("drap");
     $("#"+tabs).addClass("tabsMes").siblings("div").removeClass("tabsMes");

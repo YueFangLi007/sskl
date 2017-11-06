@@ -1,11 +1,12 @@
 .header {
     height: 50px;
-    padding-left: 200px;
+    /*padding-left: 200px;*/
     position: fixed;
-    left: 0px;
+    left: 200px;
     top: 0px;
     width: 100%;
     z-index: 999;
+    padding-right:200px;
     min-width: 1200px;
     background-color: #32c3b4;
     box-shadow: 0px 1px 0px #1f9488;
@@ -174,7 +175,6 @@
         background-color: #f9f2f4;
     }
 
-
 .section .sec_nav {
     width: 200px;
     height: 100%;
@@ -188,7 +188,6 @@
 .section .sec_nav > .logo {
     height: 50px;
     z-index: 999;
-    background-color: orangered;
     box-shadow: 0px 1px 0px #1f9488;
 
 }
@@ -244,10 +243,10 @@
 
 }
 .commorSearch{
-     display:block;
+    display:block;
     width:16px;
     height:15px;
-    color:orangered;
+
    background: url("/assets/sskl/images/spilit1.png") -117px -5px no-repeat;
 }
 .net_icon {
@@ -291,10 +290,9 @@
 .sec_main {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+
     padding-left: 200px;
 }
-
 .sec_main > .main_title {
     height: 55px;
     line-height: 55px;
@@ -302,7 +300,6 @@
     box-sizing: border-box;
     border-bottom: 1px solid #dddee0;
 }
-
 .sec_main > .main_title > span {
     font-size: 16px;
     margin-left: 40px;
@@ -313,19 +310,20 @@
 .main_search {
     position: relative;
 }
-
 .main_title i {
     font-size: 16px;
     position: absolute;
     right: 8px;
     top: 21px;
 }
-
 .main_titWirte {
     background-color: #fff;
 }
-
-#div input {
+#seacrchStation{
+    margin-top:12px;
+    line-height:32px;
+}
+#seacrchStation input {
     height: 32px;
     width: 180px;
     padding-left: 18px;
@@ -462,8 +460,11 @@
 .stationTable thead > tr > td, .stationTable tbody > tr > td {
     vertical-align: middle;
 }
-.stateSearch {
-    cursor: pointer;
+
+.main_title  .stateSearch{
+     cursor: pointer;
+    top:9px;
+    right:7px;
 }
 .footer {
     padding: 0px;
@@ -651,12 +652,6 @@
     border-bottom: 1px solid #54f0e0;
 }
 
-/*.vol>.battery_group >.zu_group  .groups>tbody>tr:first-of-type{*/
-/*background-color: #eaf9f7;*/
-/*cursor: pointer;*/
-/*border-top:1px solid #54f0e0;*/
-/*border-bottom:1px solid #54f0e0;*/
-/*}*/
 
 /*各种图表样式*/
 .tem_now, .soc_now, .electric_now, .single_bat_vol {
