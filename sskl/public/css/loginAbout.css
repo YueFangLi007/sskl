@@ -1,0 +1,163 @@
+          * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        html {
+            height: 100%
+        }
+
+        body {
+            min-height: 100%
+        }
+
+        .loginMain {
+            width: 420px;
+            padding: 8px;
+            height: auto;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            text-align: center;
+            /*background-color: #fff;*/
+            margin: -210px 0 0 -189px;
+
+        }
+        .logoImg {
+            margin: 0px auto;
+            margin-bottom: 25px;
+        }
+        .login {
+            width: 366px;
+            height: auto;
+            padding: 0px;
+            margin: 0px auto;
+        }
+
+        .loginInUl {
+            margin-bottom: 34px;
+            height: 42px;
+            width: 364px;
+            line-height: 26px;
+            background-color: #dde0e0;
+        }
+        .loginInUl > li {
+            width: 50%;
+            margin: 0px !important;
+            border: 0px !important;;
+            float:left;
+            height:42px;
+            line-height:42px;
+        }
+
+        .loginInUl > li > a {
+            width: 100%;
+            height: 100%;
+            color: #000 !important;
+            display: inline-block;
+            text-align: center;
+            outline: none;
+
+        }
+
+        .login span {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            background: url("/assets/sskl/images/login.jpg") no-repeat -5px -7px;
+        }
+
+        .login span.passwordIcon {
+            width: 17px;
+            height: 21px;
+            background: url("/assets/sskl/images/login.jpg") no-repeat -21px -9px;
+        }
+
+        .login input {
+            border-radius: 36px;
+            background-color: #fff;
+            height: 34px !important;
+        }
+
+        .form-group .input-group {
+            width: 270px !important;
+            margin: 0px auto;
+            height: 34px !important;
+        }
+
+        .input-group-addon {
+            padding: 4px 13px;
+            font-size: 12px;
+            border-radius: 36px;
+            background-color: #fff;
+        }
+
+        .loginForm .loginIn {
+            display: block;
+            width: 270px;
+            height: 34px;
+            color: #fff;
+            font-size: 11px;
+            background-color: #32c3b4 !important;
+            margin: 0px auto;
+            margin-bottom: 40px;
+            border-radius: 36px;
+        }
+
+        /*记住密码*/
+        .passWordAbout {
+            width: 270px;
+            margin: 0px auto;
+            margin-bottom: 12px;
+            height: 24px !important;
+            line-height: 24px;
+        }
+
+        .passWordAbout label {
+            position: relative;
+            top: 0px;
+            left: 0px;
+            height: 24px;
+
+            font-weight: normal;
+            font-size: 12px !important;
+        }
+        .forgetPass{
+            font-size:12px;
+        }
+        .passWordAbout > input {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .loginPrompt {
+            width: 270px;
+            margin: 0px auto;
+            margin-bottom: 5px;
+            color: #ec5853;
+            display: none;
+            font-size: 11px;
+        }
+       .loginMain  .login{
+            background-color: #fff;
+        }
+        .firstFormGroup {
+            margin-bottom: 20px;
+        }
+
+        /*取消点击后背景颜色变黄*/
+        input:-webkit-autofill {
+            box-shadow: 0 0 0px 1000px white inset !important;
+        }
+        /**/
+        .getCode {
+            width: 110px;
+            /*background-color: #dde0e0;*/
+            background-color: #f84949;
+            cursor: pointer;
+            color: #fff;
+        }
+        .getCodeHover {
+            background-color: #dde0e0;
+            color: #fff;
+        }
