@@ -12,157 +12,24 @@
     <script src="/assets/sskl/js/commor.js"></script>
     <style>
         body {
-            background-color: #f5f5f5;
+            background-color: #fff;
             font-family: myFirstfont, "微软雅黑";
             overflow: scroll;
-        }
-
-        .registerHead p {
-            color: #010101;
-        }
-
-        .registerallMes input {
-            border-radius: 36px !important;
-            padding-left: 14px !important;
         }
 
         .registerallMes {
             height: auto;
             margin-top: 35px;
+            margin-bottom: 35px;
             /*text-align: left;*/
             width: 960px;
             padding: 8px 78px;
             border-radius: 5px;
-            background-color: #fff;
-        }
 
-        .registerMesDetail {
-            position: relative;
-        }
-
-        .registerallMes .registerHead h3 {
-            height: 74px;
-            line-height: 74px;
-            border-bottom: 1px dashed #dde0e0;
-            font-size: 17px;
-            font-weight: bold;
         }
 
         .registerallMes .registerHead p {
-            height: 74px;
-            line-height: 74px;
-            font-weight: bold;
-        }
-
-        .registerallMes .register_left {
-            width: 420px;
-            padding: 0px !important;
-            /*background-color: #1f9488;*/
-        }
-
-        .registerallMes .form_register input ,select{
-            width: 268px;
-             height:30px;
-        }
-
-        .register_errMes {
-            margin-left: 160px;
-            height: 22px;
-            line-height: 22px;
-            font-size: 12px;
-            color: #e92c23;
-        }
-
-        .submitRegister {
-            display: block;
-            width: 270px;
-            height: 34px;
-            border-radius: 36px;
-            margin-left: 150px;
-            color: #0c8579;
-            text-align: center;
-            line-height: 34px;
-            background-color: #21b3a4;
-        }
-
-        /*
-        改写bootu样式
-        */
-        .control-label {
-            text-align: left !important;
-            width: 148px;
-            padding: 0px;
-            display: inline-block;
-        }
-
-        .form-group {
-            padding: 0px !important;
-            margin: 0px !important;
-            position: relative;
-        }
-
-        .register_box {
-            margin-bottom: 20px;
-        }
-
-        /*红色星星*/
-        .requiredStar {
-            color: #ea2838;
-        }
-
-        .register_box {
-            display: inline-block;
-        }
-
-        .register_right {
-            position: absolute;
-            right: 0px;
-            top: 0px;
-            width: 200px;
-            text-align: center;
-            height: auto;
-        }
-
-        .register_right p {
-            width: 68px;
-            height: 68px;
-            margin: 0px auto;
-            margin-bottom: 22px;
-            background: url("/assets/sskl/images/login.png") 9px -27px no-repeat;
-
-            border-radius: 50%;
-            background-color: #1bbead;
-
-        }
-
-        .register_right .uploadImg {
-            width: 92px;
-            text-align: center;
-            height: 30px;
-            color: #4795bd;
-            border: 1px solid #e0e3e3;
-            background-color: #fff;
-            border-radius: 36px;
-            font-size: 10px !important;
-        }
-
-        .registerallMes label {
-            color: #767c7b;
-            font-weight: normal;
-        }
-
-        .registerMesDetail p.register_errMes {
-            display: none;
-            color: #e92c23;
-            font-weight: normal;
-            position: absolute;
-            bottom: 0px;
-            left: 0px;
-            z-index: 99;
-        }
-
-        .registerMesDetail {
-            overflow-y: scroll;
+            color: #010101;
         }
 
         .registerMesDetail::-webkit-scrollbar {
@@ -183,13 +50,141 @@
             -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
             background-color: #f9f2f4;
         }
-        /*.register_box>select{*/
-         /**/
 
-        /*}*/
+        .registerallMes .registerHead h3 {
+            height: 74px;
+            line-height: 74px;
+            border-bottom: 1px dashed #dde0e0;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .registerallMes .registerHead p {
+            height: 74px;
+            line-height: 74px;
+            font-weight: bold;
+        }
+
+        .registerallMes .register_left {
+            width: 426px;
+            padding: 0px !important;
+
+        }
+
+        .registerallMes input {
+            border-radius: 36px;
+        }
+
+        .registerallMes input[type="text"], select {
+            width: 270px;
+            height: 34px;
+
+        }
+
+        .registerallMes input[type="radio"] {
+            margin-right: 10px;
+            position: relative;
+            top: -2px;
+            left: 0px;
+            vertical-align: text-bottom;
+        }
+
+        .registerallMes input[type="radio"]:last-of-type {
+            margin-left: 40px;
+        }
+
+        .sexRadio input {
+            margin-right: 50px;
+        }
+
+        .registerallMes input[type="file"] {
+            width: 180px;
+            display: inline-block;
+            border: 0px;
+        }
+
+        .register_errMes {
+            margin-left: 154px;
+            height: 22px;
+            line-height: 22px;
+            font-size: 12px !important;
+            color: #ec5853;
+            opacity: 0;
+        }
+
+        .submitRegister {
+            display: block;
+            width: 270px;
+            height: 34px;
+            border-radius: 36px;
+            margin-left: 150px;
+            color: #0c8579;
+            text-align: center;
+            line-height: 34px;
+            background-color: #21b3a4;
+        }
+
+        .registerMesDetail {
+            position: relative;
+        }
+
+        .registerMesDetail label {
+            text-align: left !important;
+            width: 140px;
+            padding: 0px;
+            color: #767c7b;
+            font-weight: normal;
+
+        }
+
+        .registerMesDetail .register_left .resisterBox > li {
+            vertical-align: text-bottom;
+        }
+
+        /*红色星星*/
+        .requiredStar {
+            color: #ea2838;
+            margin-left: 8px;
+        }
+
+        .register_right {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            width: 200px;
+            text-align: center;
+            height: auto;
+        }
+
+        .register_right p {
+            width: 68px;
+            height: 68px;
+            margin: 0px auto;
+            margin-bottom: 22px;
+            background: url("/assets/sskl/images/login.png") 9px -27px no-repeat;
+            border-radius: 50%;
+            background-color: #1bbead;
+
+        }
+
+        .register_right .uploadImg {
+            width: 92px;
+            text-align: center;
+            height: 30px;
+            color: #4795bd;
+            border: 1px solid #e0e3e3;
+            background-color: #fff;
+            border-radius: 36px;
+            font-size: 10px !important;
+        }
+
+        .registerMesDetail {
+            overflow-y: scroll;
+        }
+
     </style>
 </head>
-<body style="overflow: scroll">
+<body style=" overflow: scroll">
 <div class="container registerallMes">
     <header class="registerHead">
         <h3>进一步完善信息</h3>
@@ -197,149 +192,133 @@
     </header>
     <div class="registerMesDetail" id="registerMesArea">
         <div class="register_left">
-            <form class="form-horizontal form_register">
-                <div class="form-group">
-                    <label for="inputEmail3" class=" control-label">类型 <i class="requiredStar">*</i> </label>
-                    <div class="register_box">
-                         <select name="peopleType" id="peopleType">
-                            <option value="1">个人</option>
-                            <option value="2">企业</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">姓名<i class="requiredStar">*</i></label>
-                    <div class="register_box">
-                        <input type="text" class="form-control" id="userName" placeholder="">
-                    </div>
-                    <!--<p class="register_errMes">此栏为必填项</p>-->
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">性别<i class="requiredStar">*</i></label>
-                    <div class="register_box">
-                        <input type="text" class="form-control" id="userName" placeholder=" ">
-                    </div>
+            <ul class="resisterBox">
+                <li>
+                    <label>用户类型<i class="requiredStar">*</i></label>
+                    <select name="" id="">
+                        <option value="1">个人</option>
+                        <option value="1">企业</option>
+                    </select>
                     <p class="register_errMes">此栏为必填项</p>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">出生日期</label>
-                    <div class="register_box">
-                        <input type="text" class="form-control" id="userName" placeholder=" ">
-                    </div>
+                </li>
+                <li>
+                    <label for="">姓名<i class="requiredStar">*</i></label>
+                    <input type="text">
                     <p class="register_errMes">此栏为必填项</p>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">职业<i class="requiredStar">*</i></label>
-                    <div class="register_box">
-                        <input type="text" class="form-control" id="userName" placeholder=" ">
-                    </div>
+                </li>
+                <li class="sexRadio">
+                    <label for="">性别<i class="requiredStar">*</i></label>
+                    <input type="radio" value="1" name="sex" checked>男
+                    <input type="radio" value="2" name="sex">女
                     <p class="register_errMes">此栏为必填项</p>
-                </div>
+                </li>
+                <li>
+                    <label for=""> 出生日期</label>
+                    <input type="text" placeholder="年月日">
+                    <p class="register_errMes">此栏为必填项</p>
+                </li>
+                <li>
+                    <label for="">职业<i class="requiredStar">*</i></label>
+                    <input type="text" placeholder="维修工等等">
+                    <p class="register_errMes">此栏为必填项</p>
+                </li>
+                <li>
+                    <label for="">常住地址</label>
+                    <textarea rows="3" cols="30">北京市石景山区老山西里8号楼8单元808.......</textarea>
+                </li>
+                <li>
+                    <label for="">电话（手机）<i class="requiredStar">*</i></label>
+                    <input type="text">
+                    <p class="register_errMes">此栏为必填项</p>
+                </li>
+                <li>
+                    <label for=""> 身份证号码<i class="requiredStar">*</i></label>
+                    <input type="text">
+                    <p class="register_errMes">此栏为必填项</p>
+                </li>
+                <li>
+                    <label for=""> 职业</label>
+                    <input type="text" placeholder="维修工等等">
+                    <p class="register_errMes">此栏为必填项</p>
+                </li>
+                <li>
+                    <label for=""> 证件扫描件</label>
+                    <input type="file">
+                    <p class="register_errMes">此栏为必填项</p>
+                </li>
+                <li>
+                    <label>角色<i class="requiredStar">*</i></label>
+                    <select name="" id="">
+                        <option value="1">游客</option>
+                        <option value="1">运维工</option>
+                        <option value="1">管理员</option>
+                        <option value="1">施工管理</option>
+                        <option value="1">技术工</option>
+                    </select>
+                    <p class="register_errMes">此栏为必填项</p>
+                </li>
+                <li>
+                    <label>直辖市/省</label>
+                    <select name="" id="">
+                        <option value="1">直辖市/省</option>
+                        <option value="1">天津市</option>
+                        <option value="1">北京市</option>
+                        <option value="1">山东省</option>
+                        <option value="1">陕西省</option>
+                        <option value="1">江西省</option>
+                    </select>
+                    <p class="register_errMes">此栏为必填项</p>
+                </li>
+                <li>
+                    <label>市</label>
+                    <select name="" id="">
+                        <option value="1">市</option>
+                        <option value="1">北京市</option>
+                        <option value="1">天津市</option>
+                        <option value="1">菏泽市</option>
+                        <option value="1">施工管理</option>
+                        <option value="1">技术工</option>
+                    </select>
+                    <p class="register_errMes">此栏为必填项</p>
+                </li>
+                <li>
+                    <label>区</label>
+                    <select name="" id="">
+                        <option value="1">区</option>
+                        <option value="1">牡丹区</option>
+                        <option value="1">第二区</option>
+                        <option value="1">某丹二区</option>
+                        <option value="1">三区</option>
+                        <option value="1">特工区</option>
+                    </select>
+                    <p class="register_errMes">此栏为必填项</p>
+                </li>
+                <li>
+                    <label>前工作单位</label>
+                    <input type="text">
+                    <p class="register_errMes">此栏为必填项</p>
+                </li>
+                <li>
+                    <label>现工作单位</label>
+                    <input type="text">
+                    <p class="register_errMes">此栏为必填项</p>
+                </li>
+                <li>
+                    <label>前工作单位联系 <br>方式<i class="requiredStar">*</i></label>
+                    <input type="text">
+                    <p class="register_errMes">此栏为必填项</p>
+                </li>
+                <li>
+                    <label>证明文件(企业证 <i class="requiredStar">*</i> <br>书/资质文件)</label>
+                    <input type="text">
+                    <p class="register_errMes">此栏为必填项</p>
+                </li>
+            </ul>
 
-                <div class="form-group">
-                    <label for="inputPassword3" class="control-label">常住地址</label>
-                    <div class="register_box">
-                       <textarea rows="3" cols="30">
-                            北京市石景山区老山西里8号楼8单元808.......
-                       </textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">电话(手机)<i class="requiredStar">*</i></label>
-                    <div class="register_box">
-                        <input type="text" class="form-control" id="userName" placeholder=" ">
-                    </div>
-                    <p class="register_errMes">此栏为必填项</p>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">身份证号码<i class="requiredStar">*</i></label>
-                    <div class="register_box">
-                        <input type="text" class="form-control" id="userName" placeholder=" ">
-                    </div>
-                    <p class="register_errMes">此栏为必填项</p>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">身份证扫描件<i class="requiredStar">*</i></label>
-                    <div class="register_box">
-                        <input id="fileId1" type="file" accept="image/png,image/gif" name="file"/>
-                    </div>
-                    <p class="register_errMes">此栏为必填项</p>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">角色<i class="requiredStar">*</i></label>
-                    <div class="register_box">
-                        <select name="" id="">
-                            <option value="">1</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                            <option value="">4</option>
-                        </select>
-                    </div>
-                    <p class="register_errMes">此栏为必填项</p>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">直辖市/省</label>
-                    <div class="register_box">
-                        <input type="text" class="form-control" id="userName" placeholder="北京市 ">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">市</label>
-                    <div class="register_box">
-                        <input type="text" class="form-control" id="userName" placeholder="北京市 ">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">区域</label>
-                    <div class="register_box">
-                        <input type="text" class="form-control" id="userName" placeholder="海淀区 ">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">户籍<i class="requiredStar">*</i></label>
-                    <div class="register_box">
-                        <input type="text" class="form-control" id="userName" placeholder="户籍 ">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">前工作单位</label>
-                    <div class="register_box">
-                        <input type="text" class="form-control" id="userName" placeholder=" ">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">现工作单位</label>
-                    <div class="register_box">
-                        <input type="text" class="form-control" id="userName" placeholder=" ">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class=" control-label">前工作单位联系 <i class="requiredStar">*</i><br> 方式</label>
-                    <div class="register_box">
-                        <input type="text" class="form-control" id="userName" placeholder=" ">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="" class=" control-label">证明文件(企业证 <i class="requiredStar">*</i>
-                        <br>
-                        明资质证书）
-                    </label>
-                    <div class="register_box">
-                        <input type="file" accept="text/html" multiple="multiple" name="file"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox">记住密码
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <a href="" class="submitResigter">提交文件</a>
-            </form>
+
         </div>
+
+
         <div class="register_right pull-right">
             <!--<p src="/assets/sskl/images/login.png" alt="">-->
             <p class="userImg"></p>
@@ -347,7 +326,6 @@
         </div>
         <a href="#" id="registerSubmit" class="submitRegister">提交</a>
     </div>
-
 </div>
 
 
@@ -357,10 +335,10 @@
         "height": $(window).height() - parseInt($("header").css('height')) - 50
     });
 
-//    ("屏幕的高度" + window.screen.height);// console.log($(window).height()); //浏览器当前窗口可视区域高度
-//console.log($(document).height()); //浏览器当前窗口文档的高度
-//console.log($(document.body).height());//浏览器当前窗口文档body的高度
-//console.log($(document.body).outerHeight(true));//浏览器当前窗口文档body的总高度 包括border padding margin
+    //    ("屏幕的高度" + window.screen.height);// console.log($(window).height()); //浏览器当前窗口可视区域高度
+    //console.log($(document).height()); //浏览器当前窗口文档的高度
+    //console.log($(document.body).height());//浏览器当前窗口文档body的高度
+    //console.log($(document.body).outerHeight(true));//浏览器当前窗口文档body的总高度 包括border padding margin
 </script>
 </body>
 </html>
