@@ -66,6 +66,11 @@ input, select, button {
     outline: none;
     border-radius: 36px;
 }
+select{
+    appearance:none;
+    -moz-appearance: none;
+    -webkit-appearance:none;
+}
 
 .borderRadia_36 {
     border-radius: 36px;
