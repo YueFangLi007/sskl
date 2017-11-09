@@ -1,0 +1,43 @@
+/*重置样式*/
+.layui-header{
+    padding:0px 40px;
+    background-color:#32c3b4!important;
+}
+.layui-header, .layui-nav-tree, .layui-header>.layui-nav>.layui-nav-item{
+     height:50px;
+    line-height:50px;
+}
+.layui-layout-admin .layui-side{
+    top:50px;
+}
+.layui-layout-admin .layui-body {
+    bottom:0px;
+}
+
+.funcitonList{
+    background-color: #32c3b4;
+    padding-left:0px;
+    padding-right:0px;
+}
+.layui-side{
+    background-color:#32c3b4!important;
+}
+.funcitonList>li{
+    height:45px;
+    width:100%;
+    border-top:1px solid transparent;
+    border-bottom:1px solid transparent;
+}
+.funcitonList>li>a{
+    height:100%;
+    line-height:47px;
+    border:1px solid transparent;
+    border-left:0px;
+    padding:0px 0px 0px 60px!important;
+    border-right:0px;
+}
+.funcitonList>li:hover{
+    background-color: #1f9488;
+    border-top:1px solid #44dfcf;
+    border-bottom:1px solid #44dfcf;
+}

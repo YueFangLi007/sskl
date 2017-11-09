@@ -23,7 +23,7 @@ html, body {
 html {
     font-size: 14px;
     font-weight: normal;
-    font-family: myFirstfont, "方正黑体简", "Microsoft Yahei", "微软雅黑", Tahoma, Arial, Helvetica, STHeiti;
+    font-family: myFirstfont, Helvetica,PingFang SC,\5FAE\8F6F\96C5\9ED1,Tahoma,Arial,sans-serif;
 }
 
 .container-fluid {
