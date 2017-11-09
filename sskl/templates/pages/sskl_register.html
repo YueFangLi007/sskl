@@ -53,6 +53,25 @@
             background-color: #f9f2f4;
         }
 
+        *::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background-color: transparent;
+        }
+
+        ::-webkit-scrollbar-track {
+            border-radius: 36px;
+            height: 8px;
+            width: 8px;
+            background-color: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 36px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+            background-color: #f9f2f4;
+        }
+
         .registerallMes .registerHead h3 {
             height: 74px;
             line-height: 74px;
@@ -174,37 +193,60 @@
             height: auto;
         }
 
-        .register_right p {
+        .register_right .userImg {
             width: 68px;
             height: 68px;
             margin: 0px auto;
             margin-bottom: 22px;
-            background: url("/assets/sskl/images/login.png") 9px -27px no-repeat;
-            border-radius: 50%;
-            background-color: #1bbead;
+
 
         }
+          .register_right .userImg>img{
+              vertical-align: middle;
+          }
 
-        .register_right .uploadImg {
-            width: 92px;
-            text-align: center;
-            height: 30px;
-            color: #4795bd;
-            border: 1px solid #e0e3e3;
-            background-color: #fff;
-            border-radius: 36px;
-            font-size: 10px !important;
-        }
+
 
         .registerMesDetail {
             overflow-y: scroll;
             position: relative;
         }
-        .datapikerSelect select{
+
+
+
+        .datapikerSelect select {
             width: 268px;
             height: 34px;
             border-radius: 36px;
         }
+
+
+
+        /*文件上传样式修改*/
+        .file {
+            position: relative;
+             color: #4795bd;
+            display: inline-block;
+            background-color: #fff;
+            border: 1px solid #e0e3e3;
+            border-radius: 36px;
+            width: 92px;
+            height: 30px;
+            overflow: hidden;
+            color: #0980b2;
+            text-decoration: none;
+            text-indent: 0;
+             font-size: 10px !important;
+            line-height: 30px;
+        }
+        .file input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+        }
+
     </style>
 </head>
 <body style=" overflow: scroll">
@@ -217,7 +259,7 @@
         <div class="registerLeft">
             <form action="" class="registerForm">
                 <div class="form-group">
-                    <label for="type">类型</label>
+                    <label for="type">类型 <i class="requiredStar">*</i> </label>
                     <div class="my-input-inline">
                         <select name="" id="type">
                             <option value="">个人</option>
@@ -226,13 +268,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="type">姓名</label>
+                    <label for="type">姓名<i class="requiredStar">*</i></label>
                     <div class="my-input-inline">
                         <input type="text">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="type">性别</label>
+                    <label for="type">性别<i class="requiredStar">*</i></label>
                     <div class="my-input-inline">
                         <input type="radio">男
                         <input type="radio">女
@@ -247,7 +289,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="type">职业</label>
+                    <label for="type">职业<i class="requiredStar">*</i></label>
                     <div class="my-input-inline">
                         <input type="text">
                     </div>
@@ -259,13 +301,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="type">电话</label>
+                    <label for="type">电话<i class="requiredStar">*</i></label>
                     <div class="my-input-inline">
                         <input type="text">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="type">身份证号码</label>
+                    <label for="type">身份证号码<i class="requiredStar">*</i></label>
                     <div class="my-input-inline">
                         <input type="text">
                     </div>
@@ -277,7 +319,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="type">角色</label>
+                    <label for="type">角色<i class="requiredStar">*</i></label>
                     <div class="my-input-inline">
                         <select name="" id="">
                             <option value="1">游客</option>
@@ -290,19 +332,19 @@
                 <br>
                 <div id="distpicker1" class="datapikerSelect">
                     <div class="form-group">
-                        <label for="province10">直辖市</label>
+                        <label for="province1">直辖市</label>
                         <div class="my-input-inline">
                             <select class="form-control" id="province1"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="city10">市</label>
+                        <label for="city1">市</label>
                         <div class="my-input-inline">
                             <select class="form-control" id="city1"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="district10">区域</label>
+                        <label for="district1">区域</label>
                         <div class="my-input-inline">
                             <select class="form-control" id="district1"></select>
                         </div>
@@ -327,13 +369,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="type">现工作单位联系 <br>方式</label>
+                    <label for="type">现工作单位联系 <i class="requiredStar">*</i><br>方式</label>
                     <div class="my-input-inline">
                         <input type="text">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="type">证明文件(企业证<br>明文件/资质文件)</label>
+                    <label for="type">证明文件(企业证 <i class="requiredStar">*</i><br>明文件/资质文件)</label>
                     <div class="my-input-inline">
                         <input type="file">
                     </div>
@@ -350,8 +392,15 @@
 
         <div class="register_right pull-right">
             <!--<p src="/assets/sskl/images/login.png" alt="">-->
-            <p class="userImg"></p>
-            <button class="btn uploadImg" type="file">点击上传头像</button>
+            <!--<p class="userImg"></p>-->
+            <div id="divPreview" class="userImg">
+              <img id="imgHeadPhoto" src="" style="width: 68px; height: 68px; border-radius: 50%;" alt="" />
+            </div>
+            <!--<input type="file" class="btn uploadImg" type="file" onchange="PreviewImage(this,'imgHeadPhoto','divPreview');" size="20">点击上传头像</input>-->
+            <!--<input type="file" onchange="PreviewImage(this,'imgHeadPhoto','divPreview');" size="20" />-->
+           <a href="javascript:;" class="file">点击上传头像
+               <input type="file" onchange="PreviewImage(this,'imgHeadPhoto','divPreview');" size="20" />
+           </a>
         </div>
 
     </div>
@@ -370,6 +419,67 @@
     //console.log($(document).height()); //浏览器当前窗口文档的高度
     //console.log($(document.body).height());//浏览器当前窗口文档body的高度
     //console.log($(document.body).outerHeight(true));//浏览器当前窗口文档body的总高度 包括border padding margin
+
+
+
+//    图片上传功能
+     //js本地图片预览，兼容ie[6-9]、火狐、Chrome17+、Opera11+、Maxthon3
+        function PreviewImage(fileObj, imgPreviewId, divPreviewId) {
+            var allowExtention = ".jpg,.bmp,.gif,.png"; //允许上传文件的后缀名document.getElementById("hfAllowPicSuffix").value;
+            var extention = fileObj.value.substring(fileObj.value.lastIndexOf(".") + 1).toLowerCase();
+            var browserVersion = window.navigator.userAgent.toUpperCase();
+            if (allowExtention.indexOf(extention) > -1) {
+                if (fileObj.files) {//HTML5实现预览，兼容chrome、火狐7+等
+                    if (window.FileReader) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            document.getElementById(imgPreviewId).setAttribute("src", e.target.result);
+                        }
+                        reader.readAsDataURL(fileObj.files[0]);
+                    } else if (browserVersion.indexOf("SAFARI") > -1) {
+                        alert("不支持Safari6.0以下浏览器的图片预览!");
+                    }
+                } else if (browserVersion.indexOf("MSIE") > -1) {
+                    if (browserVersion.indexOf("MSIE 6") > -1) {//ie6
+                        document.getElementById(imgPreviewId).setAttribute("src", fileObj.value);
+                    } else {//ie[7-9]
+                        fileObj.select();
+                        if (browserVersion.indexOf("MSIE 9") > -1)
+                            fileObj.blur(); //不加上document.selection.createRange().text在ie9会拒绝访问
+                        var newPreview = document.getElementById(divPreviewId + "New");
+                        if (newPreview == null) {
+                            newPreview = document.createElement("div");
+                            newPreview.setAttribute("id", divPreviewId + "New");
+                            newPreview.style.width = document.getElementById(imgPreviewId).width + "px";
+                            newPreview.style.height = document.getElementById(imgPreviewId).height + "px";
+                            newPreview.style.border = "solid 1px #d2e2e2";
+                        }
+                        newPreview.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='" + document.selection.createRange().text + "')";
+                        var tempDivPreview = document.getElementById(divPreviewId);
+                        tempDivPreview.parentNode.insertBefore(newPreview, tempDivPreview);
+                        tempDivPreview.style.display = "none";
+                    }
+                } else if (browserVersion.indexOf("FIREFOX") > -1) {//firefox
+                    var firefoxVersion = parseFloat(browserVersion.toLowerCase().match(/firefox\/([\d.]+)/)[1]);
+                    if (firefoxVersion < 7) {//firefox7以下版本
+                        document.getElementById(imgPreviewId).setAttribute("src", fileObj.files[0].getAsDataURL());
+                    } else {//firefox7.0+
+                        document.getElementById(imgPreviewId).setAttribute("src", window.URL.createObjectURL(fileObj.files[0]));
+                    }
+                } else {
+                    document.getElementById(imgPreviewId).setAttribute("src", fileObj.value);
+                }
+            } else {
+                alert("仅支持" + allowExtention + "为后缀名的文件!");
+                fileObj.value = ""; //清空选中文件
+                if (browserVersion.indexOf("MSIE") > -1) {
+                    fileObj.select();
+                    document.selection.clear();
+                }
+                fileObj.outerHTML = fileObj.outerHTML;
+            }
+            return fileObj.value;    //返回路径
+        }
 </script>
 </body>
 </html>
