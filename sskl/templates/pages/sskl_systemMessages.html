@@ -1,18 +1,30 @@
 {% extends "templates/sskl_base.html" %}
 
 {% block content %}
-<script src="/assets/sskl/js/bootstrap.min.js"></script>
-<script src="/assets/sskl/js/jquery.dataTables.min.js"></script>
-<script src="/assets/sskl/js/jquery.dataTables.bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/assets/sskl/css/ui.jqgrid.css" />
+
+    <link rel="stylesheet" href="/assets/sskl/css/jquery-ui-1.8.16.custom.css" />
+
+    <script type="text/javascript" src="/assets/sskl/js/jquery.jqGrid.src.js"></script>
+
+    <script type="text/javascript" src="/assets/sskl/js/grid.locale-cn.js"></script>
+
 <style>
+    .ui-jqgrid-labels{
+        height:48px;
+        background-color: #fafafa!important;
+        opacity: .3;
+    }
+    .ui-jqgrid-htable{
+        width:100%;
+        height:600px;
+    }
     .tabsSysMes {
         width: 100%;
         height: auto;
         position: relative;
     }
-    body{
-         font-family:"方正黑体简","Microsoft Yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti;
-    }
+
     .tabsSysMes .sysMestabs{
         display: block;
         padding:0px 40px;
@@ -35,73 +47,136 @@
         height: 100%;
         color:#777d7b;
     }
-    .sysTabMesToggle{
-        border-bottom: 3px solid #32c3b4;
-        color:#000;
+    /*.ui-jqgrid  tr{*/
+        /*height:48px;*/
+    /*}*/
+.ui-jqgrid .ui-jqgrid-view{
+    font-size:14px;
+    /*line-height:14px;*/
+}
+.ui-jqgrid tr.jqgrow td {
+    height:48px;
+    vertical-align: middle;
+}
+.ui-jqgrid .ui-jqgrid-pager{
+    font-size：15px;
+}
+/*.ui-pg-table tr td{*/
+    /*height:50px;*/
+/*}*/
+    /*.sysTabMesToggle{*/
+        /*border-bottom: 3px solid #32c3b4;*/
+        /*color:#000;*/
+    /*}*/
+
+    /*.tabsSysMes .sysMesList {*/
+        /*margin-top:20px;*/
+        /*height: 100%;*/
+        /*position: absolute;*/
+        /*top: 0px;*/
+        /*right: 0px;*/
+        /*width:100%;*/
+        /*padding:0px 40px;*/
+        /*background-color: #ff8000;*/
+        /*!*background-color: #fff;*!*/
+    /*}*/
+ /*.tabsSysMes .sysMesList{*/
+     /*width:100%!important;*/
+     /*position:relative;*/
+    /*background-color: #1f9488;*/
+/*}*/
+    /*.tabsMes {*/
+        /*z-index:5;*/
+    /*}*/
+    /*.sysMesList .sysTemTable{*/
+        /*border-radius: 6px!important;*/
+        /*border:0px!important;*/
+    /*}*/
+    /*.sysMesList .sysTemTable tr{*/
+        /*cursor: pointer;*/
+    /*}*/
+
+    /*.sysMesList .sysTemTable thead tr {*/
+        /*background-color: #ff8000!important;*/
+    /*}*/
+    /*.sysMesList .sysTemTable  tr td{*/
+        /*border:0px !important;*/
+    /*}*/
+     /*.sysMesList .sysTemTable thead tr td:nth-child(1){*/
+       /*text-align: center;*/
+    /*}*/
+     /*.sysMesList .sysTemTable tbody tr:nth-child(even){*/
+        /*background-color: #f8f8f8;*/
+    /*}*/
+    /*.sysMesList .sysTemTable tbody tr td:nth-child(2){*/
+       /*position:relative;*/
+    /*}*/
+     /*.sysMesList .sysTemTable tbody tr td:nth-child(1), .sysMesList .sysTemTable tfoot tr td:nth-child(1){*/
+       /*width:40px;*/
+       /*text-align: center;*/
+    /*}*/
+    /*.sysMesList .sysTemTable tr td:nth-child(2){*/
+     /*padding-left:30px!important;*/
+    /*}*/
+    /*.sysMesList .sysTemTable tbody tr td:nth-child(2) i.gao_icon{*/
+        /*top:43%;*/
+        /*left:0px;*/
+        /*margin-right:9px;*/
+    /*}*/
+    /*.sysMesList .sysTemTable tr td{*/
+        /*height:48px;*/
+        /*line-height:48px;*/
+        /*font-size:12px!important;*/
+        /*color:#868687;*/
+         /*padding:0px 8px!important;*/
+         /*box-sizing: border-box;*/
+    /*}*/
+    /*.sysMesList .mesCommorBtn{*/
+        /*width:76px;*/
+        /*height:30px;*/
+        /*font-size:12px;*/
+    /*}*/
+
+
+
+
+
+    /**/
+    /*.tabsSysMes .sysMesList{*/
+        /*width:1200px;*/
+        /*background-color: #f43434;*/
+    /*}*/
+     .sysMesList{
+         padding-left:40px;
+         padding-right:40px;
+     }
+   .sysMesList .sysTemTable{
+      /*margin-right:40px;*/
+       overflow: scroll;
+    }
+input,select{
+    border-radius: 3px;
+    text-align: center;
+}
+    .ui-pg-table{
+       font-size:14px;
+
+    }
+    /*.ui-pg-table tr td{*/
+        /*height:33px;*/
+        /*line-height: 33px;*/
+    /*}*/
+
+    .ui-jqgrid-htable{
+        background: #fafafa;
+        opacity:1;
+        border:0px;
     }
 
-    .tabsSysMes .sysMesList {
-        height: auto;
-        position: absolute;
-        top: 60px;
-        right: 0px;
-        width:100%;
-        padding:0px 40px;
-        min-height:500px;
-        background-color: #fff;
+.ui-jqgrid .ui-jqgrid-htable th div{
+        color:#9a9a9b;
     }
 
-    .tabsMes {
-        z-index:5;
-    }
-    .sysMesList .sysTemTable{
-        margin-top: 20px;
-        border-radius: 6px!important;
-        border:1px solid #dde0e0;
-    }
-    .sysMesList .sysTemTable tr{
-        cursor: pointer;
-    }
-    .sysMesList .sysTemTable thead tr {
-        background-color: #f8f8f8;
-    }
-    .sysMesList .sysTemTable  tr td{
-        border:0px !important;
-    }
-     .sysMesList .sysTemTable thead tr td:nth-child(1){
-       text-align: center;
-    }
-     .sysMesList .sysTemTable tbody tr:nth-child(even){
-        background-color: #f8f8f8;
-    }
-    .sysMesList .sysTemTable tbody tr td:nth-child(2){
-       position:relative;
-    }
-     .sysMesList .sysTemTable tbody tr td:nth-child(1), .sysMesList .sysTemTable tfoot tr td:nth-child(1){
-       width:40px;
-       text-align: center;
-    }
-    .sysMesList .sysTemTable tr td:nth-child(2){
-     padding-left:30px!important;
-    }
-    .sysMesList .sysTemTable tbody tr td:nth-child(2) i.gao_icon{
-        top:43%;
-        left:0px;
-        margin-right:9px;
-    }
-    .sysMesList .sysTemTable tr td{
-        height:48px;
-        line-height:48px;
-        font-size:12px!important;
-        color:#868687;
-         padding:0px 8px!important;
-         box-sizing: border-box;
-    }
-    .sysMesList .mesCommorBtn{
-        width:76px;
-        height:30px;
-        font-size:12px;
-    }
 </style>
 
 <div class="main_title main_titWirte">
@@ -114,103 +189,46 @@
         <li drap="tab3"><a href="javascript:;" >已读消息</a></li>
     </ul>
     <div class="sysMesList tabsMes" id="tab1">
-        <table class="table sysTemTable" id="allMesTable" style="width:100%;background-color: #fff">
-            <thead>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>标题内容</td>
-                <td>标题时间</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>待修复系统通知</td>
-                <td>2017-10-30 14:56:09</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>权限申请通知</td>
-                <td>2017-10-30 14:56:09</td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td colspan="2">
-                    <button class="btn mesCommorBtn">删除</button>
-                    <button class="btn mesCommorBtn">标记已读</button>
-                    <button class="btn mesCommorBtn">全部已读</button>
-                </td>
-            </tr>
-            </tfoot>
-        </table>
+        <table id="allMesTable" class="table sysTemTable"></table>
+        <div id="pager9"></div>
     </div>
-    <div class="sysMesList" id="tab2">
-        <table class="table sysTemTable" id="unReadMesTable" style="width:100%;background-color: #fff">
-            <thead>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>标题内容</td>
-                <td>标题时间</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td><i class="gao_icon"></i>未读1</td>
-                <td>2017-11-03 14:56:09</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>未读2</td>
-                <td>2017-11-07 14:56:09</td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td colspan="2">
-                    <button class="btn mesCommorBtn">删除</button>
-                    <button class="btn mesCommorBtn">标记已读</button>
-                    <button class="btn mesCommorBtn">全部已读</button>
-                </td>
-            </tr>
-            </tfoot>
-        </table>
+    <div class="sysMesList " id="tab2">
+
+        <!--<table class="table sysTemTable" id="unReadMesTable" style="width:100%;background-color: #fff">-->
+
     </div>
     <div class="sysMesList" id="tab3">
-        <table class="table sysTemTable" id="ReadedMesTable" style="width:100%;background-color: #fff">
-            <thead>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>标题内容</td>
-                <td>标题时间</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td><i class="gao_icon"></i>已读1</td>
-                <td>2017-10-30 14:56:09</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>已读2</td>
-                <td>2017-10-30 14:56:09</td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td colspan="2">
-                    <button class="btn mesCommorBtn">删除</button>
-                    <button class="btn mesCommorBtn">标记已读</button>
-                    <button class="btn mesCommorBtn">全部已读</button>
-                </td>
-            </tr>
-            </tfoot>
-        </table>
+        <!--<table class="table sysTemTable" id="ReadedMesTable" style="width:100%;background-color: #fff">-->
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<td><input type="checkbox"></td>-->
+                <!--<td>标题内容</td>-->
+                <!--<td>标题时间</td>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr>-->
+                <!--<td><input type="checkbox"></td>-->
+                <!--<td><i class="gao_icon"></i>已读1</td>-->
+                <!--<td>2017-10-30 14:56:09</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><input type="checkbox"></td>-->
+                <!--<td>已读2</td>-->
+                <!--<td>2017-10-30 14:56:09</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+            <!--<tfoot>-->
+            <!--<tr>-->
+                <!--<td><input type="checkbox"></td>-->
+                <!--<td colspan="2">-->
+                    <!--<button class="btn mesCommorBtn">删除</button>-->
+                    <!--<button class="btn mesCommorBtn">标记已读</button>-->
+                    <!--<button class="btn mesCommorBtn">全部已读</button>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--</tfoot>-->
+        <!--</table>-->
     </div>
 </div>
 
@@ -227,7 +245,49 @@ $("#sysMestabs li").click(function(){
     $("#"+tabs).addClass("tabsMes").siblings("div").removeClass("tabsMes");
 });
 
+  $(function(){
+      $.ajax({
+      url:"http://192.168.174.140/api/method/tieta.tieta.doctype.cell_station.cell_station.list_station_info",
+      success:function(data) {
+          var mes = data.message;
+            pageInit(mes);
+      }
+    });
+  });
+//
+    function pageInit(mes){
+        jQuery("#allMesTable").jqGrid(
+            {
+                data:mes,
+                datatype : "local",
+                colNames : [ '标题内容', '标题时间' ],
+                colModel : [
+                    {name : 'code',index : 'id'},
+                    {name : 'station_name',index : 'invdate'}
+                ],
+                rowNum : 25,
+                rowList : [ 10, 20, 30 ],
+                pager : '#pager9',
+                sortname : 'id',
+                recordpos : 'left',
+                viewrecords : true,
+                sortorder : "desc",
+                multiselect : true,
+                autowidth:true,//设置表的宽度为自动
+               height:"auto" //表的高度，可以是一个数字，如果是数字就不需要带引号了。
+//                width:1200 //表的宽度
+            });
+        jQuery("#allMesTable").jqGrid('navGrid', '#pager9', {
+            add : false,
+            del : false,
+            edit : false,
+            position : 'right'
+        });
+    }
+
 
 </script>
+
+
 {% endblock%}
 

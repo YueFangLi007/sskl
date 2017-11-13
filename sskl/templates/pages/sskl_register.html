@@ -5,10 +5,14 @@
     <meta charset="UTF-8">
     <title>{{title}}</title>
     <link rel="stylesheet" href="/assets/sskl/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/sskl/css/fileinput.css">
     <link rel="stylesheet" href="/assets/sskl/css/jquery-ui.css">
     <link rel="stylesheet" href="/assets/sskl/css/commor.css">
     <link rel="stylesheet" href="/assets/sskl/css/myStyle1.css">
     <script src="/assets/sskl/js/jquery-1.11.3.js"></script>
+    <script src="/assets/sskl/js/fileinput.js"></script>
+    <script src="/assets/sskl/js/fileinput_locale_zh.js"></script>
+    <script src="/assets/sskl/js/bootstrap.min.js"></script>
     <script src="/assets/sskl/js/jquery-ui.js"></script>
     <script src="/assets/sskl/js/commor.js"></script>
     <script src="/assets/sskl/js/YMDClass.mini.js"></script>
@@ -19,7 +23,9 @@
             font-family: myFirstfont, "微软雅黑";
             overflow: scroll;
         }
-
+        input{
+            border-radius: 36px;
+        }
         .registerallMes {
             height: auto;
             margin-top: 35px;
@@ -30,7 +36,24 @@
             border-radius: 5px;
 
         }
-
+        /*.input-group .form-control:first-child,*/
+        /*.input-group-addon:first-child,*/
+        /*.input-group-btn:first-child>.btn,*/
+        /*.input-group-btn:first-child>.btn-group>.btn,*/
+        /*.input-group-btn:first-child>.dropdown-toggle,*/
+        /*.input-group-btn:last-child>.btn-group:not(:last-child)>.btn,*/
+        /*.input-group-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle) {*/
+            /*border-top-left-radius: 36px;*/
+            /*border-bottom-left-radius: 36px;*/
+        /*}*/
+       /*.btn-file{*/
+            /*border-top-right-radius: 36px;*/
+            /*border-bottom-right-radius: 36px;*/
+       /*}*/
+        .input-group{
+              border-top-left-radius: 36px;
+             border-bottom-left-radius: 36px;
+        }
         .registerallMes .registerHead p {
             color: #010101;
         }
@@ -247,6 +270,48 @@
             top: 0;
             opacity: 0;
         }
+    .liveAddr{
+        border-radius: 6px;
+        padding:3px;
+    }
+    .file-drop-zone{
+        height:100%px;
+    }
+    .file-preview{
+       min-height:100px;
+    }
+   .file-drop-zone-title {
+    color: #aaa;
+    font-size: 10px;
+    padding: 63px;
+       height:100%;
+    }
+   .file-preview-frame{
+       text-align: center;
+   }
+   /*.file-preview-frame img{*/
+       /*width:30px;*/
+       /*height:30px;*/
+   /*}*/
+     .file-drop-zone {
+        height: 100%;
+        text-align: center;
+        vertical-align: middle;
+        margin: 1px;
+        padding: 0;
+    }
+     .file-preview-frame{
+         padding:0px!important;
+     }
+     .file-preview-frame{
+         width:200px;
+         height:200px;
+     }
+        .file-preview-image{
+            width: 100%px !important;
+            height:100%px !important;
+            border:1px solid green;
+        }
 
     </style>
 </head>
@@ -296,9 +361,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="type">常住地址</label>
+                    <label for="type" style="vertical-align: top">常住地址</label>
                     <div class="my-input-inline">
-                        <input type="text">
+                        <textarea class="liveAddr" name="" id="" cols="30" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -315,8 +380,15 @@
                 </div>
                 <div class="form-group">
                     <label for="type">证件扫描件</label>
-                    <div class="my-input-inline">
-                        <input type="file">
+                    <div class="my-input-inline" style="display: inline-block;width:265px;">
+                        <!--<input type="file">-->
+                        <input id="file-0" class="file" type="file" multiple data-min-file-count="1">
+                    </div>
+                </div>
+                  <div class="form-group">
+                    <label for="type">证件扫描件</label>
+                    <div class="my-input-inline" style="display: inline-block;width:265px;">
+                       <input id="file-5" class="file" type="file" multiple data-preview-file-type="any" data-upload-url="#" data-preview-file-icon="">
                     </div>
                 </div>
                 <div class="form-group">
@@ -378,7 +450,9 @@
                 <div class="form-group">
                     <label for="type">证明文件(企业证 <i class="requiredStar">*</i><br>明文件/资质文件)</label>
                     <div class="my-input-inline">
-                        <input type="file">
+                        <div class="my-input-inline" style="display: inline-block;width:265px;">
+                         <input id="file-6" class="file" type="file" multiple data-preview-file-type="any" data-upload-url="#" data-preview-file-icon="">
+                    </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -411,6 +485,22 @@
 <script src="/assets/sskl/js/distpicker.js"></script>
 <script src="/assets/sskl/js/main.js"></script>
 <script>
+    <!--图片上传-->
+     $("#file-0").fileinput({
+        'allowedFileExtensions' : ['jpg', 'png','gif'],
+    });
+     $(document).ready(function() {
+        $("#test-upload").fileinput({
+            'showPreview' : false,
+            'allowedFileExtensions' : ['jpg', 'png','gif'],
+            'elErrorContainer': '#errorBlock'
+        });
+        /*
+        $("#test-upload").on('fileloaded', function(event, file, previewId, index) {
+            alert('i = ' + index + ', id = ' + previewId + ', file = ' + file.name);
+        });
+        */
+    });
     <!--registerHead-->
     $("#registerMesArea").css({
         "height": $(window).height() - parseInt($("header").css('height')) - 50
