@@ -2,6 +2,8 @@
 
 {% block content %}
     <link rel="stylesheet" href="/assets/sskl/css/ui.jqgrid.css" />
+    <link rel="stylesheet" href="/assets/sskl/css/ui-lightness/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" href="${ctx}/skin/default/css/smoothness/jquery-ui-1.10.2.custom.css">
 
     <link rel="stylesheet" href="/assets/sskl/css/jquery-ui-1.8.16.custom.css" />
 
@@ -13,7 +15,6 @@
     .ui-jqgrid-labels{
         height:48px;
         background-color: #fafafa!important;
-        opacity: .3;
     }
     .ui-jqgrid-htable{
         width:100%;
@@ -59,7 +60,7 @@
     vertical-align: middle;
 }
 .ui-jqgrid .ui-jqgrid-pager{
-    font-size：15px;
+    font-size:15px;
 }
 /*.ui-pg-table tr td{*/
     /*height:50px;*/
@@ -176,7 +177,51 @@ input,select{
 .ui-jqgrid .ui-jqgrid-htable th div{
         color:#9a9a9b;
     }
+    .ui-jqgrid tr.ui-row-ltr td{
+       border:0px;
+    }
 
+    .ui-th-column, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column{
+    border:0px;
+    }
+    .jqgfirstrow{
+        background-color: green;
+    }
+    .ui-jqgrid tr.jqgrow {
+        border: 0px;
+    }
+    .ui-jqgrid tr.jqgrow:nth-child(odd){
+        background-color: #f8f8f8;
+    }
+    .ui-jqgrid-labels{
+
+        border:0px;
+        /*opacity: 1!important;*/
+    }
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border:0px;
+    background-color: #f8f8f8;
+}
+    .sysMesList{
+      margin-top:20px;
+    }
+    .ui-pg-table{
+        background-color: #1f9488;
+    }
+    .ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl{
+        border:1px solid #dde0e0!important;
+    }
+    /*选中行样式*/
+    .SelectBG{
+        background-color:#fdfdfd!important;
+    }
+    /*.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {*/
+        /*background: #fff;*/
+        /*color: green;*/
+    /*}*/
+    .sysTemTable tr:hover{
+        background-color: #fcfcfc;
+    }
 </style>
 
 <div class="main_title main_titWirte">
@@ -193,7 +238,8 @@ input,select{
         <div id="pager9"></div>
     </div>
     <div class="sysMesList " id="tab2">
-
+         <table id="unReadMesTable" class="table sysTemTable"></table>
+        <div id="pager9"></div>
         <!--<table class="table sysTemTable" id="unReadMesTable" style="width:100%;background-color: #fff">-->
 
     </div>
@@ -237,6 +283,16 @@ input,select{
     <!--{% include "templates/pages/sskl_systemMessages.js" %}-->
 <!--</script>-->
 <script>
+$(".sysTemTable").on("click","tr",function(){
+    console.log(22);
+    console.log("是否有"+$(this).hasClass("SelectBG"));
+    if( $(this).hasClass("SelectBG")){
+          $(this).removeClass("SelectBG");//点第一次选中
+    }else{
+         $(this).addClass("SelectBG");//点第一次选中
+    }
+
+});
 
 <!--tab切换-->
 $("#sysMestabs li").click(function(){
@@ -282,7 +338,14 @@ $("#sysMestabs li").click(function(){
             del : false,
             edit : false,
             position : 'right'
-        });
+        }).navButtonAdd('#pager',{
+   caption:"Excel",
+   buttonicon:"ui-icon-excel",
+   onClickButton: function(){
+      alert("导出excel");
+   },
+   position:"last"
+});;
     }
 
 

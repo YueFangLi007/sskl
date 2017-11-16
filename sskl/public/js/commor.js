@@ -3,6 +3,11 @@ var httpUrl="http://192.168.174.140";
 $("a").click(function(){
     $(this).css("text-decoreation","none");
 });
+//修改select样式
+$("select").click(function(){
+    $(this).css("backgroundColor","green")
+    alert(1);
+});
 function navList(aValue){
     $(".sec_nav>.nav_list>li>a").each(function(){
         if($(this).html()==aValue){

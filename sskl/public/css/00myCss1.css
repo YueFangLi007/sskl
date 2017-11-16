@@ -1,0 +1,532 @@
+.myHeader {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    min-width: 1200px;
+    background-color: #304057;
+    height: 50px;
+    line-height: 50px;
+    padding: 0px;
+    padding-right: 40px;
+}
+
+.myHeader .headLogo {
+    margin-right: 40px;
+    color: #1f9488;
+}
+
+.myHeader .headMegs li {
+    width: 93px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.myHeader .headMegs > ul > li:first-child {
+    width: 106px;
+}
+
+.myHeader .headMegs > ul > li a {
+    color: #fff;
+}
+
+.myHeader .headMegs > ul > li a:hover {
+    color: #eee;
+}
+
+.myHeader .headMegs > ul > li .mesSys {
+    position: absolute;
+    top: 14px;
+    margin-right: 14px;
+    left: 0px;
+    width: 21px;
+    height: 21px;
+    background: url("../images/spilit1.png") -27px -2px no-repeat;
+}
+
+.myHeader .headMegs > ul > li .sysNums {
+    position: absolute;
+    top: 7px;
+    right: 5px;
+    padding: 2px;
+    color: #fefefe;
+    line-height: 16px;
+    border-radius: 50%;
+    background-color: #e8526d;
+
+}
+
+.myHeader .headMegs > ul > li .alarmTip {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #e8526d;
+}
+
+.myHeader .headUser {
+
+}
+
+.myHeader .headUser > span {
+    color: #fff;
+}
+
+.myHeader .headUser > img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: #1c94c4;
+}
+
+.myNavLeft {
+    position: fixed;
+    top: 50px;
+    left: 0px;
+    bottom: 0px;
+    height: 100%;
+    width: 200px;
+    z-index: 999;
+    background-color: #304057;
+}
+
+.myNavLeft .mainList > li {
+    height: 48px;
+    width: 100%;
+    text-align: center;
+    line-height: 48px;
+    padding-left: 60px;
+    position: relative;
+
+}
+
+.myNavLeft .mainList > li:hover {
+    background-color: #1e2c3e;
+
+}
+
+.myNavLeft .mainList > li a {
+    width: 100%;
+    text-align: left;
+    display: block;
+    height: 100%;
+    cursor: pointer;
+}
+
+.myNavLeft .mainList > li > a {
+    color: #fff;
+}
+
+.navListHover {
+    background-color: #1e2c3e;
+
+}
+
+.nav_icon {
+    position: absolute;;
+    left: 20px;
+    top: 15px;
+    width: 21px;
+    height: 21px;
+    /*background: url("/assets/sskl/images/spilit1.png") -2px -28px no-repeat;*/
+    background: url("../images/spilit1.png") -2px -28px no-repeat;
+}
+
+.net_icon {
+    background-position: -3px -53px;
+}
+
+.order_icon {
+    background-position: -3px -2px;
+}
+
+.stat_icon {
+    background-position: -2px -81px;
+}
+
+.config_icon {
+    background-position: -2px -108px;
+}
+
+.user_icon {
+    background-position: -2px -135px;
+}
+
+.forms_icon {
+    background-position: -2px -163px;
+}
+
+.log_icon {
+    background-position: -2px -188px
+}
+
+.benefit_icon {
+    background-position: -3px -81px
+}
+
+.spare_icon {
+    width: 22px;
+    height: 20px;
+    background-position: -2px -214px
+}
+
+.sec_main {
+    width: 100%;
+    height: 100%;
+    padding-left: 200px;
+}
+
+.myBody {
+    min-width: 980px;
+    margin-top: 50px;
+    margin-left: 200px;
+    height: 100%;
+}
+
+/*网络监测功能css*/
+.mainTitle {
+    width: 100%;
+    padding: 0px 10px;
+    height: 55px;
+    line-height: 55px;
+    background-color: #fff;
+    border-bottom: 1px solid #dde0e0;
+}
+
+.mainTitle > span {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.searchBox .stateSearch {
+    position: absolute;
+    display: block;
+    width: 16px;
+    height: 15px;
+    background: url("../images/spilit1.png") -117px -5px no-repeat;
+    cursor: pointer;
+    top: 20px;
+    right: 10px;
+}
+
+.searchBox .input {
+    color: #848686;
+}
+
+.searchBox {
+    position: relative;
+}
+
+.searchBox input {
+    width: 182px;
+    border: 1px solid #c8dbd5;
+    height: 34px;
+    margin-top: 10px;
+    line-height: 34px;
+    border-radius: 36px;
+    background-color: #f7fbfa;
+}
+
+/*条件查询*/
+
+.conditionSeacrch {
+    height: 71px;
+    background-color: #fff;
+}
+
+.conditionSeacrch select, .conditionSeacrch input {
+    width: 136px;
+    height: 30px;
+    margin-top: 20px;
+    outline: none;
+    border-radius: 36px;
+    margin-right: 12px;
+    background-color: #f7fbfa !important;
+    border: 1px solid #ccded8;
+}
+
+.conditionSeacrch::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 36px;
+    height: 8px;
+    width: 8px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 36px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #f9f2f4;
+}
+
+.aa {
+    background-color: #1c94c4;
+}
+
+.conditionSeacrch .conditionBtn {
+    width: 74px;
+    height: 30px;
+    padding: 0px;
+    margin-top: 22px;
+    color: #fff;
+    border: 0px;
+    background-color: #437af1;
+    border-radius: 36px;
+}
+
+/*基站列表样式*/
+.stationList {
+    margin: 20px 40px 0px;
+    background-color: #fff;
+
+}
+
+.stationsTable {
+    margin-bottom: 0px;
+}
+
+.stationsTable tr {
+    height: 49px;
+    line-height: 49px;
+}
+
+.stationsTable tbody tr td, .stationsTable thead tr th {
+    border: 0px !important;
+}
+
+.stationsTable tbody tr:nth-child(1) {
+    border-top: 1px solid #e3e7e3;
+}
+
+.stationsTable tbody tr {
+    cursor: pointer;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+}
+
+.stationsTable tbody tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.stationsTable tbody tr:hover td {
+    background-color: #f4f4fc;
+    border-top: 1px solid #e0e0fc !important;
+    border-bottom: 1px solid #e0e0fc !important;
+}
+
+.state_err {
+    color: #e8526d;
+}
+
+/*导出按钮*/
+
+.exportBtn {
+    width: 90px;
+    height: 30px;
+    border-radius: 36px;
+    border: 1px solid #c8dbd5;
+    background-color: #fff;
+    position: relative;
+    bottom: -12px;
+    right: 0px;
+}
+
+.exportBtn i {
+    font-size: 15px;
+}
+
+/*基站详情页面css*/
+.CommorDateList {
+    height: 50px;
+    margin: 20px 40px;
+    border-bottom: 1px solid #d9e5ee;
+}
+
+.CommorDateList > h4 {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.CommorDateList > p {
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.group1 {
+    height: 350px;
+    margin-bottom: 25px;
+}
+
+.totalVoltage {
+    width: 73%;
+    height: 100%;
+    background-color: #f0ad4e;
+}
+
+.totalVoltage > p {
+    padding: 0px 23px 0px 40px !important;
+}
+
+.batteryTableList {
+    width: 25%;
+    height: 100%;
+    background-color: #fff;
+}
+
+/*图表公共表头样式*/
+.statComTit {
+    border: 1px solid #ececec;
+    border-radius: 3px;
+}
+
+.statComTit > p {
+    height: 45px;
+    padding: 0px 40px;
+    line-height: 45px;
+    background-color: #fafafa;
+}
+
+.batteryTableList > p {
+    padding-left: 23px;
+}
+
+/*公共放图表的盒子的高度*/
+.comChartBox {
+    height: 305px;
+}
+
+.moreBatterys {
+    overflow: hidden;
+    height: auto;
+    overflow-y: scroll;
+}
+
+.moreBatterys > table {
+    width: 100%;
+
+    background-color: #fff;
+    text-align: center;
+}
+
+.moreBatterys > table tr td {
+    padding: 0px 23px;
+    font-size: 12px;
+
+}
+
+.moreBatterys > table > thead tr td {
+    height: 30px;
+    font-weight: bold;
+    vertical-align: middle;
+    border-bottom: 1px solid #e3e7e3;
+
+}
+
+.moreBatterys > table tbody tr {
+    height: 48px;
+}
+
+.moreBatterys > table tbody tr td {
+    border-top: 1px dashed #e3e7e3;
+    border-bottom: 1px dotted #e3e7e3;
+}
+
+.moreBatterys > table tbody tr:hover td {
+    background-color: #f4f4fc;
+    border-top: 1px solid #e0e0fc;
+    border-bottom: 1px solid #e0e0fc;
+}
+
+/*单体电池*/
+.singleBattery, .soc {
+    width: 49%;
+    height: 350px;
+    background-color: #12c08f;
+}
+
+/*历史查询样式*/
+.historyBtn {
+    width: 73px;
+    text-align: center;
+    margin-top: 8.5px;
+    height: 28px;
+    font-size: 12px;
+    color: #1a2421;
+    line-height: 28px;
+    border: 1px solid #c8d3db;
+    border-radius: 36px;
+}
+
+.tatalHisBTn {
+    background-color: #437af1;
+    color: #fff;
+}
+
+.otherDetail .statComTit {
+    width: 49.5%;
+    display: inline-block;
+}
+
+.otherDetail > div {
+    margin-bottom: 1%;
+}
+
+.otherDetail > div:nth-child(odd) {
+    margin-right: 0.4999%;
+}
+
+/*基站信息*/
+.stationMesgs .baseMeg {
+    margin: 0px 40px;
+    height: 168px;
+    border-radius: 3px;
+    background-color: #fff;
+    padding: 11px 40px;
+    border: 1px solid #ececec;
+}
+
+.stationMesgs .baseMeg > p {
+    height: 35px;
+    line-height: 35px;
+
+}
+
+/*警报列表*/
+.stationAlarmList {
+
+}
+
+.stationAlarmList .oneAlarmList {
+    background-color: #fff;
+    margin: 0px 40px;
+}
+
+.stationAlarmList .oneAlarmList{
+    height: auto;
+    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 353px;
+    padding:5px 0px;
+}
+.stationAlarmList .baseAlarmTable{
+    height:auto;
+}
+
+.stationAlarmList .oneAlarmList .baseAlarmTable tr td{
+   height:50px;
+    vertical-align: middle;
+}
+.stationAlarmList .oneAlarmList .baseAlarmTable  tbody tr{
+    padding:0px 40px!important;
+
+}
+.myFooter {
+    margin-left: 200px;
+}

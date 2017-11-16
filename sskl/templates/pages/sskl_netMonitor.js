@@ -38,7 +38,7 @@ function provinceCityContyShow() {
         }
         $("#countyDiv").toggle();
     });
-      $(".statInput").click(function (event) {
+    $(".statInput").click(function (event) {
         var e = window.event || event;
         if (e.stopPropagation) {
             e.stopPropagation();
@@ -55,7 +55,7 @@ function provinceCityContyShow() {
             e.cancelBubble = true;
         }
     });
-     $("#statDiv").click(function (event) {
+    $("#statDiv").click(function (event) {
         var e = window.event || event;
         if (e.stopPropagation) {
             e.stopPropagation();
@@ -73,10 +73,10 @@ function provinceCityContyShow() {
 var httpUrl = "http://192.168.174.140"
 //点击基站去查询基站列表
 $(".stateSearch").click(function () {
-    if($(this).siblings("input").val()==""){
+    if ($(this).siblings("input").val() == "") {
         return;
-    }else{
-          conditionalQuery();
+    } else {
+        conditionalQuery();
     }
 });
 
@@ -88,6 +88,7 @@ function tableList() {
             var data = r.message;
             $('#stationTable').DataTable({
                 data: data,
+                "scrollY": "200px",
                 paging: true,//分页
                 ordering: true,//是否启用排序
                 columns: [
@@ -122,9 +123,10 @@ function tableList() {
             var faultState = $("#stationTable>tbody td:last-child");
             if (faultState.html() == "故障") {
                 faultState.addClass("state_err");
-            };
+            }
+            ;
 
-             // console.log(adressState.html());
+            // console.log(adressState.html());
 
             $("#stationTable>tbody").on("click", "tr", function () {
                 var code = $(this).children("td:nth-child(5)").html();
@@ -172,6 +174,7 @@ $("#provinceUl").on("click", "li", function () {
 
 $("#cityInput").click(function () {
     var rgn = $("#provinceInput").attr("rgn");
+    console.log(rgn);
     if (rgn == 0) {
         alert("请选择省！");
         return;
@@ -289,12 +292,14 @@ function conditionalQuery() {
             dttable.fnDestroy(); //还原初始化了的datatable
             $('#stationTable').DataTable({
                 data: data,
+                // "scrollY": "100px",
+                scrollCollapse: true,
                 columns: [
                     {data: 'code'},
                     {data: 'station_name'},
                     {data: 'station_type'},
                     {data: 'address_text'},
-                     {data: 'name'},
+                    {data: 'name'},
                     {data: 'longitude'},
                     {data: 'latitude'},
                     {data: 'power_level'}
@@ -327,8 +332,8 @@ function conditionalQuery() {
                             "下一页",
                         "sLast":
                             "尾页"
-                    },
-                    "sZeroRecords": "<p class='dataNull'>没有检索到数据</p>"
+                    }
+
                 }
             });
         }
@@ -338,6 +343,7 @@ function conditionalQuery() {
 
 //导出基站列表excel 公共函数======================================
 var idTmr;
+
 function getExplorer() {
     var explorer = window.navigator.userAgent;
     //ie
@@ -361,6 +367,7 @@ function getExplorer() {
         return 'Safari';
     }
 }
+
 function method1(tableid) {//整个表格拷贝到EXCEL中
     if (getExplorer() == 'ie') {
         var curTbl = document.getElementById(tableid);
@@ -402,6 +409,7 @@ function method1(tableid) {//整个表格拷贝到EXCEL中
         tableToExcel(tableid)
     }
 }
+
 function Cleanup() {
     window.clearInterval(idTmr);
     CollectGarbage();

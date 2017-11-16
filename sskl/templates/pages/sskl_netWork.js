@@ -12,6 +12,7 @@ $(function () {
     electrical("1");
 });
 
+
 var httpUrl = "";
 var sn = $("#gateWay").html(); //得到页面上的网关号码
 var vsn = "9CC0D7DC-6A27F34A-B295E231-A5E2FDF6_C1_B2";

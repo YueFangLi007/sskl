@@ -1,0 +1,145 @@
+{% extends "templates/sskl_00main.html" %}
+{% block myContent %}
+<style>
+    body {
+        background-color: #f5f5f5;
+    }
+</style>
+<div class="mainTitle container">
+    <span>网络监测</span>
+</div>
+<div class="dataAnalyse">
+    <div class="CommorDateList">
+        <h4>数据分析</h4>
+        <p>可通过各个数据分析当前基站趋势</p>
+    </div>
+
+    <div class="container group1">
+        <div class="totalVoltage pull-left statComTit">
+            <p>电池组分析<a href="#" class="pull-right historyBtn tatalHisBTn">历史查询</a></p>
+            <div class="batteryGroupChart comChartBox" id="totalVol">
+
+            </div>
+        </div>
+        <div class="batteryTableList pull-right statComTit">
+            <p>单体电池组</p>
+            <div class="moreBatterys  comChartBox">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td>组体</td>
+                        <td>电压(V)</td>
+                        <td>电流(E)</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>50</td>
+                        <td>4.02</td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td>50</td>
+                        <td>4.02</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--单体电池组电压和SOC-->
+    <div class="container otherDetail">
+         <div class="singleBattery  statComTit">
+            <p>电池组单体电池电压</p>
+            <div class="comChartBox" id="singleBattery">
+
+            </div>
+        </div>
+         <div class="soc pu statComTit">
+            <p>SOC <a href="#" class="historyBtn pull-right">历史查询</a></p>
+            <div class="comChartBox" id="soc">
+
+            </div>
+        </div>
+         <div class="singleBattery  statComTit">
+            <p>单体温度</p>
+            <div class="comChartBox" id="temperature">
+
+            </div>
+        </div>
+         <div class="soc pu statComTit">
+            <p>单体充放电电流 <a href="#" class="historyBtn pull-right">历史查询</a></p>
+            <div class="comChartBox" id="electric">
+
+            </div>
+        </div>
+    </div>
+    <div class="stationMesgs">
+         <div class="CommorDateList">
+            <h4>基站信息</h4>
+            <p>包含基站的基础信息介绍和网关信息</p>
+        </div>
+        <div class="baseMeg">
+            <p>基站地址: <i>甘肃省临夏回族自治州积石山保安族东乡族自治县吹麻滩镇</i> </p>
+            <p>基站类型: <i>削峰填谷</i> </p>
+            <p>安装时间: <i>2017-09-10 14:56:23</i> </p>
+            <p>电池容量: <i>20%</i></p>
+        </div>
+    </div>
+    <div class="stationAlarmList">
+        <div class="CommorDateList">
+            <h4>基站信息</h4>
+            <p>包含基站的基础信息介绍和网关信息</p>
+        </div>
+        <div class="oneAlarmList">
+            <table class="table baseAlarmTable container">
+                <thead>
+                    <tr>
+                        <td>报警类型</td>
+                        <td>报警时间</td>
+                    </tr>
+                </thead>
+               <tbody>
+                   <tr>
+                       <td>BMS通信</td>
+                       <td>2017-09-10 14:56:23</td>
+                   </tr>
+                   <tr>
+                       <td>BMS通信</td>
+                       <td>2017-09-10 14:56:23</td>
+                   </tr>
+                   <tr>
+                       <td>BMS通信</td>
+                       <td>2017-09-10 14:56:23</td>
+                   </tr>
+                   <tr>
+                       <td>BMS通信</td>
+                       <td>2017-09-10 14:56:23</td>
+                   </tr>
+                <tr>
+                       <td>BMS通信</td>
+                       <td>2017-09-10 14:56:23</td>
+                   </tr>
+                   <tr>
+                       <td>BMS通信</td>
+                       <td>2017-09-10 14:56:23</td>
+                   </tr>
+                <tr>
+                       <td>BMS通信</td>
+                       <td>2017-09-10 14:56:23</td>
+                   </tr>
+                   <tr>
+                       <td>BMS通信</td>
+                       <td>2017-09-10 14:56:23</td>
+                   </tr>
+               </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        {% include "templates/pages/sskl_stationDetail.js" %}
+    </script>
+    {% endblock %}

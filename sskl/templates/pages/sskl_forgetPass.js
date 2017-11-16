@@ -5,13 +5,10 @@ $(".loginInUl>li").click(function(){
     $(this).css("backgroundColor","#fff").siblings("li").css("backgroundColor","#dde0e0");
 });
 
-
-
-
 //验证码
  window.onload = function(){
         createCode();
-    }
+ }
 function createCode(){
     FourCode = "";
     var codeLength = 4;//验证码的长度;
@@ -24,8 +21,14 @@ function createCode(){
 
     }
     $("#FourCode").html(FourCode);
+    $.each($(".p2"),function(i,v){
+       console.log( "this===="+$(this));
+       $(this)
+    });
     $(".p2").css({
-        "transform":"rotate(7deg)"
+        "margin":"6px",
+        "display":"inline-block",
+        "transform":"rotate("+8+"deg) translateX(10px)"
     });
 }
 

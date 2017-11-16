@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/assets/sskl/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/sskl/css/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/sskl/css/00commor.css">
+    <link rel="stylesheet" href="/assets/sskl/css/00myCss1.css">
+    <script src="/assets/sskl/js/jquery-1.11.3.js"></script>
+    <script src="/assets/sskl/js/bootstrap.min.js"></script>
+    <script src="/assets/sskl/js/myJsCommor.js"></script>
+
+
+    <!--网络监测的js-->
+</head>
+<body>
+<div class="container-fluid myAdmin">
+    <header class="myHeader container-fluid">
+        {% include "templates/sskl_00head.html" %}
+    </header>
+    <div class="myNavLeft">
+          {% include "templates/sskl_00mainLeft.html" %}
+    </div>
+    <div class="myBody container-fluid" style="overflow: auto">
+        {% block myContent %}
+           {% include "templates/sskl_00contentRight.html" %}
+        {% endblock %}
+    </div>
+    <!--<div class="container myFooter">-->
+       <!--sskl Application © 2008-2017-->
+    <!--</div>-->
+</div>
+
+<script>
+
+</script>
+</body>
+</html>

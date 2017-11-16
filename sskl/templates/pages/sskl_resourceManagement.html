@@ -1,0 +1,94 @@
+{% extends "templates/sskl_00main.html" %}
+{% block myContent %}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+<style>
+    div.dataTables_wrapper div.dataTables_length select {
+        margin-left: 5px;
+        border-radius: 36px;
+        display: inline-block;
+    }
+    .dataTables_length label {
+        margin-top: 5px;
+        margin-left: 8px;
+    }
+    .dataTables_length{
+        position:absolute;
+        top:-46px;
+        left:14px;
+    }
+    .dataTables_length select{
+        line-height:21px;
+        font-size:14px;
+    }
+    .myBody{
+        overflow: hidden;
+    }
+
+    .dataTables_scroll{
+        border-radius: 36px!important;
+    }
+</style>
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+
+<div class="mainTitle container">
+    <span>网络监测</span>
+    <div class="searchBox pull-right">
+        <input type="text" placeholder="请输入基站名称" id="stationName">
+        <i class="stateSearch commorSearch" id="stationSearch"></i>
+    </div>
+</div>
+
+<div class="container conditionSeacrch">
+    <select name=""  class="aa" id="provinceSel"  rgnType="Province">
+         <option value='0'  rgnType='Province' >请选择省/市</option>
+    </select>
+    <select name="" id="citySel" rgnType="City">
+        <option value='0'   rgnType='City'>城市</option>
+    </select>
+    <select name="" id="countySel"  rgnType='County'>
+        <option value="0" rgnType='City' >县</option>
+    </select>
+    <select name="" id="status" state="0">
+        <option value="0">状态</option>
+        <option value="OFFLINE">故障</option>
+        <option value="ONLINE">正常</option>
+    </select>
+
+    <input type="text" placeholder="数据采集器" id="symlink_sn">
+    <input type="text" placeholder="基站编码" id="stationCode">
+    <button class="btn btn-primary pull-right conditionBtn" id="conditionBtn">搜索</button>
+</div>
+<div class="container">
+    <button class="button pull-right exportBtn" id="exportBtn" onclick="javascript:method1('stationsTable')">导出<i>Excel</i></button>
+</div>
+<!--表格插件-->
+<div class="stationList">
+    <table class="table stationsTable" id="stationsTable">
+        <thead>
+        <tr>
+            <th>基站编码</th>
+            <th>基站名称</th>
+            <th>使用名称</th>
+            <th>基站地址</th>
+            <th>网关地址</th>
+            <th>经度</th>
+            <th>纬度</th>
+            <th>状态</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+<div>
+
+</div>
+
+<script>
+    {% include "templates/pages/sskl_resourceManagement.js" %}
+</script>
+{% endblock %}
