@@ -1,48 +1,184 @@
+$(function () {
+    pageInit();
+});
 
-//点击实现tab页面切换
-//表格加载
-sysTableList();
-function sysTableList() {
-    $.ajax({
-        url: httpUrl + "/api/method/tieta.tieta.doctype.cell_station.cell_station.search_station",
-        success: function (r) {
-            var data = r.message;
-            $('#sysTemTable').DataTable({
-                data: data,
-                paging: true,//分页
-                ordering: true,//是否启用排序
-                columns: [
-                    // {data: "<input type='checkbox'></td>"},
-                    {data: 'code'},
-                    {data: 'station_name'}
-                ],
-                "bFilter": false,   //去掉搜索框方法二
-                "bSort": false,  //禁止排序
-                language: {
-                     // lengthMenu: '每页显示<select class="form-control input-xsmall">' + '<option value="10">10</option>' + '<option value="25">25</option>' + '<option value="75">75</option>' + '<option value="100">100</option>' + '</select>',//左上角的分页大小显示。
-                     lengthMenu: "",
-                    //去除每页显示的
-                    // search: '<span class="label label-success">搜索：</span>',//右上角的搜索文本，可以写html标签
-                    paginate: {//分页的样式内容。
-                        previous: "上一页",
-                        next: "下一页",
-                        first: "第一页",
-                        last: "最后"
-                    },
-                    zeroRecords: "没有内容",//table tbody内容为空时，tbody的内容。
-                    info: "共有_PAGES_ 页，共_MAX_ 条 ",//左下角的信息显示，大写的词为关键字。
-                    infoEmpty: "0条记录",//筛选为空时左下角的显示。
-                    infoFiltered: ""//筛选之后的左下角筛选提示，
+function pageInit() {
+    jQuery("#lista1").jqGrid({
+        // url:ctx+'/JSONData',
+        url: 'data/JSONData.json',//组件创建完成之后请求数据的url
+        datatype: "json",
+        height:"100%",
+        colNames: ['标题内容', '提交时间'],
+        colModel: [
+            {name: 'id', index: 'id'},
+            {name: 'invdate', index: 'invdate'}
+        ],
+
+        rowNum: 10,
+        autowidth: true, //自动宽度  也就是为百分百展示
+        // rownumbers: true,
+        rowList: [10, 20, 30],
+        pager: '#pagera1',
+        // sortname: 'id',
+        viewrecords: true,
+        multiselect: true,
+        sortorder: "desc",
+        overflowX:true
+    })
+        // .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default
+
+    jQuery("#lista1").jqGrid('navGrid', '#pagera1', {edit: false, add: false, del: false});
+
+
+    //添加按钮
+    jQuery("#lista1")
+        .navGrid('#pagera1',{edit:false,add:false,del:false,search:false})
+
+        .navButtonAdd('#pagera1',{
+
+            caption:'<button class="btn">分页</button>',
+
+            // buttonicon:"ui-icon-add",
+
+            onClickButton: function(){
+
+                alert("Adding Row");
+
+            },
+
+            position:"last"
+
+        })
+
+        .navButtonAdd('#pagera1',{
+
+
+
+            caption:'<button class="btn">标记为已读</button>',
+
+            // buttonicon:"ui-icon-del",
+
+            onClickButton: function(){
+
+                alert("Deleting Row");
+
+            },
+
+            position:"last"
+
+        })
+        .navButtonAdd('#pagera1',{
+
+            // caption:"<button class='btn'  onclick='javascript:method1("stationTable")'>导出</button>",
+            caption:'<button class="btn">导出 <u>Excel</u></button>',
+            // buttonicon:"ui-icon-del",
+
+            onClickButton: function(){
+                var idTmr;
+                function getExplorer() {
+                    var explorer = window.navigator.userAgent;
+                    //ie
+                    if (explorer.indexOf("MSIE") >= 0) {
+                        return 'ie';
+                    }
+                    //firefox
+                    else if (explorer.indexOf("Firefox") >= 0) {
+                        return 'Firefox';
+                    }
+                    //Chrome
+                    else if (explorer.indexOf("Chrome") >= 0) {
+                        return 'Chrome';
+                    }
+                    //Opera
+                    else if (explorer.indexOf("Opera") >= 0) {
+                        return 'Opera';
+                    }
+                    //Safari
+                    else if (explorer.indexOf("Safari") >= 0) {
+                        return 'Safari';
+                    }
                 }
-            });
 
-            $("#stationTable>tbody").on("click", "tr", function () {
-                var code = $(this).children("td:nth-child(5)").html();
-                location.href = httpUrl + "/sskl_netWork.html?code=" + code;
-            });
-        }
-    });
+                function method1(tableid) {//整个表格拷贝到EXCEL中
+                    console.log(tableid);
+                    if (getExplorer() == 'ie') {
+                        var curTbl = document.getElementById(tableid);
+                        var oXL = new ActiveXObject("Excel.Application");
+                        //创建AX对象excel
+                        var oWB = oXL.Workbooks.Add();
+                        //获取workbook对象
+                        var xlsheet = oWB.Worksheets(1);
+                        //激活当前sheet
+                        var sel = document.body.createTextRange();
+                        sel.moveToElementText(curTbl);
+                        //把表格中的内容移到TextRange中
+                        sel.select();
+                        //全选TextRange中内容
+                        sel.execCommand("Copy");
+                        //复制TextRange中内容
+                        xlsheet.Paste();
+                        //粘贴到活动的EXCEL中
+                        oXL.Visible = true;
+                        //设置excel可见属性
+
+                        try {
+                            var fname = oXL.Application.GetSaveAsFilename("Excel.xls", "Excel Spreadsheets (*.xls), *.xls");
+                        } catch (e) {
+                            print("Nested catch caught " + e);
+                        } finally {
+                            oWB.SaveAs(fname);
+
+                            oWB.Close(savechanges = false);
+                            //xls.visible = false;
+                            oXL.Quit();
+                            oXL = null;
+                            //结束excel进程，退出完成
+                            //window.setInterval("Cleanup();",1);
+                            idTmr = window.setInterval("Cleanup();", 1);
+
+                        }
+                    }
+                    else {
+                        tableToExcel(tableid)
+                    }
+                }
+
+                function Cleanup() {
+                    window.clearInterval(idTmr);
+                    CollectGarbage();
+                }
+
+                var tableToExcel = (function () {
+                    var uri = 'data:application/vnd.ms-excel;base64,',
+                        template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><meta http-equiv="Content-Type" charset=utf-8"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+                        base64 = function (s) {
+                            return window.btoa(unescape(encodeURIComponent(s)))
+                        },
+                        format = function (s, c) {
+                            return s.replace(/{(\w+)}/g,
+                                function (m, p) {
+                                    return c[p];
+                                })
+                        }
+                    return function (table, name) {
+                        if (!table.nodeType) table = document.getElementById(table)
+                        var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+                        window.location.href = uri + base64(format(template, ctx))
+                    }
+                })()
+                method1(lista1);
+
+
+            },
+
+            position:"last"
+
+        })
+
 }
+
+
+
 
 //跳转函数
 function netWorkDrop(code) {

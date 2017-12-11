@@ -54,7 +54,7 @@
                             '<div class="widget-box">' +
                             '<h4 class="widget-title">' + stations[cs].station_name + '</h4>' +
                             '<p> 地&nbsp;&nbsp;&nbsp;址:' + stations[cs].address_text + '</p>' +
-                            '<a href="sskl_netWork.html?code=' + stations[cs].name + '">详情</a>' +
+                            '<a href="sskl_stationDetail.html?code=' + stations[cs].name + '">详情</a>' +
                             '</div>';
 
                         addClickHandler(content, marker)

@@ -10,6 +10,6 @@ from frappe import _
 
 # from Jinja2 import Template ;
 def get_context(context):
-	context.title=_("杉杉凯励-资源管理");
+	context.title=_("杉杉凯励");
 
 

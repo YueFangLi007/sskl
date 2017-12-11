@@ -1,0 +1,140 @@
+
+.ui-jqgrid tr.jqgrow td {
+    white-space: normal !important;
+    height:auto;
+    vertical-align:text-top;
+    padding-top:2px;
+}
+
+#myPage{
+    width:100px;
+    height:30px;
+    border-radius: 36px;
+}
+
+/*tbod中的tr行高*/
+.ui-row-ltr{
+    background: #fff;
+    height:50px;
+    line-height:50px;
+}
+.ui-row-ltr td{
+    text-align: center;
+}
+/**/
+.ui-jqgrid-labels{
+    height:60px;
+
+}
+.ui-jqgrid-bdiv{
+    height:800px;
+}
+/*分页*/
+.ui-pg-table{
+    height:50px;
+}
+.ui-jqgrid .ui-jqgrid-pager{
+    height:50px;
+}
+/*分页表格*/
+
+#pager2_left{
+    width:100px;
+    position:absolute;
+    top:0px;
+    right:300px;
+}
+.ui-paging-info{
+    width:100px;
+    line-height:40px;
+}
+#pager2_right{
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:200px;
+    background-color: #FF0000;
+
+}
+#pager2_right .ui-pg-div{
+    display: none;
+}
+#pager2_center .ui-pg-table{
+    width:300px;
+    position:absolute;
+    right:0px;
+    top:0px;
+}
+
+.ui-pg-selbox{
+    position:relative;
+    left:0px;
+    top:0px;
+    width:80px;
+    height:30px!important;
+    border-radius: 30px;
+}
+/*自定义按钮*/
+.btn{
+    border-radius: 36px;
+    background-color: green!important;
+    color:#fff;
+}
+/*让左侧的小图标都消失*/
+.ui-jqgrid .ui-pg-button span{
+    display:none;
+    background-color: transparent;
+}
+.ui-pg-div{
+    height:30px!important;
+}
+/*tr的背景颜色*/
+.ui-row-ltr{
+    background: #fff;
+    border:0px;
+}
+.ui-row-ltr:hover{
+    background: #eee!important;
+    border:0px;
+}
+.ui-row-ltr td{
+    border:0px;
+}
+.ui-jqgrid tr.ui-row-ltr td{
+    border:0px;
+}
+
+.ui-widget-content:nth-child(even){
+    background: #eee;
+}
+
+/*表头*/
+.ui-jqgrid-labels,.ui-jqgrid-htable,.ui-jqgrid-hbox{
+    background-color: orangered!important;
+}
+.ui-jqgrid .ui-jqgrid-htable th div{
+    height:30px;
+    line-height:30px;
+
+}
+.ui-state-default{
+    background: #fff!important;
+}
+.ui-th-ltr, .ui-jqgrid .ui-jqgrid-htable th.ui-th-ltr {
+    border: 0 none;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+    border:0px;
+}
+#gbox_lista1{
+    border:1px solid #eee;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+    background: red;
+    border:0px;
+}
+

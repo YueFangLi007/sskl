@@ -66,8 +66,27 @@
     background-color: #e8526d;
 }
 
-.myHeader .headUser {
+.myHeader .headNoUser {
+    color: #fff;
+}
 
+.myHeader .headNoUser i {
+    display: inline-block;
+    width: 21px;
+    vertical-align: middle;
+    height: 21px;
+    background: url("../images/spilit1.png") -52px -2px no-repeat;
+
+}
+
+.myHeader .headNoUser > a {
+    color: #fff;
+    display: inline-block;
+    margin: 0px 8px;
+}
+
+.myHeader .headNoUser > a:hover {
+    color: #eee;
 }
 
 .myHeader .headUser > span {
@@ -367,7 +386,7 @@
 .totalVoltage {
     width: 73%;
     height: 100%;
-    background-color: #f0ad4e;
+    background-color: #fff;
 }
 
 .totalVoltage > p {
@@ -390,7 +409,7 @@
     height: 45px;
     padding: 0px 40px;
     line-height: 45px;
-    background-color: #fafafa;
+    background-color: #fff;
 }
 
 .batteryTableList > p {
@@ -448,7 +467,7 @@
 .singleBattery, .soc {
     width: 49%;
     height: 350px;
-    background-color: #12c08f;
+    background-color: #fff;
 }
 
 /*历史查询样式*/
@@ -499,34 +518,74 @@
 }
 
 /*警报列表*/
-.stationAlarmList {
-
-}
 
 .stationAlarmList .oneAlarmList {
     background-color: #fff;
     margin: 0px 40px;
 }
 
-.stationAlarmList .oneAlarmList{
+.stationAlarmList .oneAlarmList {
     height: auto;
     overflow: hidden;
     overflow-y: scroll;
     max-height: 353px;
-    padding:5px 0px;
-}
-.stationAlarmList .baseAlarmTable{
-    height:auto;
+    padding: 5px 0px;
 }
 
-.stationAlarmList .oneAlarmList .baseAlarmTable tr td{
-   height:50px;
+.stationAlarmList .baseAlarmTable tr td {
+    padding: 0px 40px !important;
+}
+
+.stationAlarmList .oneAlarmList .baseAlarmTable tr td {
+    height: 50px;
     vertical-align: middle;
 }
-.stationAlarmList .oneAlarmList .baseAlarmTable  tbody tr{
-    padding:0px 40px!important;
 
+.stationAlarmList .oneAlarmList .baseAlarmTable tbody tr {
+    /*padding:0px 40px!important;*/
 }
+
+/*历史记录*/
+.hisDatas{
+    background-color: #fff;
+    border:1px solid #ececec;
+    border-radius: 6px;
+    margin:0px 40px;
+}
+.hisDatas .timeSlice{
+    height:60px;
+    line-height:60px;
+}
+.hisDatas .timeSlice>input{
+    height:30px;
+    width:152px;
+    font-size:12px;
+    color:#030303;
+    margin:0px 10px;
+    border-radius: 36px;
+    border:1px solid #c8d3db;
+}
+.hisDatas .timeSlice>.hisSearchBtn{
+    height:30px;
+    width:75px;
+    line-height:30px;
+    padding:0px;
+    margin-left:30px;
+    border-radius: 36px;
+    background-color: #437af1;
+    color:#fff;
+}
+/*hisDatas ：历史数据*/
+.hisDatas .hisCharts{
+    height:440px;
+    padding:0px 35px;
+    background-color: #fff;
+}
+/*系统消息*/
+
+
+
+
 .myFooter {
     margin-left: 200px;
 }

@@ -50,17 +50,11 @@ function tableList() {
                 }
             });
             //如果页面返回的是故障那就将其颜色改为红色
-            var faultState = $("#stationsTable>tbody td:last-child");
-            if (faultState.html() == "故障") {
-                faultState.addClass("state_err");
-            }
-            ;
 
-            // console.log(adressState.html());
 
             $("#stationsTable>tbody").on("click", "tr", function () {
                 var code = $(this).children("td:nth-child(5)").html();
-                location.href = httpUrl + "/sskl_netWork.html?code=" + code;
+                location.href = httpUrl + "/sskl_stationDetail.html?code=" + code;
             });
         }
     });
@@ -86,8 +80,12 @@ function province() {
 $("#provinceSel").change(function () {
     var rgn = $("#provinceSel option:selected").val();
     console.log("rgn =======" + rgn);
+
+    $("#countySel").html('<option value="0" rgnType=\'City\' >县</option>');
     if (rgn == 0) {
-        alert("请选择省！");
+        //alert("请选择省！");
+        $("#citySel").html("<option value='0'   rgnType='City'>城市</option>");
+        $("#countySel").html('<option value="0" rgnType=\'City\' >县</option>');
         return;
     } else {
         var url = httpUrl + "/api/method/cloud.cloud.doctype.region.region.list_child_region?";
@@ -111,7 +109,8 @@ $("#provinceSel").change(function () {
 $("#citySel").change(function () {
     var rgn = $("#citySel option:selected").val();
     if (rgn == 0) {
-        alert("请选择省！");
+        //alert("请选择省！");
+        $("#countySel").html('<option value="0" rgnType=\'City\' >县</option>');
         return;
     }
     var url = httpUrl + "/api/method/cloud.cloud.doctype.region.region.list_child_region?";
@@ -132,22 +131,23 @@ $("#citySel").change(function () {
 
 });
 
-$("#conditionBtn").click(function(){
+$("#conditionBtn").click(function () {
     conditionalQuery();
 });
 
-$("#stationSearch").click(function(){
-   StationNameQuery();
+$("#stationSearch").click(function () {
+    StationNameQuery();
 
 });
+
 //按照基站名称查询
 function StationNameQuery() {
     var page_length = 1000;
     var station_name = $("#stationName").val();
-    var url ="http://192.168.174.140/api/method/tieta.tieta.doctype.cell_station.cell_station.list_station_info?";
+    var url = "http://192.168.174.140/api/method/tieta.tieta.doctype.cell_station.cell_station.list_station_info?";
     $.ajax({
         url: url,
-       data:"station_name="+station_name,
+        data: "station_name=" + station_name,
         success: function (r) {
             console.log(r);
             var data = r.message;
@@ -201,7 +201,6 @@ function StationNameQuery() {
         }
     })
 }
-
 
 
 //多个条件查询============
